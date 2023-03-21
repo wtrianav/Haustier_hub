@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import "datatables.net-dt/css/jquery.dataTables.css";
+import "datatables.net-dt/js/dataTables.dataTables";
+import $ from "jquery";
 
 
 
 export default function Home() {
 	const [clients, setClients] = useState([]);
+    const tableClient = useRef(null);
+
 	const URL = "http://localhost:8080/clients";
 	const loadClients = async () => {
         const result = await axios.get(URL);
@@ -13,12 +18,13 @@ export default function Home() {
     
     useEffect(() => {
         loadClients();
+        $(tableClient.current).DataTable();
     }, []);
 
 	return (
 		<div className="container mt-5">
             <h3>Tabla clientes</h3>
-			<table className="table border shadow" id="clientTable">
+			<table className="table border shadow" ref={tableClient}>
 				<thead>
 					<tr>
 						<th scope="col">id</th>
