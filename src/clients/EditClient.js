@@ -20,22 +20,27 @@ export default function EditClient() {
 
     const { documentType, documentNumber, name, lastName, email, phoneNumber, department, city, address } = client;
 
+    // actualiza el estado client con el nuevo valor del campo.
     const onInputChange = (e) => {
         setClient({ ...client, [e.target.name]: e.target.value });
     };
 
     const onSubmit = async (e) => {
         e.preventDefault();
+        // envía la solicitud PUT al servidor con el objeto client actualizado
         await axios.put(`http://localhost:8080/client/${id}`, client);
+        // navega a la página principal después de que se haya actualizado el cliente
         navigate("/");
     };
 
     const loadClient = async () => {
+        // carga los datos del cliente actual en el estado client
         const result = await axios.get(`http://localhost:8080/client/${id}`);
         setClient(result.data);
     };
 
     useEffect(() => {
+        // carga los datos del cliente una vez que se monta el componente
         loadClient();
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);

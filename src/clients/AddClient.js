@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 export default function AddClient() {
     let navigate = useNavigate();
 
+    // Estado inicial del formulario con sus campos vacíos
     const [client, setClient] = useState({
         documentType: "",
         documentNumber: "",
@@ -17,12 +18,15 @@ export default function AddClient() {
         address: "",
     });
 
+    // Desestructuración de los valores de client para utilizarlos en los inputs del formulario.
     const { documentType, documentNumber, name, lastName, email, phoneNumber, department, city, address } = client;
 
+    // Función que actualiza el estado del formulario al cambiar algún valor en los inputs
     const onInputChange = (e) => {
         setClient({ ...client, [e.target.name]: e.target.value });
     };
 
+    // Función que se ejecuta al enviar el formulario y realiza una petición POST al servidor para agregar el cliente a la base de datos.
     const onSubmit = async (e) => {
         e.preventDefault();
         await axios.post("http://localhost:8080/client", client);

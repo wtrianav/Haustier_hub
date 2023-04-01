@@ -15,15 +15,19 @@ export default function ViewClient() {
         address: "",
     });
 
+    // Obtiene el parámetro 'id' de la URL usando el hook 'useParams'.
     const { id } = useParams();
 
     useEffect(() => {
+        // Carga los datos del cliente usando el 'id' obtenido de la URL.
         loadUser();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const loadUser = async () => {
+        // Realiza una solicitud GET a la API para obtener los datos del cliente con el 'id' especificado en la URL.
         const result = await axios.get(`http://localhost:8080/client/${id}`);
+        // Actualiza el estado del componente con los datos del cliente obtenidos de la API
         setClient(result.data);
     };
 

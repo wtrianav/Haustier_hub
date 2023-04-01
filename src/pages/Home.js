@@ -8,20 +8,25 @@ export default function Home() {
     const [clients, setClients] = useState([]);
     const URL = "http://localhost:8080/clients";
 
+    // Función que carga los clientes.
     const loadClients = async () => {
         const response = await axios.get(URL);
         setClients(response.data);
     };
 
     useEffect(() => {
+        // Carga los clientes al cargar la página.
         loadClients();
     }, []);
 
+    // Función que elimina un cliente
     const deleteClient = async (id) => {
         await axios.delete(`http://localhost:8080/client/${id}`);
+        // Recarga los clientes después de eliminar uno
         loadClients();
     }
 
+    // Se establecen las columnas de la tabla.
     const columns = [
         {
             name: "id",
@@ -56,6 +61,7 @@ export default function Home() {
             label: "Acciones",
             options: {
                 customBodyRender: (value, tableMeta, updateValue) => {
+                    // Obtiene el cliente de la fila actual.
                     const client = clients[tableMeta.rowIndex];
                     return (
                         <td colSpan={3}>
@@ -87,7 +93,9 @@ export default function Home() {
 
     ]
 
+    // Opciones de la tabla
     const options = {
+        // Desactiva los checkbox de cada registro de la tabla.
         selectableRows: 'none',
     };
 
