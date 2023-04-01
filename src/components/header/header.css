@@ -1,0 +1,51 @@
+.img-logo {
+    width: 240px;
+}
+
+.nav-item {
+    font-size: 17px;
+    font-weight: 550;
+    margin: 0px 6px;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+    color: #0D6EFD;
+}
+
+.form-control-header {
+    background-color: #EEF5F9;
+    border: 2px solid #EEF5F9;
+    border-radius: 20px;
+    padding: 6px 30px 6px 14px;
+}
+
+.form-control-header:focus {
+    background-color: #EEF5F9;
+    border: 2px solid #000000;
+    box-shadow: none;
+}
+
+.btn-blue {
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5.75px 12px;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    border: 2px solid #0D6EFD;
+    border-radius: 20px;
+    background-color: #0D6EFD;
+    cursor: pointer;
+}
+
+.btn-blue:hover {
+    color: #FFFFFF;
+    border: 2px solid #0250C4;
+    background-color: #0250C4;
+    transition: border-color .33s ease, background-color .33s ease, color .33s ease;
+}
+
+.btn-blue:focus {
+    box-shadow: none;
+}
