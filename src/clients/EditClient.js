@@ -9,16 +9,16 @@ export default function EditClient() {
     const [client, setClient] = useState({
         documentType: "",
         documentNumber: "",
-        name: "",
-        lastName: "",
-        email: "",
+        namePerson: "",
+        lastNamePerson: "",
+        emailAddress: "",
         phoneNumber: "",
         department: "",
         city: "",
         address: "",
     });
 
-    const { documentType, documentNumber, name, lastName, email, phoneNumber, department, city, address } = client;
+    const { documentType, documentNumber, namePerson, lastNamePerson, emailAddress, phoneNumber, department, city, address } = client;
 
     // actualiza el estado client con el nuevo valor del campo.
     const onInputChange = (e) => {
@@ -28,22 +28,31 @@ export default function EditClient() {
     const onSubmit = async (e) => {
         e.preventDefault();
         // envía la solicitud PUT al servidor con el objeto client actualizado
-        await axios.put(`http://localhost:8080/client/${id}`, client);
+        await axios.put(`http://localhost:3000/api/personas/${id}`, client);
         // navega a la página principal después de que se haya actualizado el cliente
         navigate("/");
     };
 
     const loadClient = async () => {
-        // carga los datos del cliente actual en el estado client
-        const result = await axios.get(`http://localhost:8080/client/${id}`);
-        setClient(result.data);
-    };
+		try {
+			const result = await axios.get(`http://localhost:3000/api/personas/${id}`);
+			console.log(result.data); // Verificar los datos en la consola
+			const clientData = result.data;
+			setClient(clientData);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
-    useEffect(() => {
-        // carga los datos del cliente una vez que se monta el componente
-        loadClient();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, []);
+	useEffect(() => {
+		// carga los datos del cliente una vez que se monta el componente
+		loadClient();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+    if (Object.values(client).every((value) => value === "")) {
+		return <p>Cargando datos del cliente...</p>; // Mostrar un mensaje o un indicador de carga mientras se cargan los datos
+	}
 
     return (
         <div className="container">
@@ -87,8 +96,8 @@ export default function EditClient() {
                                     type={"text"}
                                     className="form-control"
                                     placeholder="Ingrese su nombre"
-                                    name="name"
-                                    value={name}
+                                    name="namePerson"
+                                    value={namePerson}
                                     onChange={(e) => onInputChange(e)}
                                 />
                             </div>
@@ -98,8 +107,8 @@ export default function EditClient() {
                                     type={"text"}
                                     className="form-control"
                                     placeholder="Ingrese su apellido"
-                                    name="lastName"
-                                    value={lastName}
+                                    name="lastNamePerson"
+                                    value={lastNamePerson}
                                     onChange={(e) => onInputChange(e)} 
                                 />
                             </div>
@@ -111,8 +120,8 @@ export default function EditClient() {
                                     type={"text"}
                                     className="form-control"
                                     placeholder="Ingrese su email"
-                                    name="email"
-                                    value={email}
+                                    name="emailAddress"
+                                    value={emailAddress}
                                     onChange={(e) => onInputChange(e)}
                                 />
                             </div>

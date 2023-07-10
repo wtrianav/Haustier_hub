@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
     const [clients, setClients] = useState([]);
-    const URL = "http://localhost:8080/clients";
+    const URL = "http://localhost:3000/api/personas/";
 
     // Función que carga los clientes.
     const loadClients = async () => {
@@ -21,7 +21,7 @@ export default function Home() {
 
     // Función que elimina un cliente
     const deleteClient = async (id) => {
-        await axios.delete(`http://localhost:8080/client/${id}`);
+        await axios.delete(`http://localhost:3000/api/personas/${id}`);
         // Recarga los clientes después de eliminar uno
         loadClients();
     }
@@ -41,15 +41,15 @@ export default function Home() {
             label: "Documento"
         },
         {
-            name: "name",
+            name: "namePerson",
             label: "Nombre"
         },
         {
-            name: "lastName",
+            name: "lastNamePerson",
             label: "Apellido"
         },
         {
-            name: "email",
+            name: "emailAddress",
             label: "Email"
         },
         {

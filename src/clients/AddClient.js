@@ -9,9 +9,9 @@ export default function AddClient() {
     const [client, setClient] = useState({
         documentType: "",
         documentNumber: "",
-        name: "",
-        lastName: "",
-        email: "",
+        namePerson: "",
+        lastNamePerson: "",
+        emailAddress: "",
         phoneNumber: "",
         department: "",
         city: "",
@@ -19,7 +19,7 @@ export default function AddClient() {
     });
 
     // Desestructuración de los valores de client para utilizarlos en los inputs del formulario.
-    const { documentType, documentNumber, name, lastName, email, phoneNumber, department, city, address } = client;
+    const { documentType, documentNumber, namePerson, lastNamePerson, emailAddress, phoneNumber, department, city, address } = client;
 
     // Función que actualiza el estado del formulario al cambiar algún valor en los inputs
     const onInputChange = (e) => {
@@ -29,7 +29,7 @@ export default function AddClient() {
     // Función que se ejecuta al enviar el formulario y realiza una petición POST al servidor para agregar el cliente a la base de datos.
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:8080/client", client);
+        await axios.post("http://localhost:3000/api/personas", client);
         navigate("/");
     };
 
@@ -75,8 +75,8 @@ export default function AddClient() {
                                     type={"text"}
                                     className="form-control"
                                     placeholder="Ingrese su nombre"
-                                    name="name"
-                                    value={name}
+                                    name="namePerson"
+                                    value={namePerson}
                                     onChange={(e) => onInputChange(e)}
                                 />
                             </div>
@@ -86,8 +86,8 @@ export default function AddClient() {
                                     type={"text"}
                                     className="form-control"
                                     placeholder="Ingrese su apellido"
-                                    name="lastName"
-                                    value={lastName}
+                                    name="lastNamePerson"
+                                    value={lastNamePerson}
                                     onChange={(e) => onInputChange(e)} 
                                 />
                             </div>
@@ -99,8 +99,8 @@ export default function AddClient() {
                                     type={"text"}
                                     className="form-control"
                                     placeholder="Ingrese su email"
-                                    name="email"
-                                    value={email}
+                                    name="emailAddress"
+                                    value={emailAddress}
                                     onChange={(e) => onInputChange(e)}
                                 />
                             </div>
