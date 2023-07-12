@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css?family=Muli:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&subset=latin-ext,vietnamese");
+
+#button {
+	display: inline-block;
+	background-color: #0d6efd;
+	width: 42px;
+	height: 42px;
+	line-height: 52px;
+	text-align: center;
+	border-radius: 4px;
+	position: fixed;
+	bottom: 60px;
+	right: 10px;
+	transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
+	opacity: 0;
+	z-index: 2000;
+}
+
+#button i {
+	font-size: 30px;
+	color: white;
+}
+
+#button:hover {
+	cursor: pointer;
+	background-color: #0250c4;
+}
+
+#button.show {
+	opacity: 1;
+}
+
+/* Styles for the content section */
+
+@media (min-width: 500px) {
+	#button {
+		margin: 30px;
+	}
+}

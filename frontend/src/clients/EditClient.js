@@ -173,7 +173,7 @@ export default function EditClient() {
                             />
                         </div>
                         <button type="submit" className="btn btn-outline-primary">Aceptar</button>
-                        <Link className="btn btn-outline-danger mx-2" to="/">Cancelar</Link>
+                        <Link className="btn btn-outline-danger mx-2" to="/tableclients">Cancelar</Link>
                     </form>
                 </div>
             </div>

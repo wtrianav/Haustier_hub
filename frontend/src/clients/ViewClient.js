@@ -68,8 +68,8 @@ export default function ViewClient() {
                                 </ul>
                             </div>
                         </div>
-                        <Link className="btn btn-primary my-2 mt-4" to={"/"}>
-                            Volver al Home
+                        <Link className="btn btn-primary my-2 mt-4" to={"/tableclients"}>
+                            Volver
                         </Link>
                     </div>
                 </div>

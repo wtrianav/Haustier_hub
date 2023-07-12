@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 
-export default function Home() {
+export default function TableClients() {
     const [clients, setClients] = useState([]);
     const URL = "http://localhost:3000/api/personas/";
 

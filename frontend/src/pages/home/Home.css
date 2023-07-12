@@ -1,0 +1,298 @@
+* {
+	/* Para tener la dimensión justa */
+	font-family: "Montserrat", Helvetica, Arial, Lucida, sans-serif;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.form-control,
+.form-control-call {
+	background-color: #ebebeb;
+	border: 2px solid #ebebeb;
+	border-radius: 20px;
+	padding: 8px 40px 8px 14px;
+}
+
+.form-control:focus {
+	background-color: #ebebeb;
+	border: 2px solid #ebebeb;
+	box-shadow: none;
+}
+
+.form-control-call:focus {
+	background-color: #ebebeb;
+	box-shadow: none;
+}
+
+.carousel-header {
+	margin-top: 0rem;
+	margin-bottom: -4rem;
+}
+
+.justify-content-center {
+	padding-top: 5rem;
+	padding-bottom: 5rem;
+}
+
+.features-icons {
+	padding-top: 7rem;
+	padding-bottom: 7rem;
+}
+.features-icons .features-icons-item {
+	max-width: 20rem;
+}
+.features-icons .features-icons-item .features-icons-icon {
+	height: 7rem;
+}
+.features-icons .features-icons-item .features-icons-icon i {
+	font-size: 4.5rem;
+}
+
+.showcase .showcase-text {
+	padding: 3rem;
+}
+.showcase .showcase-img {
+	min-height: 30rem;
+	background-size: cover;
+}
+
+.section_1.section_2 {
+	background-image: linear-gradient(
+		90deg,
+		rgba(0, 0, 0, 0) 50%,
+		rgba(0, 0, 0, 0.23) 50%
+	) !important;
+	color: aliceblue;
+}
+
+section .getInTouch {
+	padding: 1rem 3rem 0 1.5rem;
+}
+
+.form-message {
+	padding: 1rem 1.5rem 0 3rem;
+}
+
+.section_2.section_1 {
+	padding-top: 100px;
+	padding-bottom: 100px;
+	background-color: #2a3039 !important;
+}
+
+.section_2 {
+	max-width: 1280px;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+.section_1 {
+	position: relative;
+	background-position: 50%;
+	background-size: cover;
+}
+
+.bottom_divider {
+	background: url("../../../public/images/divider.svg");
+	background-size: 100% 60px;
+	bottom: 0;
+	height: 60px;
+}
+
+.bottom_divider {
+	display: block;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	right: 0;
+}
+
+#signup {
+	margin-bottom: 8rem !important;
+}
+
+/* Section Mascotas */
+.section-mascotas {
+	padding-top: 7rem;
+	padding-bottom: 7rem;
+}
+
+.button-title {
+	font-size: 1.1rem;
+}
+
+.text-stock {
+	padding-right: 5rem;
+	padding-left: 5rem;
+	text-align: center;
+}
+
+.card-text {
+	color: #c10f1b;
+	font-size: 1.1rem;
+}
+
+.btn-stock-mascotas {
+	margin-top: 3rem;
+	display: flex;
+	justify-content: center;
+}
+
+.btn-mascotas {
+	padding: 0.5rem 1rem;
+	border-radius: 2rem;
+	font-weight: 400;
+}
+
+/* Estilos del Carousel */
+
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+.carousel {
+	margin-bottom: 4rem;
+}
+
+.carousel-caption {
+	bottom: 3rem;
+}
+
+.carousel-item {
+	height: 40rem;
+}
+
+.carousel-slide1 {
+	position: relative;
+	background-color: #343a40;
+	background: url("../../../public/images/photos/veterinarian-1.jpg")
+		no-repeat center;
+	background-size: cover;
+}
+
+.carousel-slide1:before {
+	content: "";
+	position: absolute;
+	background-color: #444444;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	opacity: 0.5;
+}
+
+.carousel-slide2 {
+	position: relative;
+	background-color: #343a40;
+	background: url("../../../public/images/photos/veterinarian-3.jpg")
+		no-repeat center;
+	background-size: cover;
+}
+
+.carousel-slide2:before {
+	content: "";
+	position: absolute;
+	background-color: #444444;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	opacity: 0.5;
+}
+
+.carousel-slide3 {
+	position: relative;
+	background-color: #343a40;
+	background: url("../../../public/images/photos/veterinarian-5.jpg")
+		no-repeat center;
+	background-size: cover;
+}
+
+.carousel-slide3:before {
+	content: "";
+	position: absolute;
+	background-color: #444444;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	opacity: 0.5;
+}
+
+.btn-carousel {
+	padding: 0.5rem 1rem;
+	border: 2px solid #0d6efd;
+	border-radius: 20px;
+}
+
+.btn-carousel:hover {
+	border: 2px solid #0250c4;
+	background-color: #0250c4;
+}
+
+/* Estilos de la tabla comparativa de planes y servicios */
+.table-responsive {
+	margin: auto;
+	width: 90%;
+}
+
+.thead-table {
+	background-color: #0d6efd;
+	color: #ffff;
+}
+
+/* Estilos de testimonios */
+.testimonials {
+	padding-top: 7rem;
+	padding-bottom: 7rem;
+}
+.testimonials .testimonial-item {
+	max-width: 18rem;
+}
+.testimonials .testimonial-item img {
+	max-width: 12rem;
+	box-shadow: 0px 5px 5px 0px #adb5bd;
+}
+
+/* Estilos de llamada a la acción */
+.call-to-action {
+	position: relative;
+	background-color: #343a40;
+	/* background: url('/assets/img/photos/veterinarian-2.jpg') no-repeat center center; */
+	background-size: cover;
+	padding-top: 1rem;
+	padding-bottom: 8rem;
+}
+.call-to-action:before {
+	content: "";
+	position: absolute;
+	background-color: #444444;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	opacity: 0.5;
+}
+
+/* Adaptabilidad a dispositivos móviles */
+@media (min-width: 768px) {
+	.showcase .showcase-text {
+		padding: 7rem;
+	}
+}
+
+@media (min-width: 981px) {
+	.section_1 {
+		padding: 4% 0;
+	}
+}
+
+@media (min-width: 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}
