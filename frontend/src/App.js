@@ -7,6 +7,7 @@ import AddClient from './clients/AddClient';
 import TableClients from './pages/TableClients';
 import EditClient from './clients/EditClient';
 import ViewClient from './clients/ViewClient';
+import ScrollToTop from "./components/scroll/Scroll";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -24,6 +25,7 @@ function App() {
                     <Route path="/viewclient/:id" element={<ViewClient />} />
                 </Routes>
                 <Footer />
+                <ScrollToTop/>
             </Router>
         </div>
     );
