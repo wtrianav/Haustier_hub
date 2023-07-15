@@ -1,6 +1,5 @@
 * {
 	/* Para tener la dimensión justa */
-	font-family: "Montserrat", Helvetica, Arial, Lucida, sans-serif;
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
@@ -12,6 +11,7 @@
 	border: 2px solid #ebebeb;
 	border-radius: 20px;
 	padding: 8px 40px 8px 14px;
+	font-size: 18px;
 }
 
 .form-control:focus {

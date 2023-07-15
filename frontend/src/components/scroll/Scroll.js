@@ -30,7 +30,7 @@ const ScrollToTop = () => {
 		<div>
 			{isVisible && (
 				<button id="button" className="show" onClick={scrollToTop}>
-					<i class="fas fa-angle-up"></i>
+					<i className="fas fa-angle-up"></i>
 				</button>
 			)}
 		</div>
