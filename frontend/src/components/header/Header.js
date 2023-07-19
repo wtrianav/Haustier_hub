@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './header.css'
 
 export default function Header() {
@@ -18,22 +18,25 @@ export default function Header() {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" to="/">Inicio</Link>
+                                <NavLink className="nav-link" to="/">Inicio</NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/">Nosotros</Link>
+                                <NavLink className="nav-link" to="/nosotros">Nosotros</NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/">Servicios</Link>
+                                <NavLink className="nav-link" to="/servicios">Servicios</NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/">Contáctanos</Link>
+                                <NavLink className="nav-link" to="/blog">Blog</NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/addclient">Crear cliente</Link>
+                                <NavLink className="nav-link" to="/contacto">Contáctanos</NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/">Iniciar sesión</Link>
+                                <NavLink className="nav-link" to="/addclient">Crear cliente</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/login">Iniciar sesión</NavLink>
                             </li>
                         </ul>
                         <form className="d-flex">
