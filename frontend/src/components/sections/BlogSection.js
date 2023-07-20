@@ -5,7 +5,7 @@ function PostCard({ title, category, image }) {
 	return (
 		<div className="col-md-5">
 			<div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-				<div className="col text-start p-4 d-flex flex-column position-static">
+				<div className="col text-start p-4 d-flex flex-column bg-white position-static">
 					<strong className="d-inline-block mb-2 text-primary-emphasis">
 						{category}
 					</strong>
@@ -32,10 +32,10 @@ function PostCard({ title, category, image }) {
 
 function BlogSection() {
 	return (
-		<section className="row mb-2 justify-content-center">
+		<section className="row mb-2 bg-light justify-content-center">
 			<h2 className="mb-5">Publicaciones recientes</h2>
-			<PostCard title="Featured post" category="World" image="images/photos/veterinarian-4.jpg" />
-			<PostCard title="Post title" category="Design" image="images/photos/veterinarian-13.jpg" />
+			<PostCard title="El pelo de los gatos" category="World" image="images/photos/veterinarian-4.jpg" />
+			<PostCard title="Viajar con tu mascota" category="Design" image="images/photos/veterinarian-13.jpg" />
 			<PostCard title="Gatitos" category="Salud" image="images/photos/veterinarian-7.jpg" />
 			<PostCard title="Perritos" category="Vacunas" image="images/photos/veterinarian-11.jpg"/>
 			<div>

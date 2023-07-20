@@ -264,12 +264,12 @@ section .getInTouch {
 /* Estilos de llamada a la acción */
 .call-to-action {
 	position: relative;
-	background-color: #343a40;
-	/* background: url('/assets/img/photos/veterinarian-2.jpg') no-repeat center center; */
+	background: url('../../../public/images/photos/veterinarian-5.jpg') no-repeat center center;
 	background-size: cover;
 	padding-top: 1rem;
 	padding-bottom: 8rem;
 }
+
 .call-to-action:before {
 	content: "";
 	position: absolute;

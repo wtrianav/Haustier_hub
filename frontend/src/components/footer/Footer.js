@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 export default function Footer() {
@@ -21,13 +22,13 @@ export default function Footer() {
                     <div className="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul className="list-inline mb-0">
                             <li className="list-inline-item me-4">
-                                <a href="#!"><i className="bi-facebook fs-3"></i></a>
+                                <Link to="#!"><i className="bi-facebook fs-3"></i></Link>
                             </li>
                             <li className="list-inline-item me-4">
-                                <a href="#!"><i className="bi-twitter fs-3"></i></a>
+                                <Link to="#!"><i className="bi-twitter fs-3"></i></Link>
                             </li>
                             <li className="list-inline-item">
-                                <a href="#!"><i className="bi-instagram fs-3"></i></a>
+                                <Link to="#!"><i className="bi-instagram fs-3"></i></Link>
                             </li>
                         </ul>
                         <p className="text-muted mb-4 mb-lg-0 d-block d-sm-block d-md-none">&copy; 2021–2022 Todos los
