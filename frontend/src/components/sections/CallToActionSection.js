@@ -6,7 +6,7 @@ function CallToActionSection() {
             <div className="container position-relative">
                 <div className="row justify-content-center">
                     <div className="col-xl-6">
-                        <h2 className="mb-4 fw-bold">¿Listo para comenzar?<br />¡Regístrate ahora!</h2>
+                        <h2 className="mb-4 fw-bold">¿Listo para comenzar?<br/>¡Regístrate ahora!</h2>
                         <form className="form-subscribe" id="contactFormFooter" data-sb-form-api-token="API_TOKEN">
                             <div className="row">
                                 <div className="col">

@@ -6,6 +6,7 @@ import BlogSection from "../../components/sections/BlogSection";
 import ShowcaseSection from "../../components/sections/ShowcaseSection";
 import './home.css';
 import CallToActionSection from "../../components/sections/CallToActionSection";
+import TestimonialSection from "../../components/sections/TestimonialSection";
 
 export default function Home() {
 	return (
@@ -15,6 +16,7 @@ export default function Home() {
 			<IconsGridSection />
 			<ShowcaseSection />
 			<BlogSection />
+			<TestimonialSection />
 			<CallToActionSection />
 		</>
 	);
