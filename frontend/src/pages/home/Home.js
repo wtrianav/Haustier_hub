@@ -6,7 +6,8 @@ import BlogSection from "../../components/sections/BlogSection";
 import ShowcaseSection from "../../components/sections/ShowcaseSection";
 import CallToActionSection from "../../components/sections/CallToActionSection";
 import TestimonialSection from "../../components/sections/TestimonialSection";
-import OurPlans from "../../components/sections/OurPlans";
+import OurPlanSection from "../../components/sections/OurPlanSection";
+import ComparePlanSection from "../../components/sections/ComparePlanSection";
 import './home.css';
 
 export default function Home() {
@@ -16,7 +17,8 @@ export default function Home() {
 			<FormContactSection />
 			<IconsGridSection />
 			<ShowcaseSection />
-			<OurPlans />
+			<OurPlanSection />
+			<ComparePlanSection />
 			<BlogSection />
 			<TestimonialSection />
 			<CallToActionSection />
