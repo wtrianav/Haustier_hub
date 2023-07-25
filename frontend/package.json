@@ -1,5 +1,5 @@
 {
-	"name": "haustierhub-crud",
+	"name": "haustierhub",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
@@ -20,6 +20,7 @@
 		"react-router-dom": "^6.9.0",
 		"react-scripts": "5.0.1",
 		"react-table": "^7.8.0",
+		"styled-components": "^6.0.5",
 		"web-vitals": "^2.1.4"
 	},
 	"scripts": {
@@ -48,7 +49,7 @@
 	},
 	"devDependencies": {
 		"@svgr/webpack": "^8.0.1",
-		"webpack": "^5.88.1",
+		"webpack": "^5.88.2",
 		"webpack-cli": "^5.1.4"
 	}
 }

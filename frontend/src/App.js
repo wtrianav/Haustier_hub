@@ -4,7 +4,7 @@ import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Home from './pages/home/Home';
 import AddClient from './clients/AddClient';
-import TableClients from './pages/TableClients';
+import TableClients from './clients/TableClients';
 import EditClient from './clients/EditClient';
 import ViewClient from './clients/ViewClient';
 import ScrollToTop from "./components/scroll/Scroll";

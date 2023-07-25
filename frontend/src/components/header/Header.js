@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import './header.css'
 
 export default function Header() {
@@ -27,13 +27,23 @@ export default function Header() {
                                 <NavLink className="nav-link" to="/servicios">Servicios</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="/blog">Blog</NavLink>
-                            </li>
-                            <li className="nav-item">
                                 <NavLink className="nav-link" to="/contacto">Contáctanos</NavLink>
                             </li>
+                            <li className="nav-item dropdown">
+                                <Link className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Registrar
+                                </Link>
+                                <ul className="dropdown-menu">
+                                    <li><Link className="dropdown-item" to="#">Administradores</Link></li>
+                                    <li><Link className="dropdown-item" to="#">Asesores</Link></li>
+                                    <li><hr className="dropdown-divider" /></li>
+                                    <li><Link className="dropdown-item" to="/tableclients">Clientes</Link></li>
+                                    <li><Link className="dropdown-item" to="#">Mascotas</Link></li>
+                                    <li><Link className="dropdown-item" to="#">Empresas</Link></li>
+                                </ul>
+                            </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="/addclient">Crear cliente</NavLink>
+                                <NavLink className="nav-link" to="/blog">Blog</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/login">Iniciar sesión</NavLink>

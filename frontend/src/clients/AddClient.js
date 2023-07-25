@@ -34,10 +34,10 @@ export default function AddClient() {
     };
 
     return (
-        <div className="container">
+        <section className="container">
             <div className="row mt-5">
                 <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-                    <h2 className="text-center m-4">Registrar Cliente</h2>
+                    <h3 className="text-center m-4 fw-bold">Registrar Cliente</h3>
                     <form onSubmit={(e) => onSubmit(e)}>
                         <div className="row">
                             <div className="text-start mb-3 col">
@@ -156,6 +156,6 @@ export default function AddClient() {
                     </form>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }

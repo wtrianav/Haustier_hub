@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import MUIDataTable from "mui-datatables";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import './tableClients.css';
 
 
 export default function TableClients() {
@@ -100,14 +101,16 @@ export default function TableClients() {
     };
 
     return (
-        <div className="container mt-5">
-            <h2>Tabla clientes</h2>
-            <MUIDataTable className="border shadow mt-2"
-                data={clients}
-                columns={columns}
-                options={options}
-            />
-        </div>
+        <section className="container mt-5">
+            <div className="table-client">
+                <h3 className="fw-bold">Tabla clientes</h3>
+                <MUIDataTable className="border shadow mt-2"
+                    data={clients}
+                    columns={columns}
+                    options={options}
+                />
+            </div>
+        </section>
     );
 }
 

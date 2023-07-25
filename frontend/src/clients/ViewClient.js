@@ -20,13 +20,13 @@ export default function ViewClient() {
     }, [id]);
 
     return (
-        <div className="container">
+        <section className="container bg-white">
             {client ? (
                 <div className="row mt-5">
                     <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-                        <h2 className="text-center m-4">Detalle del cliente</h2>
+                        <h3 className="text-center m-4 fw-bold">Detalle del cliente</h3>
                         <div className="card">
-                            <div className="card-header">
+                            <div className="card-header bg-white">
                                 <p className="fw-bold">Detalle del cliente con el id : {id}</p>
                                 <ul className="list-group list-group-flush">
                                     <li className="list-group-item">
@@ -76,6 +76,6 @@ export default function ViewClient() {
             ) : (
                 <div>No se pudo cargar la información del cliente.</div>
             )}
-        </div>
+        </section>
     );
 }

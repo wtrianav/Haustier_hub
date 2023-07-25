@@ -16,11 +16,25 @@
     color: #0D6EFD;
 }
 
+.dropdown-item {
+    font-size: 18px;
+    font-weight: 550;
+    color: #838383;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #c9deff;
+    color: #353535;
+    font-weight: 600;
+}
+
 .form-control-header {
     background-color: #EEF5F9;
     border: 2px solid #EEF5F9;
     border-radius: 20px;
+    font-size: 18px;
     padding: 6px 30px 6px 14px;
+    width: 250px;
 }
 
 .form-control-header:focus {

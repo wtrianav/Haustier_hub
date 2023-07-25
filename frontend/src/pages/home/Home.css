@@ -25,6 +25,17 @@
 	box-shadow: none;
 }
 
+.form-select {
+	border-radius: 20px;
+	padding: 8px 40px 8px 14px;
+	font-size: 18px;
+}
+
+.form-select:focus {
+	border: 2px solid #ebebeb;
+	box-shadow: none;
+}
+
 .carousel-header {
 	margin-top: 0rem;
 	margin-bottom: -4rem;
