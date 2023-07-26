@@ -248,50 +248,6 @@ section .getInTouch {
 	background-color: #0250c4;
 }
 
-/* Estilos de la tabla comparativa de planes y servicios */
-.table-responsive {
-	margin: auto;
-	width: 90%;
-}
-
-.thead-table {
-	background-color: #0d6efd;
-	color: #ffff;
-}
-
-/* Estilos de testimonios */
-.testimonials {
-	padding-top: 7rem;
-	padding-bottom: 7rem;
-}
-.testimonials .testimonial-item {
-	max-width: 18rem;
-}
-.testimonials .testimonial-item img {
-	max-width: 12rem;
-	box-shadow: 0px 5px 5px 0px #adb5bd;
-}
-
-/* Estilos de llamada a la acción */
-.call-to-action {
-	position: relative;
-	background: url('../../../public/images/photos/veterinarian-5.jpg') no-repeat center center;
-	background-size: cover;
-	padding-top: 1rem;
-	padding-bottom: 8rem;
-}
-
-.call-to-action:before {
-	content: "";
-	position: absolute;
-	background-color: #444444;
-	height: 100%;
-	width: 100%;
-	top: 0;
-	left: 0;
-	opacity: 0.5;
-}
-
 /* Adaptabilidad a dispositivos móviles */
 @media (min-width: 768px) {
 	.showcase .showcase-text {

@@ -65,13 +65,13 @@ export default function TableClients() {
                     // Obtiene el cliente de la fila actual.
                     const client = clients[tableMeta.rowIndex];
                     return (
-                        <td colSpan={3}>
+                        <>
                             <div className="btn-group">
                                 <Link
                                     className="btn btn-primary mx-1"
                                     to={`/viewclient/${client.id}`}
                                 >
-                                    ver
+                                    Ver
                                 </Link>
                                 <Link
                                     className="btn btn-outline-primary mx-1"
@@ -86,7 +86,7 @@ export default function TableClients() {
                                     Eliminar
                                 </button>
                             </div>
-                        </td>
+                        </>
                     );
                 },
             },
@@ -101,7 +101,7 @@ export default function TableClients() {
     };
 
     return (
-        <section className="container mt-5">
+        <section className="section-client mt-5">
             <div className="table-client">
                 <h3 className="fw-bold">Tabla clientes</h3>
                 <MUIDataTable className="border shadow mt-2"

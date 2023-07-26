@@ -1,8 +1,34 @@
 /* Estilo de la tabla de clientes */
+.section-client {
+	display: flex;
+	justify-content: center;
+}
+
 .table-client {
-	margin-top: 160px;
+	width: 1600px;
+	margin-top: 60px;
 }
 
 h3 {
 	margin-bottom: 30px;
 }
+
+th span {
+	display: flex;
+	justify-content: center;
+}
+
+th span button div {
+	font-family: "Montserrat", Helvetica, Arial, Lucida, sans-serif;
+	font-size: 16px;
+	font-weight: 700;
+}
+
+tr td div {
+	display: flex;
+	justify-content: center;
+	font-family: "Montserrat", Helvetica, Arial, Lucida, sans-serif;
+	font-size: 16px;
+}
+
+

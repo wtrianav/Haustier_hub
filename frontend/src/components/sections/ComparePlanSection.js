@@ -1,6 +1,19 @@
 import React from "react";
+import styled from "styled-components";
 import CheckIcon from "../iconStyle/CheckIcon";
 import XmarkIcon from "../iconStyle/XmarkIcon";
+
+
+const TableHead = styled.thead` 
+    tr {
+        th {
+            background-color: #0d6efd;
+            color: #ffff;
+            width: 18%;
+        }
+    }
+
+`;
 
 function ComparePlanSection() {
 	return (
@@ -9,15 +22,15 @@ function ComparePlanSection() {
                 <h2 className="fw-bold text-center mb-4">Compara nuestros planes</h2>
                 <div className="table-responsive">
                     <table className="table text-center">
-                        <thead className="thead-table">
+                        <TableHead>
                             <tr>
-                                <th style={{width: "18%"}}></th>
-                                <th style={{width: "18%"}}>Haustier Basic</th>
-                                <th style={{width: "18%"}}>Haustier Local</th>
-                                <th style={{width: "18%"}}>Haustier Nacional</th>
-                                <th style={{width: "18%"}}>Haustier Plus</th>
+                                <th></th>
+                                <th>Haustier Basic</th>
+                                <th>Haustier Local</th>
+                                <th>Haustier Nacional</th>
+                                <th>Haustier Plus</th>
                             </tr>
-                        </thead>
+                        </TableHead>
                         <tbody>
                             <tr>
                                 <th scope="row" className="text-start">Urgencias 24/7</th>

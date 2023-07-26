@@ -1,8 +1,30 @@
-import React from 'react'
+import React from 'react';
+import styled from "styled-components";
+import veterinarianImage from "../../assets/CallToAction/veterinarian-21.jpg";
+
+const CallToActionContainer = styled.section`
+	position: relative;
+	background: url(${veterinarianImage}) no-repeat center center;
+	background-size: cover;
+	padding-top: 1rem;
+	padding-bottom: 8rem;
+
+	// Componente estilizado para el pseudo-elemento :before
+	&:before {
+		content: "";
+		position: absolute;
+		background-color: #444444;
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+		opacity: 0.5;
+	}
+`;
 
 function CallToActionSection() {
     return (
-        <section className="call-to-action text-white text-center" id="signup">
+        <CallToActionContainer className="text-white text-center" id="signup">
             <div className="container position-relative">
                 <div className="row justify-content-center">
                     <div className="col-xl-6">
@@ -36,7 +58,7 @@ function CallToActionSection() {
                     </div>
                 </div>
             </div>
-        </section>
+        </CallToActionContainer>
     );
 }
 
