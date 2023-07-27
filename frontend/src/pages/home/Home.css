@@ -183,8 +183,7 @@ section .getInTouch {
 .carousel-slide1 {
 	position: relative;
 	background-color: #343a40;
-	background: url("../../../public/images/photos/veterinarian-1.jpg")
-		no-repeat center;
+	background: url("../../../public/images/photos/veterinarian-1.jpg") no-repeat center;
 	background-size: cover;
 }
 
@@ -202,8 +201,7 @@ section .getInTouch {
 .carousel-slide2 {
 	position: relative;
 	background-color: #343a40;
-	background: url("../../../public/images/photos/veterinarian-3.jpg")
-		no-repeat center;
+	background: url("../../../public/images/photos/veterinarian-3.jpg") no-repeat center;
 	background-size: cover;
 }
 
@@ -221,8 +219,7 @@ section .getInTouch {
 .carousel-slide3 {
 	position: relative;
 	background-color: #343a40;
-	background: url("../../../public/images/photos/veterinarian-5.jpg")
-		no-repeat center;
+	background: url("../../../public/images/photos/veterinarian-5.jpg") no-repeat center;
 	background-size: cover;
 }
 
