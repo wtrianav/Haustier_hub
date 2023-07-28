@@ -4,14 +4,18 @@
     margin-bottom: 100px;
 }
 
-body {
-    margin: 0;
-}
-
 html, body {
     font-family: "Montserrat", Helvetica, Arial, Lucida, sans-serif;
 }
 
 h2 {
     font-weight: 550;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul,ol {
+    list-style: none;
 }

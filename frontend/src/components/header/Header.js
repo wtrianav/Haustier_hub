@@ -5,7 +5,7 @@ import './header.css'
 export default function Header() {
     return (
         <div className="container">
-            <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top p-3 shadow-sm" id="navbar">
+            <nav className="navbar navbar-expand-lg navbar-light bg-white fixed-top p-3 shadow-sm" id="navbar">
                 <div className="container-fluid">
                     <div>
                         <img className="img-logo" src="./images/logo.png" alt="logo haustier hub" />
@@ -46,7 +46,7 @@ export default function Header() {
                                 <NavLink className="nav-link" to="/blog">Blog</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="/login">Iniciar sesión</NavLink>
+                                <NavLink className="nav-link" to="/loginregister">Iniciar sesión</NavLink>
                             </li>
                         </ul>
                         <form className="d-flex">
