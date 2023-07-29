@@ -12,7 +12,6 @@ import ScrollToTop from "./components/scroll/Scroll";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 function App() {
     return (
         <div className="App">
@@ -27,7 +26,7 @@ function App() {
                     <Route path='/loginregister' element={<LoginRegister />} />
                 </Routes>
                 <Footer />
-                <ScrollToTop/>
+                <ScrollToTop />
             </Router>
         </div>
     );
