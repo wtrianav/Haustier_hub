@@ -244,7 +244,7 @@ Estilos mesajes de error
 .error-text {
     background: var(--color-rgba-rojo);
     border-radius: 4px;
-    padding: 8px 20px;
+    padding: 12px 20px;
     margin-bottom: 10px;
     display: none;
 }
@@ -252,6 +252,10 @@ Estilos mesajes de error
 .error-text p {
     font-size: 13px;
     color: var(--color-rojo);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .error-text.active {
