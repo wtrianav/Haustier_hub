@@ -100,6 +100,8 @@ function useLoginForm() {
 		},
 	});
 
+	const [hasError, setHasError] = useState({});
+
     function handleNameChange(e) {
 		const newName = e.target.value;
 		setName(newName);
@@ -107,6 +109,11 @@ function useLoginForm() {
 		setErrors((prevState) => ({
 			...prevState,
 			...nameValidation,
+		}));
+
+		setHasError((prevState) => ({
+			...prevState,
+			name: nameValidation.name.error,
 		}));
 	}
 
@@ -118,6 +125,11 @@ function useLoginForm() {
 			...prevState,
 			...lastNameValidation,
 		}));
+
+		setHasError((prevState) => ({
+			...prevState,
+			lastName: lastNameValidation.lastName.error,
+		}));
 	}
 
 	function handleEmailChange(e) {
@@ -128,15 +140,10 @@ function useLoginForm() {
 			...prevState,
 			...emailValidation,
 		}));
-	}
 
-    function handlePasswordChange(e) {
-		const newPassword = e.target.value;
-		setPassword(newPassword);
-		const passwordValidation = validarPassword(newPassword);
-		setErrors((prevState) => ({
+		setHasError((prevState) => ({
 			...prevState,
-			...passwordValidation,
+			email: emailValidation.email.error,
 		}));
 	}
 
@@ -150,10 +157,10 @@ function useLoginForm() {
         password,
         setPassword,
 		errors,
+		hasError,
 		handleEmailChange,
         handleNameChange,
         handleLastNameChange,
-        handlePasswordChange,
 	};
 }
 

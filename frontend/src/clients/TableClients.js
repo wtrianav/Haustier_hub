@@ -71,19 +71,19 @@ export default function TableClients() {
                                     className="btn btn-primary mx-1"
                                     to={`/viewclient/${client.id}`}
                                 >
-                                    Ver
+                                    VER
                                 </Link>
                                 <Link
                                     className="btn btn-outline-primary mx-1"
                                     to={`/editclient/${client.id}`}
                                 >
-                                    Editar
+                                    EDITAR
                                 </Link>
                                 <button
                                     className="btn btn-danger mx-1"
                                     onClick={() => deleteClient(client.id)}
                                 >
-                                    Eliminar
+                                    ELIMINAR
                                 </button>
                             </div>
                         </>

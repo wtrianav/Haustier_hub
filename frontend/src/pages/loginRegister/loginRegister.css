@@ -133,7 +133,7 @@ Estilos Formularios
     color: var(--color-celeste);
 }
 
-.formulario .input-text:focus {
+.input-text:focus {
     border: 2px solid #000000;
 }
 
@@ -152,8 +152,8 @@ Estilos Formularios
     border: none;
     background: var(--color-celeste);
     color: #fff;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 600;
     text-transform: uppercase;
     border-radius: 20px;
     margin-top: 30px;
@@ -260,6 +260,10 @@ Estilos mesajes de error
 
 .error-text.active {
     display: block;
+}
+
+.has-error:focus {
+    border: 2px solid #ed0722;
 }
 
 .cbx-error .cbx-marca {

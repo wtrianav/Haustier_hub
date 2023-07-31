@@ -10,6 +10,7 @@ function RegisterForm() {
 		lastName,
 		email,
 		errors,
+		hasError,
 		handleEmailChange,
 		handleNameChange,
 		handleLastNameChange,
@@ -20,16 +21,16 @@ function RegisterForm() {
 			<div className={`error-text ${errors.name.error ? "active" : ""}`}>
 				{errors.name.error && <p>{errors.name.message}</p>}
 			</div>
-			<input type="text" placeholder="Nombres" className="input-text" name="nombre" value={name} onChange={handleNameChange} autoComplete="off" />
+			<input type="text" placeholder="Nombres" className={`input-text ${hasError.name ? "has-error" : ""}`} name="nombre" value={name} onChange={handleNameChange} autoComplete="off" />
 			<div className={`error-text ${errors.lastName.error ? "active" : ""}`}>
 				{errors.lastName.error && <p>{errors.lastName.message}</p>}
 			</div>
-			<input type="text" placeholder="Apellidos" className="input-text" name="apellido" value={lastName} onChange={handleLastNameChange} autoComplete="off" />
+			<input type="text" placeholder="Apellidos" className={`input-text ${hasError.lastName ? "has-error" : ""}`} name="apellido" value={lastName} onChange={handleLastNameChange} autoComplete="off" />
 			<div className={`error-text ${errors.email.error ? "active" : ""}`}>
 				{errors.email.error && <p>{errors.email.message}</p>}
 			</div>
-			<input type="text" placeholder="Correo electrónico" className="input-text" name="correo" value={email} onChange={handleEmailChange} autoComplete="off" />
-			<PasswordToggle />
+			<input type="text" placeholder="Correo electrónico" className={`input-text ${hasError.email ? "has-error" : ""}`} name="correo" value={email} onChange={handleEmailChange} autoComplete="off" />
+			<PasswordToggle hasError={hasError} />
 
 			{/* Checkbox Personalizados */}
 			<div className="contenedor-cbx">

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { validarPassword } from "./Validations";
 
-function PasswordToggle() {
+function PasswordToggle({ hasError }) {
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
 	const [eyeIcon, setEyeIcon] = useState("fas fa-eye");
@@ -31,7 +31,7 @@ function PasswordToggle() {
 				{passwordError && <p>{passwordError}</p>}
 			</div>
 			<div className="grupo-input">
-				<input type={showPassword ? "text" : "password"} placeholder="Contraseña" name="password" className="input-text clave" value={password} onChange={handlePasswordChange}/>
+				<input type={showPassword ? "text" : "password"} placeholder="Contraseña" name="password" className={`input-text clave ${hasError.password ? "has-error" : ""}`} value={password} onChange={handlePasswordChange} style={{border: passwordError ? "2px solid #ed0722" : "",}}/>
 				<button type="button" className={`icono ${eyeIcon} mostrarClave`} onClick={toggleShowPassword}></button>
 			</div>
 		</>

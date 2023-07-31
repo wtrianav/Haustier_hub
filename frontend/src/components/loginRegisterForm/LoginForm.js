@@ -8,6 +8,7 @@ function LoginForm() {
 	const {
 		email,
 		errors,
+		hasError,
 		handleEmailChange,
 	} = useLoginForm();
 
@@ -16,8 +17,8 @@ function LoginForm() {
 			<div className={`error-text ${errors.email.error ? "active" : ""}`}>
 				{errors.email.error && <p>{errors.email.message}</p>}
 			</div>
-			<input type="text" placeholder="Correo electrónico" className="input-text" name="correo" value={email} onChange={handleEmailChange} aria-invalid={errors.email.error ? "true" : "false"} autoComplete="off" />
-			<PasswordToggle />
+			<input type="text" placeholder="Correo electrónico" className={`input-text ${hasError.email ? "has-error" : ""}`} name="correo" value={email} onChange={handleEmailChange} aria-invalid={errors.email.error ? "true" : "false"} autoComplete="off" />
+			<PasswordToggle hasError={hasError} />
 			<Link href="#" className="link">
 				¿Ovidaste tu contraseña?
 			</Link>
