@@ -232,7 +232,7 @@ Estilos Checkbox Personalizados
 Animación a los checkbox
 ==========================================*/
 
-.cbx.animate input:checked ~ .cbx-marca {
+.cbx.animate input:checked ~ .cbx-marca::after {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
 }
@@ -266,26 +266,21 @@ Estilos mesajes de error
     border: 2px solid #ed0722;
 }
 
-.cbx-error .cbx-marca {
-    -webkit-animation: cbx_error .2s ease-in-out infinite;
-    animation: cbx_error .2s ease-in-out infinite;
-    border: 1px solid var(--color-rojo);
-    
+.cbx-error input:not(:checked) ~ .cbx-marca {
+    animation: cbx_error 0.4s ease-in-out infinite;
+    border: 1px solid var(--color-rojo);  
 }
 
 @keyframes cbx_error {
    
     0%  { 
-        -webkit-transform:rotateX(-5deg);
         transform: rotateX(-5deg);
     
     }
-    50% {
-        -webkit-transform:rotateX( 0deg) scale(.8); 
+    50% { 
         transform: rotateX(0deg) scale(.8);
     }
     100%{
-        -webkit-transform:rotateX( 5deg);
         transform: rotateX(5deg);
     }
 }

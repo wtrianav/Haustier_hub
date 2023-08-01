@@ -2,7 +2,10 @@ import { useState } from "react";
 
 
 function validarNombre(nombre) {
-	if (nombre.length >= 3) {
+	// Expresión regular para verificar que el nombre solo contiene letras, espacios, tildes y la letra "ñ"
+	const regex = /^[A-Za-záéíóúñÁÉÍÓÚ\s]+$/;
+
+	if (nombre.length >= 3 && regex.test(nombre)) {
 		return {
 			name: {
 				error: false,
@@ -13,14 +16,17 @@ function validarNombre(nombre) {
 		return {
 			name: {
 				error: true,
-				message: "Deben ser al menos 3 caracteres",
+				message: "Deben ser al menos 3 caracteres y no se permiten números ni caracteres especiales",
 			},
 		};
 	}
 }
 
 function validarApellido(apellido) {
-	if (apellido.length >= 3) {
+	// Expresión regular para verificar que el apellido solo contiene letras, espacios, tildes y la letra "ñ"
+	const regex = /^[A-Za-záéíóúñÁÉÍÓÚ\s]+$/;
+
+	if (apellido.length >= 3 && regex.test(apellido)) {
 		return {
 			lastName: {
 				error: false,
@@ -31,7 +37,7 @@ function validarApellido(apellido) {
 		return {
 			lastName: {
 				error: true,
-				message: "Deben ser al menos 3 caracteres",
+				message: "Deben ser al menos 3 caracteres y no se permiten números ni caracteres especiales",
 			},
 		};
 	}
@@ -57,14 +63,8 @@ function validarEmail(email) {
 }
 
 function validarPassword(password) {
-	if (password.length >= 6) {
-		return {
-			password: {
-				error: false,
-				message: "",
-			},
-		};
-	} else {
+	// Longitud mínima de 6 caracteres
+	if (password.length < 6) {
 		return {
 			password: {
 				error: true,
@@ -72,6 +72,30 @@ function validarPassword(password) {
 			},
 		};
 	}
+
+	// Expresiones regulares para verificar carácter especial, mayúscula y número
+	const hasSpecialCharacter = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password);
+	const hasUpperCase = /[A-Z]/.test(password);
+	const hasNumber = /\d/.test(password);
+
+	// Verificar si se cumplen todas las condiciones
+	if (!hasSpecialCharacter || !hasUpperCase || !hasNumber) {
+		return {
+			password: {
+				error: true,
+				message:
+					"La contraseña debe contener al menos un carácter especial, una mayúscula y un número",
+			},
+		};
+	}
+
+	// Si se cumplen todas las condiciones, la contraseña es válida
+	return {
+		password: {
+			error: false,
+			message: "",
+		},
+	};
 }
 
 
@@ -100,7 +124,13 @@ function useLoginForm() {
 		},
 	});
 
-	const [hasError, setHasError] = useState({});
+	const [hasError, setHasError] = useState({
+		name: false,
+		lastName: false,
+		email: false,
+		password: false,
+		terms: false,
+	});
 
     function handleNameChange(e) {
 		const newName = e.target.value;
@@ -158,6 +188,7 @@ function useLoginForm() {
         setPassword,
 		errors,
 		hasError,
+		setHasError,
 		handleEmailChange,
         handleNameChange,
         handleLastNameChange,
