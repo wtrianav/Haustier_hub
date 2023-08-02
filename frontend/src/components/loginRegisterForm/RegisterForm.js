@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import PasswordToggle from "./PasswordToggle";
-import { useLoginForm } from "./Validations";
+import { useLoginForm } from "../validations/Validations";
 
 function RegisterForm() {
 	const {

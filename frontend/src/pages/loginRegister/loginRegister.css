@@ -228,44 +228,6 @@ Estilos Checkbox Personalizados
     border: 1px solid var(--color-celeste) !important;
 }
 
-/*========================================
-Animación a los checkbox
-==========================================*/
-
-.cbx.animate input:checked ~ .cbx-marca::after {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-}
-
-
-/*========================================
-Estilos mesajes de error
-==========================================*/
-.error-text {
-    background: var(--color-rgba-rojo);
-    border-radius: 4px;
-    padding: 12px 20px;
-    margin-bottom: 10px;
-    display: none;
-}
-
-.error-text p {
-    font-size: 13px;
-    color: var(--color-rojo);
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.error-text.active {
-    display: block;
-}
-
-.has-error:focus {
-    border: 2px solid #ed0722;
-}
-
 .cbx-error input:not(:checked) ~ .cbx-marca {
     animation: cbx_error 0.4s ease-in-out infinite;
     border: 1px solid var(--color-rojo);  

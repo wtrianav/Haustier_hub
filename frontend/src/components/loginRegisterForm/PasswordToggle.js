@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { validarPassword } from "./Validations";
+import { validarPassword } from "../validations/Validations";
 
 function PasswordToggle({ hasError }) {
 	const [password, setPassword] = useState("");

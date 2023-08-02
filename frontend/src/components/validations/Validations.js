@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./validations.css"
 
 
 function validarNombre(nombre) {
@@ -108,11 +109,11 @@ function useLoginForm() {
 	const [errors, setErrors] = useState({
         name: {
             error: false,
-			message: "Deben ser al menos 3 caracteres",
+			message: "Deben ser al menos 3 caracteres y no se permiten números ni caracteres especiales",
 		},
 		lastName: {
             error: false,
-			message: "Deben ser al menos 3 caracteres",
+			message: "Deben ser al menos 3 caracteres y no se permiten números ni caracteres especiales",
 		},
         email: {
             error: false,
