@@ -35,3 +35,28 @@
     border-radius: 20px;
     font-weight: 600;
 }
+
+.form-group-input {
+	position: relative;
+}
+  
+.form-group-input input {
+	padding-right: 30px; /* Espacio para el icono */
+}
+  
+.form-group-input .fa-solid {
+	position: absolute;
+	top: 50%;
+	right: 10px; /* Ajusta el valor según sea necesario */
+	transform: translateY(-50%);
+	font-size: 18px; /* Tamaño del icono */
+}
+
+/* Estilos para los íconos de éxito y error */
+.success-icon {
+    color: #1ed12d;
+}
+
+.error-icon {
+    color: var(--color-rojo);
+}

@@ -4,8 +4,8 @@ import { validarPassword } from "../validations/Validations";
 function PasswordToggle({ hasError }) {
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
-	const [eyeIcon, setEyeIcon] = useState("fas fa-eye");
 	const [passwordError, setPasswordError] = useState("");
+	const [eyeIcon, setEyeIcon] = useState("fas fa-eye");
 
 	const toggleShowPassword = () => {
 		setShowPassword((prevShowPassword) => !prevShowPassword);

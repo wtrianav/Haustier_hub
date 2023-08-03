@@ -5,7 +5,7 @@ import FormClient from "./FormClient";
 import './formClient.css';
 
 export default function AddClient() {
-    let navigate = useNavigate();
+    const navigate = useNavigate();
 
     // Estado inicial del formulario con sus campos vacíos
     const [client, setClient] = useState({

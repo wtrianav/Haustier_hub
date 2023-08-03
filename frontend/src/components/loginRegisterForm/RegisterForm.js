@@ -59,11 +59,7 @@ function RegisterForm() {
 				onChange={handleNameChange}
 				autoComplete="off"
 			/>
-			<div
-				className={`error-text ${
-					errors.lastName.error ? "active" : ""
-				}`}
-			>
+			<div className={`error-text ${errors.lastName.error ? "active" : ""}`}>
 				{errors.lastName.error && <p>{errors.lastName.message}</p>}
 			</div>
 			<input

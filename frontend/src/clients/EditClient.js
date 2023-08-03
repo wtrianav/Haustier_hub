@@ -5,7 +5,7 @@ import FormClient from "./FormClient";
 import './formClient.css';
 
 export default function EditClient() {
-    let navigate = useNavigate();
+    const navigate = useNavigate();
     const { id } = useParams();
 
     const [client, setClient] = useState({
