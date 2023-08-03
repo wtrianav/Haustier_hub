@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import FormClient from "./FormClient";
-import './formClient.css';
 
 export default function EditClient() {
     const navigate = useNavigate();

@@ -14,7 +14,7 @@
 }
 
 .form-control-call:focus {
-	background-color: #ebebeb;
+	background-color: #EBEBEB;
 	box-shadow: none;
 }
 
@@ -54,9 +54,27 @@
 
 /* Estilos para los íconos de éxito y error */
 .success-icon {
-    color: #1ed12d;
+    color: var(--color-verde);
 }
 
 .error-icon {
     color: var(--color-rojo);
+}
+
+/* Mensaje de error al hacer click en el botón enviar del formulario FormClient */
+
+.error-message {
+    background: var(--color-rgba-rojo);
+    border-radius: 4px;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+}
+
+.error-message p {
+    font-size: 13px;
+    color: var(--color-rojo);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

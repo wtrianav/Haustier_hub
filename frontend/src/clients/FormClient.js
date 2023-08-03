@@ -9,7 +9,10 @@ import {
     validarDepartamento,
     validarCiudad,
     validarDireccion,
- } from "../components/validations/Validations";
+} from "../components/validations/Validations";
+
+import './formClient.css';
+
 
 export default function FormClient({ client, onInputChange, onSubmit }) {
 
@@ -23,6 +26,44 @@ export default function FormClient({ client, onInputChange, onSubmit }) {
         city: { error: false, message: "" },
         address: { error: false, message: "" },
     });
+
+    //Nuevo estado para rastrear el envío del formulario.
+    const [isFormSubmitted, setIsFormSubmitted] = useState(false); 
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+
+        //Realizar validación en todos los campos.
+        const validationErrors = {
+            document: validarDocumento(client.documentNumber),
+            name: validarNombre(client.namePerson),
+            lastName: validarApellido(client.lastNamePerson),
+            email: validarEmail(client.emailAddress),
+            phone: validarTelefono(client.phoneNumber),
+            department: validarDepartamento(client.department),
+            city: validarCiudad(client.city),
+            address: validarDireccion(client.address),
+        };
+
+        //Verificar si hay campos vacíos
+        const hasEmptyFields = Object.values(client).some(value => value === "");
+
+        if (hasEmptyFields) {
+            setIsFormSubmitted(true);
+            return;
+        }
+
+        //Verificar si hay errores de validación en algún campo.
+        if (Object.values(validationErrors).some(error => error.error)) {
+            setErrors(validationErrors);
+            return;
+        }
+
+        //Si todas las comprobaciones son exitosas, enviar el formulario.
+        onSubmit(e);
+    };
+
+
     // Desestructuración de los valores de client para utilizarlos en los inputs del formulario.
 	const {
 		documentType,
@@ -41,7 +82,7 @@ export default function FormClient({ client, onInputChange, onSubmit }) {
             <div className="row mt-5">
                 <div className="col-md-6 offset-md-3 border rounded p-5 mt-2 shadow">
                     <h3 className="text-center fw-bold">Registrar Cliente</h3>
-                    <form onSubmit={(e) => onSubmit(e)}>
+                    <form onSubmit={handleFormSubmit}>
                         <div className="row">
                             <div className="text-start mb-3 col">
                                 <label htmlFor="Documenttype" className="form-label fw-bold">
@@ -262,7 +303,7 @@ export default function FormClient({ client, onInputChange, onSubmit }) {
                                 </div>
                             </div>
                         </div>
-                        <div className="text-start mb-5">
+                        <div className="text-start mb-4">
                             <label htmlFor="Address" className="form-label fw-bold">Dirección</label>
                             <div className={`error-text ${errors.address.error ? "active" : ""}`}>
                                 {errors.address.error && <p>{errors.address.message}</p>}
@@ -290,6 +331,11 @@ export default function FormClient({ client, onInputChange, onSubmit }) {
                                 )}
                             </div>
                         </div>
+                        {isFormSubmitted && (
+                            <div className="error-message">
+                                <p>Todos los campos deben ser diligenciados.</p> 
+                            </div>
+                        )}
                         <div className="d-grid gap-4 d-md-flex justify-content-md-center">
                             <button type="submit" className="btn btn-primary btn-form">ACEPTAR</button>
                             <Link className="btn btn-danger btn-form" to="/tableclients">CANCELAR</Link>

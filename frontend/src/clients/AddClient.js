@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FormClient from "./FormClient";
-import './formClient.css';
 
 export default function AddClient() {
     const navigate = useNavigate();
