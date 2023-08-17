@@ -10,9 +10,10 @@ export default function ViewClient() {
         const loadClient = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/personas/${id}`);
+                console.log("Response data:", response.data);
                 setClient(response.data);
             } catch (error) {
-                console.log(error);
+                console.log("Error:", error);
             }
         };
 
@@ -64,6 +65,14 @@ export default function ViewClient() {
                                     <li className="list-group-item">
                                         <b>Dirección: </b>
                                         {client.address}
+                                    </li>
+                                    <li className="list-group-item">
+                                        <b>Fecha: </b>
+                                        {client.date}
+                                    </li>
+                                    <li className="list-group-item">
+                                        <b>Hora: </b>
+                                        {client.time}
                                     </li>
                                 </ul>
                             </div>

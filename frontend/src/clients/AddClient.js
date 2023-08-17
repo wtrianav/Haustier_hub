@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import FormClient from "./FormClient";
 
 export default function AddClient() {
@@ -27,8 +27,13 @@ export default function AddClient() {
     // Función que se ejecuta al enviar el formulario y realiza una petición POST al servidor para agregar el cliente a la base de datos.
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:3000/api/personas", client);
-        navigate("/tableclients");
+        try {
+            await axios.post("http://localhost:3000/api/personas", client);
+            navigate("/tableclients");
+        } catch (error) {
+            // Manejar errores en la solicitud POST aquí
+            console.error("Error al agregar el cliente:", error);
+        }
     };
 
     return (

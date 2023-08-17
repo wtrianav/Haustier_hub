@@ -1,5 +1,40 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { styled } from "styled-components";
+
+
+const StyledButton = styled(Link)`
+	display: inline-flex;
+	align-items: center;
+	font-size: 1.25rem;
+	text-decoration: none;
+	color: var(--color-blanco);
+	background-color: var(--color-celeste);
+	padding: 6px 0px 6px 18px;
+	border-radius: 5px;
+	overflow: hidden;
+	transition: background-color 0.4s ease, padding-right 0.5s ease; /* Agregamos la transición de padding-right */
+
+	i {
+		opacity: 0;
+		margin-left: 10px;
+		font-size: 1rem;
+		transform: translateX(-10px) scale(0);
+		transition: opacity 0.2s ease, transform 0.5s ease;
+	}
+
+	&:hover {
+		background-color: #0056b3;
+		padding-right: 18px;
+		transition-delay: 0s; /* Eliminamos el retraso aquí */
+
+		i {
+			opacity: 1;
+			transform: translateX(0) scale(1);
+			transition-delay: 0.2s;
+		}
+	}
+`;
 
 function PostCard({ title, category, image }) {
 	return (
@@ -16,10 +51,10 @@ function PostCard({ title, category, image }) {
 						natural lead-in to additional content.
 					</p>
 					<div>
-						<Link to="#" className="btn btn-primary fs-5" role="button">
+						<StyledButton to="#" className="btn btn-primary fs-5" role="button">
 							Leer más
 							<i className="fa-solid fa-chevron-right"></i>
-						</Link>
+						</StyledButton>
 					</div>
 				</div>
 				<div className="col-auto d-none d-lg-block">

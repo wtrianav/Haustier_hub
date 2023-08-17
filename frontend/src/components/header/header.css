@@ -51,14 +51,14 @@
     justify-content: center;
     text-align: center;
     text-transform: uppercase;
-    border: 2px solid #0D6EFD;
+    border: 2px solid var(--color-celeste);
     border-radius: 20px;
-    background-color: #0D6EFD;
+    background-color: var(--color-celeste);
     cursor: pointer;
 }
 
 .btn-blue:hover {
-    color: #FFFFFF;
+    color: var(--color-blanco);
     border: 2px solid #0250C4;
     background-color: #0250C4;
     transition: border-color .33s ease, background-color .33s ease, color .33s ease;

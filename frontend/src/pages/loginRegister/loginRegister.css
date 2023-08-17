@@ -1,15 +1,3 @@
-:root{
-    --color-negro:#212529;
-    --color-texto:#6C757D;
-    --color-rojo:#ED0722;
-    --color-verde: #1ED12D;
-    --color-rgba-rojo:rgba(237,7,34,.21);
-    --color-rgba-celeste:rgba(55,147,246,.27);
-    --color-celeste:#0D6EFD;
-    --color-azul: #0250C4;
-    --color-input:#EEF5F9;
-}
-
 .input-error{
     border: 2px solid var(--color-rojo) !important;
 }
@@ -28,7 +16,7 @@ Estilos contenedor formularios
     height: 100%;
     overflow: hidden;
     overflow-y: auto;
-    background: #fff;
+    background: var(--color-blanco);
 }
 
 .contenedor-form {
@@ -152,7 +140,7 @@ Estilos Formularios
     padding: 14px;
     border: none;
     background: var(--color-celeste);
-    color: #fff;
+    color: var(--color-blanco);
     font-size: 16px;
     font-weight: 600;
     text-transform: uppercase;
@@ -217,7 +205,7 @@ Estilos Checkbox Personalizados
     display: none;
     left: 3px;
     top: 0px;
-    color: #fff;
+    color: var(--color-blanco);
 }
 
 .cbx input:checked ~ .cbx-marca::after {
@@ -249,9 +237,6 @@ Estilos Checkbox Personalizados
 }
 
 /*========================================
-Responsive
-==========================================*/
-/*========================================
     @media query - pantalla movil
 ==========================================*/
 
@@ -265,7 +250,7 @@ Responsive
     .contenedor-texto {
         width:calc(100% - 30px);
         position: relative;
-        background: #fff;
+        background: var(--color-blanco);
         box-shadow: 0px 3px 6px rgba(0,0,0,.08);
         margin: auto;
         margin-top: -50px;

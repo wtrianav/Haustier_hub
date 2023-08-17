@@ -1,5 +1,59 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import styled from 'styled-components';
+
+const StyledButton = styled.button`
+	font-family: inherit;
+	font-size: 20px;
+	background: var(--color-celeste);
+	color: white;
+	padding: 10px 16px;
+	padding-left: 0.9em;
+	display: flex;
+	align-items: center;
+	border: none;
+	border-radius: 0.5rem;
+	overflow: hidden;
+	transition: all 0.2s;
+
+	span {
+		display: block;
+		margin-left: 0.3em;
+		transition: all 0.3s ease-in-out;
+	}
+
+	svg {
+		display: block;
+		transform-origin: center center;
+		transition: transform 0.3s ease-in-out;
+	}
+
+	&:hover .svg-wrapper {
+		animation: fly-1 0.6s ease-in-out infinite alternate;
+	}
+
+	&:hover svg {
+		transform: translateX(1.6em) rotate(45deg) scale(1.1);
+	}
+
+	&:hover span {
+		transform: translateX(5em);
+	}
+
+	&:active {
+		transform: scale(0.95);
+	}
+
+	@keyframes fly-1 {
+		from {
+			transform: translateY(0.1em);
+		}
+
+		to {
+			transform: translateY(-0.1em);
+		}
+	}
+`;
 
 const FormContactSection = () => {
 
@@ -59,8 +113,18 @@ const FormContactSection = () => {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="d-grid gap-2">
-                                    <button className="btn btn-lg btn-primary rounded-pill mt-3" type="button"><i className="bi bi-send"></i> Enviar comentario</button>
+                                <div className="mt-4">
+                                    <StyledButton>
+                                        <div class="svg-wrapper-1">
+                                            <div class="svg-wrapper">
+                                            <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z" fill="currentColor"></path>
+                                            </svg>
+                                            </div>
+                                        </div>
+                                        <span>Enviar</span>
+                                    </StyledButton>
                                 </div>
                             </div>
                         </form>

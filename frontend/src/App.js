@@ -8,14 +8,16 @@ import TableClients from './clients/TableClients';
 import EditClient from './clients/EditClient';
 import ViewClient from './clients/ViewClient';
 import LoginRegister from './pages/loginRegister/LoginRegister';
+import GlobalStyle from './GlobalStyle';
 import ScrollToTop from "./components/scroll/Scroll";
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "./App.css";
 
 function App() {
     return (
         <div className="App">
             <Router>
+                <GlobalStyle />
                 <Header />
                 <Routes>
                     <Route path='/' element={<Home />} />

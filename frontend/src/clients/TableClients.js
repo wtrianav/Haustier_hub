@@ -2,29 +2,46 @@ import React, { useState, useEffect } from "react";
 import MUIDataTable from "mui-datatables";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import DeleteModal from "./DeleteModal";
 import './tableClients.css';
 
 
 export default function TableClients() {
+    const [selectedClientId, setSelectedClientId] = useState(null); // Estado para almacenar el ID del cliente seleccionado
     const [clients, setClients] = useState([]);
     const URL = "http://localhost:3000/api/personas/";
 
     // Función que carga los clientes.
     const loadClients = async () => {
-        const response = await axios.get(URL);
-        setClients(response.data);
+        try {
+            const response = await axios.get(URL);
+            const sortedClients = response.data.sort((a, b) => a.id - b.id);
+            setClients(sortedClients);
+            setClients(response.data);
+        } catch (error) {
+            console.error("Error al cargar los clientes:", error);
+        }
     };
 
     useEffect(() => {
-        // Carga los clientes al cargar la página.
-        loadClients();
+        // Función para cargar clientes
+        const loadInitialData = async () => {
+            await loadClients();
+        };
+    
+        // Carga inicial de datos
+        loadInitialData();
     }, []);
 
     // Función que elimina un cliente
     const deleteClient = async (id) => {
-        await axios.delete(`http://localhost:3000/api/personas/${id}`);
-        // Recarga los clientes después de eliminar uno
-        loadClients();
+        try {
+            await axios.delete(`http://localhost:3000/api/personas/${id}`);
+            // Recarga los clientes después de eliminar uno
+            loadClients();
+        } catch (error) {
+            console.error("Error al eliminar el cliente:", error);
+        }
     }
 
     // Se establecen las columnas de la tabla.
@@ -63,25 +80,28 @@ export default function TableClients() {
             options: {
                 customBodyRender: (value, tableMeta, updateValue) => {
                     // Obtiene el cliente de la fila actual.
-                    const client = clients[tableMeta.rowIndex];
+                    const clientIndex = columns.findIndex(column => column.name === 'id');
+                    const clientId = tableMeta.rowData[clientIndex];
                     return (
                         <>
                             <div className="btn-group">
                                 <Link
                                     className="btn btn-primary mx-1"
-                                    to={`/viewclient/${client.id}`}
+                                    to={`/viewclient/${clientId}`}
                                 >
                                     VER
                                 </Link>
                                 <Link
                                     className="btn btn-outline-primary mx-1"
-                                    to={`/editclient/${client.id}`}
+                                    to={`/editclient/${clientId}`}
                                 >
                                     EDITAR
                                 </Link>
                                 <button
                                     className="btn btn-danger mx-1"
-                                    onClick={() => deleteClient(client.id)}
+                                    onClick={() => setSelectedClientId(clientId)}
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal"
                                 >
                                     ELIMINAR
                                 </button>
@@ -112,6 +132,12 @@ export default function TableClients() {
                     columns={columns}
                     options={options}
                 />
+                <DeleteModal 
+                    deleteClient={deleteClient} //Renderiza el componente DeleteModal
+                    selectedClientId={selectedClientId} //Pasa el ID del cliente seleccionado
+                    setSelectedClientId={setSelectedClientId} //Pasa la función para actualizar el ID
+                />
+                
             </div>
         </section>
     );
