@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import DeleteModal from "./DeleteModal";
 import './tableClients.css';
 
-
 export default function TableClients() {
     const [selectedClientId, setSelectedClientId] = useState(null); // Estado para almacenar el ID del cliente seleccionado
     const [clients, setClients] = useState([]);
@@ -101,7 +100,7 @@ export default function TableClients() {
                                     className="btn btn-danger mx-1"
                                     onClick={() => setSelectedClientId(clientId)}
                                     data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"
+                                    data-bs-target="#deleteModal"
                                 >
                                     ELIMINAR
                                 </button>

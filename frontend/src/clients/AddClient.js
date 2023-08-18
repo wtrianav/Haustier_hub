@@ -38,7 +38,7 @@ export default function AddClient() {
 
     return (
         <>
-            <FormClient client={client} onInputChange={onInputChange} onSubmit={onSubmit}/>
+            <FormClient client={client} onInputChange={onInputChange} onSubmit={onSubmit} className="modal fade" id="createClientModal" tabIndex="-1" aria-labelledby="createClientModalLabel" aria-hidden="true"/>
         </>
     );
 }
