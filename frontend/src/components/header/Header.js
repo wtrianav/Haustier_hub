@@ -8,7 +8,7 @@ export default function Header() {
             <nav className="navbar navbar-expand-lg navbar-light bg-white fixed-top p-3 shadow-sm" id="navbar">
                 <div className="container-fluid">
                     <div>
-                        <img className="img-logo" src="./images/logo.png" alt="logo haustier hub" />
+                        <img className="img-logo" src="../../logo.png" alt="logo haustier hub" />
                     </div>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

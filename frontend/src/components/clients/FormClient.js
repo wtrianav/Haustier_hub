@@ -9,9 +9,9 @@ import {
     validarDepartamento,
     validarCiudad,
     validarDireccion,
-} from "../components/validations/Validations";
-import SelectField from "../components/formFields/SelectField";
-import InputField from "../components/formFields/InputField";
+} from "../validations/Validations";
+import SelectField from "../formFields/SelectField";
+import InputField from "../formFields/InputField";
 import './formClient.css';
 
 

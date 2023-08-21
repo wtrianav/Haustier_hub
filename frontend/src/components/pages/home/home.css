@@ -65,7 +65,7 @@
 	}
 
 .bottom_divider {
-	background: url("../../../public/images/divider.svg");
+	background: url("../../../assets/images/divider.svg");
 	background-size: 100% 60px;
 	bottom: 0;
 	height: 60px;
@@ -145,7 +145,7 @@
 .carousel-slide1 {
 	position: relative;
 	background-color: #343a40;
-	background: url("../../../public/images/photos/veterinarian-1.jpg") no-repeat center;
+	background: url("../../../assets/images/photos/veterinarian-1.jpg") no-repeat center;
 	background-size: cover;
 }
 
@@ -163,7 +163,7 @@
 .carousel-slide2 {
 	position: relative;
 	background-color: #343a40;
-	background: url("../../../public/images/photos/veterinarian-3.jpg") no-repeat center;
+	background: url("../../../assets/images/photos/veterinarian-3.jpg") no-repeat center;
 	background-size: cover;
 }
 
@@ -181,7 +181,7 @@
 .carousel-slide3 {
 	position: relative;
 	background-color: #343a40;
-	background: url("../../../public/images/photos/veterinarian-5.jpg") no-repeat center;
+	background: url("../../../assets/images/photos/veterinarian-5.jpg") no-repeat center;
 	background-size: cover;
 }
 
