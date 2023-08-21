@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./validations.css"
+// import "./validations.css";
 
 
 export function validarDocumento(documento) {

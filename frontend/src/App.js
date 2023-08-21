@@ -10,7 +10,6 @@ import ViewClient from './clients/ViewClient';
 import LoginRegister from './pages/loginRegister/LoginRegister';
 import GlobalStyle from './GlobalStyle';
 import ScrollToTop from "./components/scroll/Scroll";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
 function App() {

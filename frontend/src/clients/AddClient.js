@@ -37,8 +37,13 @@ export default function AddClient() {
     };
 
     return (
-        <>
-            <FormClient client={client} onInputChange={onInputChange} onSubmit={onSubmit} className="modal fade" id="createClientModal" tabIndex="-1" aria-labelledby="createClientModalLabel" aria-hidden="true"/>
-        </>
+        <section className="container">
+            <div className="row mt-5">
+                <div className="col-md-6 offset-md-3 border rounded p-5 mt-2 shadow">
+                    <h3 className="text-center fw-bold">Registrar Cliente</h3>
+                    <FormClient client={client} onInputChange={onInputChange} onSubmit={onSubmit} />
+                </div>    
+            </div>        
+        </section>
     );
 }

@@ -1,0 +1,82 @@
+.form-control {
+	background-color: #E8F0FE;
+	border: 2px solid #E8F0FE;
+	color: #6C757D;
+	border-radius: 20px;
+	padding: 14px 20px;
+	font-size: 16px;
+}
+
+.form-control:focus {
+	background-color: #E8F0FE;
+	border: 2px solid #000000;
+	box-shadow: none;
+}
+
+.form-group-input {
+	position: relative;
+}
+  
+.form-group-input input {
+	padding-right: 30px; /* Espacio para el icono */
+}
+  
+.form-group-input .fa-solid {
+	position: absolute;
+	top: 50%;
+	right: 10px; /* Ajusta el valor según sea necesario */
+	transform: translateY(-50%);
+	font-size: 18px; /* Tamaño del icono */
+}
+
+/* Estilos para los íconos de éxito y error */
+.success-icon {
+    color: var(--color-verde);
+}
+
+.error-icon {
+    color: var(--color-rojo);
+}
+
+/* Estilos mensajes de error */
+.error-text {
+    background: var(--color-rgba-rojo);
+    border-radius: 4px;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+.error-text p {
+    font-size: 13px;
+    color: var(--color-rojo);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-text.active {
+    display: block;
+}
+
+.has-error:focus {
+    border: 2px solid #ed0722;
+}
+
+/* Mensaje de error al hacer click en el botón enviar del formulario FormClient */
+.error-message {
+    background: var(--color-rgba-rojo);
+    border-radius: 4px;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+}
+
+.error-message p {
+    font-size: 13px;
+    color: var(--color-rojo);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -10,7 +10,8 @@ import {
     validarCiudad,
     validarDireccion,
 } from "../components/validations/Validations";
-
+import SelectField from "../components/formFields/SelectField";
+import InputField from "../components/formFields/InputField";
 import './formClient.css';
 
 
@@ -78,271 +79,213 @@ export default function FormClient({ client, onInputChange, onSubmit }) {
 	} = client;
     
 	return (
-		<section className="container">
-            <div className="row mt-5">
-                <div className="col-md-6 offset-md-3 border rounded p-5 mt-2 shadow">
-                    <h3 className="text-center fw-bold">Registrar Cliente</h3>
-                    <form onSubmit={handleFormSubmit}>
-                        <div className="row">
-                            <div className="text-start mb-3 col">
-                                <label htmlFor="Documenttype" className="form-label fw-bold">
-                                    Tipo de documento
-                                </label>
-                                <select
-                                    className="form-select"
-                                    name="documentType"
-                                    value={documentType}
-                                    onChange={(e) => onInputChange(e)}
-                                >
-                                    <option value="Select">Seleccione una opción</option>
-                                    <option value="CC">CC</option>
-                                    <option value="TI">TI</option>
-                                    <option value="PP">PP</option>
-                                </select>
-                            </div>
-                            <div className="text-start mb-3 col">
-                                <label htmlFor="Documentnumber" className="form-label fw-bold">Número de documento</label>
-                                <div className={`error-text ${errors.document.error ? "active" : ""}`}>
-                                    {errors.document.error && <p>{errors.document.message}</p>}
-                                </div>
-                                <div className="form-group-input">
-                                    <input
-                                        type={"text"}
-                                        className={`form-control ${errors.document.error ? "input-error" : ""}`}
-                                        placeholder="Ingrese su número de documento"
-                                        name="documentNumber"
-                                        value={documentNumber}
-                                        onChange={(e) => {
-                                            onInputChange(e);
-                                            const validation = validarDocumento(e.target.value);
-                                            setErrors((prevState) => ({
-                                                ...prevState,
-                                                ...validation,
-                                            }));
-                                        }}
-                                    />
-                                    {documentNumber && (
-                                        <i
-                                            className={errors.document.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
-                                        ></i>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="text-start mb-3 col">
-                                <label htmlFor="Name" className="form-label fw-bold">Nombre</label>
-                                <div className={`error-text ${errors.name.error ? "active" : ""}`}>
-                                    {errors.name.error && <p>{errors.name.message}</p>}
-                                </div>
-                                <div className="form-group-input">
-                                    <input
-                                        type={"text"}
-                                        className={`form-control ${errors.name.error ? "input-error" : ""}`}
-                                        placeholder="Ingrese su nombre"
-                                        name="namePerson"
-                                        value={namePerson}
-                                        onChange={(e) => {
-                                            onInputChange(e);
-                                            const validation = validarNombre(e.target.value);
-                                            setErrors((prevState) => ({
-                                                ...prevState,
-                                                ...validation,
-                                            }));
-                                        }}
-                                    />
-                                    {namePerson && (
-                                        <i
-                                            className={errors.name.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
-                                        ></i>
-                                    )}
-                                </div>
-                            </div>
-                            <div className="text-start mb-3 col">
-                                <label htmlFor="Lastname" className="form-label fw-bold">Apellido</label>
-                                <div className={`error-text ${errors.lastName.error ? "active" : ""}`}>
-                                    {errors.lastName.error && <p>{errors.lastName.message}</p>}
-                                </div>
-                                <div className="form-group-input">
-                                    <input
-                                        type={"text"}
-                                        className={`form-control ${errors.lastName.error ? "input-error" : ""}`}
-                                        placeholder="Ingrese su apellido"
-                                        name="lastNamePerson"
-                                        value={lastNamePerson}
-                                        onChange={(e) => {
-                                            onInputChange(e);
-                                            const validation = validarApellido(e.target.value);
-                                            setErrors((prevState) => ({
-                                                ...prevState,
-                                                ...validation,
-                                            }));
-                                        }}
-                                    />
-                                    {lastNamePerson && (
-                                        <i
-                                            className={errors.lastName.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
-                                        ></i>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="text-start mb-3 col">
-                                <label htmlFor="Email" className="form-label fw-bold">Email</label>
-                                <div className={`error-text ${errors.email.error ? "active" : ""}`}>
-                                    {errors.email.error && <p>{errors.email.message}</p>}
-                                </div>
-                                <div className="form-group-input">
-                                    <input
-                                        type={"text"}
-                                        className={`form-control ${errors.email.error ? "input-error" : ""}`}
-                                        placeholder="Ingrese su email"
-                                        name="emailAddress"
-                                        value={emailAddress}
-                                        onChange={(e) => {
-                                            onInputChange(e);
-                                            const validation = validarEmail(e.target.value);
-                                            setErrors((prevState) => ({
-                                                ...prevState,
-                                                ...validation,
-                                            }));
-                                        }}
-                                    />
-                                    {emailAddress && (
-                                        <i
-                                            className={errors.email.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
-                                        ></i>
-                                    )}
-                                </div>
-                            </div>
-                            <div className="text-start mb-3 col">
-                                <label htmlFor="Phonenumber" className="form-label fw-bold">Teléfono</label>
-                                <div className={`error-text ${errors.phone.error ? "active" : ""}`}>
-                                    {errors.phone.error && <p>{errors.phone.message}</p>}
-                                </div>
-                                <div className="form-group-input">
-                                    <input
-                                        type={"text"}
-                                        className={`form-control ${errors.phone.error ? "input-error" : ""}`}
-                                        placeholder="Ingrese su número telefónico"
-                                        name="phoneNumber"
-                                        value={phoneNumber}
-                                        onChange={(e) => {
-                                            onInputChange(e);
-                                            const validation = validarTelefono(e.target.value);
-                                            setErrors((prevState) => ({
-                                                ...prevState,
-                                                ...validation,
-                                            }));
-                                        }}
-                                    />
-                                    {phoneNumber && (
-                                        <i
-                                            className={errors.phone.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
-                                        ></i>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="text-start mb-3 col">
-                                <label htmlFor="Department" className="form-label fw-bold">Departamento</label>
-                                <div className={`error-text ${errors.department.error ? "active" : ""}`}>
-                                    {errors.department.error && <p>{errors.department.message}</p>}
-                                </div>
-                                <div className="form-group-input">
-                                    <input
-                                        type={"text"}
-                                        className={`form-control ${errors.department.error ? "input-error" : ""}`}
-                                        placeholder="Ingrese su departamento"
-                                        name="department"
-                                        value={department}
-                                        onChange={(e) => {
-                                            onInputChange(e);
-                                            const validation = validarDepartamento(e.target.value);
-                                            setErrors((prevState) => ({
-                                                ...prevState,
-                                                ...validation,
-                                            }));
-                                        }}
-                                    />
-                                    {department && (
-                                        <i
-                                            className={errors.department.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
-                                        ></i>
-                                    )}
-                                </div>
-                            </div>
-                            <div className="text-start mb-3 col">
-                                <label htmlFor="City" className="form-label fw-bold">Ciudad</label>
-                                <div className={`error-text ${errors.city.error ? "active" : ""}`}>
-                                    {errors.city.error && <p>{errors.city.message}</p>}
-                                </div>
-                                <div className="form-group-input">
-                                    <input
-                                        type={"text"}
-                                        className={`form-control ${errors.city.error ? "input-error" : ""}`}
-                                        placeholder="Ingrese su ciudad de residencia"
-                                        name="city"
-                                        value={city}
-                                        onChange={(e) => {
-                                            onInputChange(e);
-                                            const validation = validarCiudad(e.target.value);
-                                            setErrors((prevState) => ({
-                                                ...prevState,
-                                                ...validation,
-                                            }));
-                                        }}
-                                    />
-                                    {city && (
-                                        <i
-                                            className={errors.city.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
-                                        ></i>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="text-start mb-4">
-                            <label htmlFor="Address" className="form-label fw-bold">Dirección</label>
-                            <div className={`error-text ${errors.address.error ? "active" : ""}`}>
-                                {errors.address.error && <p>{errors.address.message}</p>}
-                            </div>
-                            <div className="form-group-input">
-                                <input
-                                    type={"text"}
-                                    className={`form-control ${errors.address.error ? "input-error" : ""}`}
-                                    placeholder="Ingrese su dirección"
-                                    name="address"
-                                    value={address}
-                                    onChange={(e) => {
-                                        onInputChange(e);
-                                        const validation = validarDireccion(e.target.value);
-                                        setErrors((prevState) => ({
-                                            ...prevState,
-                                            ...validation,
-                                        }));
-                                    }}
-                                />
-                                {address && (
-                                    <i
-                                        className={errors.address.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
-                                    ></i>
-                                )}
-                            </div>
-                        </div>
-                        {isFormSubmitted && (
-                            <div className="error-message">
-                                <p>Todos los campos deben ser diligenciados.</p> 
-                            </div>
-                        )}
-                        <div className="d-grid gap-4 d-md-flex justify-content-md-center">
-                            <button type="submit" className="btn btn-primary btn-form">ACEPTAR</button>
-                            <Link className="btn btn-danger btn-form" to="/tableclients">CANCELAR</Link>
-                        </div>
-                    </form>
-                </div>
+        <form onSubmit={handleFormSubmit}>
+            <div className="row">
+                <SelectField
+                    label="Tipo de documento"
+                    name="documentType"
+                    value={documentType}
+                    onChange={(e) => onInputChange(e)}
+                    options={[
+                        { value: "Select", label: "Seleccione una opción" },
+                        { value: "CC", label: "CC" },
+                        { value: "TI", label: "TI" },
+                        { value: "PP", label: "PP" },
+                    ]}
+                />
+                <InputField
+                    label="Número de documento"
+                    name="documentNumber"
+                    value={documentNumber}
+                    error={errors.document.error ? errors.document.message : ""}
+                    placeholder="Ingrese su número de documento"
+                    onChange={(e) => {
+                        onInputChange(e);
+                        const validation = validarDocumento(e.target.value);
+                        setErrors((prevState) => ({
+                        ...prevState,
+                        ...validation,
+                        }));
+                    }}
+                    icon={
+                        documentNumber && (
+                            <i
+                                className={errors.document.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
+                            ></i>
+                        )
+                    }
+                />
             </div>
-        </section>
+            <div className="row">
+                <InputField
+                    label="Nombre"
+                    name="namePerson"
+                    value={namePerson}
+                    error={errors.name.error ? errors.name.message : ""}
+                    placeholder="Ingrese su nombre"
+                    onChange={(e) => {
+                        onInputChange(e);
+                        const validation = validarNombre(e.target.value);
+                        setErrors((prevState) => ({
+                            ...prevState,
+                            ...validation,
+                        }));
+                    }}
+                    icon={
+                        namePerson && (
+                            <i
+                                className={errors.name.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
+                            ></i>
+                        )
+                    }
+                />
+                <InputField
+                    label="Apellido"
+                    name="lastNamePerson"
+                    value={lastNamePerson}
+                    error={errors.lastName.error ? errors.lastName.message : ""}
+                    placeholder="Ingrese su apellido"
+                    onChange={(e) => {
+                        onInputChange(e);
+                        const validation = validarApellido(e.target.value);
+                        setErrors((prevState) => ({
+                            ...prevState,
+                            ...validation,
+                        }));
+                    }}
+                    icon={
+                        lastNamePerson && (
+                            <i
+                                className={errors.lastName.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
+                            ></i>
+                        )
+                    }
+                />
+            </div>
+            <div className="row">
+                <InputField
+                    label="Email"
+                    name="emailAddress"
+                    value={emailAddress}
+                    error={errors.email.error ? errors.email.message : ""}
+                    placeholder="Ingrese su email"
+                    onChange={(e) => {
+                        onInputChange(e);
+                        const validation = validarEmail(e.target.value);
+                        setErrors((prevState) => ({
+                            ...prevState,
+                            ...validation,
+                        }));
+                    }}
+                    icon={
+                        emailAddress && (
+                            <i
+                                className={errors.email.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
+                            ></i>
+                        )
+                    }
+                />
+                <InputField
+                    label="Teléfono"
+                    name="phoneNumber"
+                    value={phoneNumber}
+                    error={errors.phone.error ? errors.phone.message : ""}
+                    placeholder="Ingrese su número telefónico"
+                    onChange={(e) => {
+                        onInputChange(e);
+                        const validation = validarTelefono(e.target.value);
+                        setErrors((prevState) => ({
+                            ...prevState,
+                            ...validation,
+                        }));
+                    }}
+                    icon={
+                        phoneNumber && (
+                            <i
+                                className={errors.phone.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
+                            ></i>
+                        )
+                    }
+                />
+            </div>
+            <div className="row">
+                <InputField
+                    label="Departamento"
+                    name="department"
+                    value={department}
+                    error={errors.department.error ? errors.department.message : ""}
+                    placeholder="Ingrese su departamento"
+                    onChange={(e) => {
+                        onInputChange(e);
+                        const validation = validarDepartamento(e.target.value);
+                        setErrors((prevState) => ({
+                            ...prevState,
+                            ...validation,
+                        }));
+                    }}
+                    icon={
+                        department && (
+                            <i
+                                className={errors.department.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
+                            ></i>
+                        )
+                    }
+                />
+                <InputField
+                    label="Ciudad"
+                    name="city"
+                    value={city}
+                    error={errors.city.error ? errors.city.message : ""}
+                    placeholder="Ingrese su ciudad de residencia"
+                    onChange={(e) => {
+                    onInputChange(e);
+                        const validation = validarCiudad(e.target.value);
+                        setErrors((prevState) => ({
+                            ...prevState,
+                            ...validation,
+                        }));
+                    }}
+                    icon={
+                        city && (
+                            <i
+                                className={errors.city.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
+                            ></i>
+                        )
+                    }
+                />
+            </div>
+            <InputField
+                label="Dirección"
+                name="address"
+                value={address}
+                error={errors.address.error ? errors.address.message : ""}
+                placeholder="Ingrese su dirección"
+                onChange={(e) => {
+                    onInputChange(e);
+                    const validation = validarDireccion(e.target.value);
+                    setErrors((prevState) => ({
+                    ...prevState,
+                    ...validation,
+                    }));
+                }}
+                extraClass="text-start mb-4" // Agrega la clase específica para dirección
+                icon={
+                    address && (
+                        <i
+                            className={errors.address.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
+                        ></i>
+                    )
+                }
+            />
+            {isFormSubmitted && (
+                <div className="error-message">
+                    <p>Todos los campos deben ser diligenciados.</p> 
+                </div>
+            )}
+            <div className="d-grid gap-4 d-md-flex justify-content-md-center">
+                <button type="submit" className="btn btn-primary btn-form">ACEPTAR</button>
+                <Link className="btn btn-danger btn-form" to="/tableclients">CANCELAR</Link>
+            </div>
+        </form>
 	);
 }
