@@ -28,14 +28,14 @@ export default function EditClient() {
     const onSubmit = async (e) => {
         e.preventDefault();
         // envía la solicitud PUT al servidor con el objeto client actualizado
-        await axios.put(`http://localhost:3000/api/personas/${id}`, client);
+        await axios.put(`http://localhost:3000/api/clientes/${id}`, client);
         // navega a la página principal después de que se haya actualizado el cliente
         navigate("/tableclients");
     };
 
     const loadClient = async () => {
 		try {
-			const result = await axios.get(`http://localhost:3000/api/personas/${id}`);
+			const result = await axios.get(`http://localhost:3000/api/clientes/${id}`);
 			console.log(result.data); // Verificar los datos en la consola
 			const clientData = result.data;
 			setClient(clientData);

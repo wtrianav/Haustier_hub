@@ -28,7 +28,7 @@ export default function AddClient() {
     const onSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:3000/api/personas", client);
+            await axios.post("http://localhost:3000/api/clientes", client);
             navigate("/tableclients");
         } catch (error) {
             // Manejar errores en la solicitud POST aquí

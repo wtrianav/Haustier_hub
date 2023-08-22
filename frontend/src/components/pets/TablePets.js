@@ -3,12 +3,12 @@ import MUIDataTable from "mui-datatables";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import DeleteModal from "./DeleteModal";
-import './tableClients.css';
+import './tablePets.css';
 
 export default function TableClients() {
     const [selectedClientId, setSelectedClientId] = useState(null); // Estado para almacenar el ID del cliente seleccionado
     const [clients, setClients] = useState([]);
-    const URL = "http://localhost:3000/api/clientes/";
+    const URL = "http://localhost:3000/api/personas/";
 
     // Función que carga los clientes.
     const loadClients = async () => {
@@ -35,7 +35,7 @@ export default function TableClients() {
     // Función que elimina un cliente
     const deleteClient = async (id) => {
         try {
-            await axios.delete(`http://localhost:3000/api/clientes/${id}`);
+            await axios.delete(`http://localhost:3000/api/personas/${id}`);
             // Recarga los clientes después de eliminar uno
             loadClients();
         } catch (error) {
