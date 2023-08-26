@@ -10,6 +10,8 @@ import ViewClient from './components/clients/ViewClient';
 import LoginRegister from './components/pages/loginRegister/LoginRegister';
 import GlobalStyle from './GlobalStyle';
 import ScrollToTop from "./components/scroll/Scroll";
+import TablePets from './components/pets/TablePets';
+import AddPet from './components/pets/AddPet';
 import "./App.css";
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
                     <Route path='/tableclients' element={<TableClients />} />
                     <Route path='/editclient/:id' element={<EditClient />}/>
                     <Route path="/viewclient/:id" element={<ViewClient />} />
+                    <Route path='tablepets' element={<TablePets />} />
+                    <Route path='/addpet' element={<AddPet />} />
                     <Route path='/loginregister' element={<LoginRegister />} />
                 </Routes>
                 <Footer />

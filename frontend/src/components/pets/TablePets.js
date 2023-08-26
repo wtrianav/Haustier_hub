@@ -2,105 +2,97 @@ import React, { useState, useEffect } from "react";
 import MUIDataTable from "mui-datatables";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import DeleteModal from "./DeleteModal";
+import DeletePetModal from "./DeletePetModal";
 import './tablePets.css';
 
-export default function TableClients() {
-    const [selectedClientId, setSelectedClientId] = useState(null); // Estado para almacenar el ID del cliente seleccionado
-    const [clients, setClients] = useState([]);
-    const URL = "http://localhost:3000/api/personas/";
+export default function TablePets() {
+    const [selectedPetId, setSelectedPetId] = useState(null);
+    const [pets, setPets] = useState([]);
+    const URL = "http://localhost:3000/api/mascotas/"; // Adjust the URL to match your backend API
 
-    // Función que carga los clientes.
-    const loadClients = async () => {
+    const loadPets = async () => {
         try {
             const response = await axios.get(URL);
-            const sortedClients = response.data.sort((a, b) => a.id - b.id);
-            setClients(sortedClients);
-            setClients(response.data);
+            const sortedPets = response.data.sort((a, b) => a.id - b.id);
+            setPets(sortedPets);
         } catch (error) {
-            console.error("Error al cargar los clientes:", error);
+            console.error("Error al cargar las mascotas:", error);
         }
     };
 
     useEffect(() => {
-        // Función para cargar clientes
         const loadInitialData = async () => {
-            await loadClients();
+            await loadPets();
         };
-    
-        // Carga inicial de datos
+
         loadInitialData();
     }, []);
 
-    // Función que elimina un cliente
-    const deleteClient = async (id) => {
+    const deletePet = async (id) => {
         try {
-            await axios.delete(`http://localhost:3000/api/personas/${id}`);
-            // Recarga los clientes después de eliminar uno
-            loadClients();
+            await axios.delete(`http://localhost:3000/api/mascotas/${id}`);
+            loadPets();
         } catch (error) {
-            console.error("Error al eliminar el cliente:", error);
+            console.error("Error al eliminar la mascota:", error);
         }
     }
 
-    // Se establecen las columnas de la tabla.
     const columns = [
         {
             name: "id",
             label: "id",
         },
         {
-            name: "documentType",
-            label: "Tipo",
+            name: "name",
+            label: "Nombre",
         },
         {
-            name: "documentNumber",
-            label: "Documento"
+            name: "birthDate",
+            label: "Fecha de Nacimiento"
         },
         {
-            name: "namePerson",
-            label: "Nombre"
+            name: "petType",
+            label: "Tipo de Mascota"
         },
         {
-            name: "lastNamePerson",
-            label: "Apellido"
+            name: "breed",
+            label: "Raza"
         },
         {
-            name: "emailAddress",
-            label: "Email"
+            name: "gender",
+            label: "Género"
         },
         {
-            name: "phoneNumber",
-            label: "Teléfono"
+            name: "color",
+            label: "Color"
         },
         {
-            name: "acciones",
+            name: "actions",
             label: "Acciones",
             options: {
                 customBodyRender: (value, tableMeta, updateValue) => {
-                    // Obtiene el cliente de la fila actual.
-                    const clientIndex = columns.findIndex(column => column.name === 'id');
-                    const clientId = tableMeta.rowData[clientIndex];
+                    const petIndex = columns.findIndex(column => column.name === 'id');
+                    const petId = tableMeta.rowData[petIndex];
                     return (
                         <>
                             <div className="btn-group">
                                 <Link
                                     className="btn btn-primary mx-1"
-                                    to={`/viewclient/${clientId}`}
+                                    to={`/viewpet/${petId}`}
                                 >
                                     VER
                                 </Link>
                                 <Link
                                     className="btn btn-outline-primary mx-1"
-                                    to={`/editclient/${clientId}`}
+                                    to={`/editpet/${petId}`}
                                 >
                                     EDITAR
                                 </Link>
                                 <button
                                     className="btn btn-danger mx-1"
-                                    onClick={() => setSelectedClientId(clientId)}
+                                    onClick={() => setSelectedPetId(petId)}
                                     data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal"
+                                    data-bs-target="#deletePetModal"
                                 >
                                     ELIMINAR
                                 </button>
@@ -110,35 +102,32 @@ export default function TableClients() {
                 },
             },
         },
-
     ]
 
-    // Opciones de la tabla
     const options = {
-        // Desactiva los checkbox de cada registro de la tabla.
         selectableRows: 'none',
     };
 
     return (
-        <section className="section-client mt-5">
-            <div className="table-client">
+        <section className="section-pets mt-5">
+            <div className="table-pets">
                 <div className="d-flex">
-                    <Link className="btn btn-primary btn-table" to="/addclient">CREAR CLIENTE</Link>
+                    <Link className="btn btn-primary btn-table" to="/addpet">CREAR MASCOTA</Link>
                 </div>
-                <h3 className="fw-bold">Tabla clientes</h3>
+                <h3 className="fw-bold">MASCOTAS</h3>
                 <MUIDataTable className="border shadow mt-2"
-                    data={clients}
+                    data={pets}
                     columns={columns}
                     options={options}
                 />
-                <DeleteModal 
-                    deleteClient={deleteClient} //Renderiza el componente DeleteModal
-                    selectedClientId={selectedClientId} //Pasa el ID del cliente seleccionado
-                    setSelectedClientId={setSelectedClientId} //Pasa la función para actualizar el ID
+                <DeletePetModal 
+                    deleteItem={deletePet}
+                    selectedItem={selectedPetId}
+                    setSelectedItem={setSelectedPetId}
                 />
-                
             </div>
         </section>
     );
 }
+
 

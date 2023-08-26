@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import "./validations.css";
 
 
 export function validarDocumento(documento) {
@@ -194,6 +193,48 @@ export function validarDireccion(direccion) {
 	}
 }
 
+export function validarRaza(raza) {
+	// Expresión regular para verificar que el nombre solo contiene letras, espacios, tildes y la letra "ñ"
+	const regex = /^[A-Za-záéíóúñÁÉÍÓÚ\s]+$/;
+
+	if (raza.length >= 3 && regex.test(raza)) {
+		return {
+			name: {
+				error: false,
+				message: "",
+			},
+		};
+	} else {
+		return {
+			name: {
+				error: true,
+				message: "Deben ser al menos 3 caracteres y no se permiten números ni caracteres especiales",
+			},
+		};
+	}
+}
+
+export function validarColor(color) {
+	// Expresión regular para verificar que el nombre solo contiene letras, espacios, tildes y la letra "ñ"
+	const regex = /^[A-Za-záéíóúñÁÉÍÓÚ\s]+$/;
+
+	if (color.length >= 3 && regex.test(color)) {
+		return {
+			name: {
+				error: false,
+				message: "",
+			},
+		};
+	} else {
+		return {
+			name: {
+				error: true,
+				message: "Deben ser al menos 3 caracteres y no se permiten números ni caracteres especiales",
+			},
+		};
+	}
+}
+
 
 export function useLoginForm() {
 	const [document, setDocument] = useState("");
@@ -205,6 +246,8 @@ export function useLoginForm() {
     const [department, setDepartment] = useState("");
     const [city, setCity] = useState("");
     const [address, setAddress] = useState("");
+	const [breed, setBreed] = useState("");
+	const [color, setColor] = useState("");
 	const [errors, setErrors] = useState({
 		document: {
             error: false,
@@ -242,6 +285,14 @@ export function useLoginForm() {
             error: false,
 			message: "Deben ser al menos 3 caracteres",
 		},
+		breed: {
+            error: false,
+			message: "Deben ser al menos 3 caracteres y no se permiten números ni caracteres especiales",
+		},
+		color: {
+            error: false,
+			message: "Deben ser al menos 3 caracteres y no se permiten números ni caracteres especiales",
+		},
 	});
 
 	const [hasError, setHasError] = useState({
@@ -254,6 +305,8 @@ export function useLoginForm() {
 		department: false,
 		city: false,
 		address: false,
+		breed: false,
+		color: false,
 		terms: false,
 	});
 	
@@ -322,6 +375,10 @@ export function useLoginForm() {
 		setCity,
 		address,
 		setAddress,
+		breed,
+		setBreed,
+		color,
+		setColor,
 		errors,
 		hasError,
 		setHasError,

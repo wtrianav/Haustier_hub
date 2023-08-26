@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import MUIDataTable from "mui-datatables";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import DeleteModal from "./DeleteModal";
+import DeleteClientModal from "./DeleteClientModal";
 import './tableClients.css';
 
 export default function TableClients() {
@@ -100,7 +100,7 @@ export default function TableClients() {
                                     className="btn btn-danger mx-1"
                                     onClick={() => setSelectedClientId(clientId)}
                                     data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal"
+                                    data-bs-target="#deleteClientModal"
                                 >
                                     ELIMINAR
                                 </button>
@@ -125,13 +125,13 @@ export default function TableClients() {
                 <div className="d-flex">
                     <Link className="btn btn-primary btn-table" to="/addclient">CREAR CLIENTE</Link>
                 </div>
-                <h3 className="fw-bold">Tabla clientes</h3>
+                <h3 className="fw-bold">CLIENTES</h3>
                 <MUIDataTable className="border shadow mt-2"
                     data={clients}
                     columns={columns}
                     options={options}
                 />
-                <DeleteModal 
+                <DeleteClientModal 
                     deleteClient={deleteClient} //Renderiza el componente DeleteModal
                     selectedClientId={selectedClientId} //Pasa el ID del cliente seleccionado
                     setSelectedClientId={setSelectedClientId} //Pasa la función para actualizar el ID

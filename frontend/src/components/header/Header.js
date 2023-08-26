@@ -38,7 +38,7 @@ export default function Header() {
                                     <li><Link className="dropdown-item" to="#">Asesores</Link></li>
                                     <li><hr className="dropdown-divider" /></li>
                                     <li><Link className="dropdown-item" to="/tableclients">Clientes</Link></li>
-                                    <li><Link className="dropdown-item" to="#">Mascotas</Link></li>
+                                    <li><Link className="dropdown-item" to="/tablepets">Mascotas</Link></li>
                                     <li><Link className="dropdown-item" to="#">Empresas</Link></li>
                                 </ul>
                             </li>

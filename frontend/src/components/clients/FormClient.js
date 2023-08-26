@@ -28,6 +28,9 @@ export default function FormClient({ client, onInputChange, onSubmit }) {
         address: { error: false, message: "" },
     });
 
+    // Se agrega un nuevo estado llamado mascotas utilizando el hook useState.
+    const [mascotas, setMascotas] = useState("");
+
     //Nuevo estado para rastrear el envío del formulario.
     const [isFormSubmitted, setIsFormSubmitted] = useState(false); 
 
@@ -60,8 +63,14 @@ export default function FormClient({ client, onInputChange, onSubmit }) {
             return;
         }
 
+        // Agregar el valor de 'mascotas' al objeto 'client'
+        client.mascotas = mascotas;
+
+        // Se divide la cadena mascotas en un array de IDs de mascotas y se pasa como argumento adicional en la función onSubmit.
+        const mascotasArray = mascotas.split(",").map(id => id.trim());
+        console.log("Valor de mascotas:", mascotas);
         //Si todas las comprobaciones son exitosas, enviar el formulario.
-        onSubmit(e);
+        onSubmit(e, mascotasArray);
     };
 
 
@@ -254,35 +263,44 @@ export default function FormClient({ client, onInputChange, onSubmit }) {
                     }
                 />
             </div>
-            <InputField
-                label="Dirección"
-                name="address"
-                value={address}
-                error={errors.address.error ? errors.address.message : ""}
-                placeholder="Ingrese su dirección"
-                onChange={(e) => {
-                    onInputChange(e);
-                    const validation = validarDireccion(e.target.value);
-                    setErrors((prevState) => ({
-                    ...prevState,
-                    ...validation,
-                    }));
-                }}
-                extraClass="text-start mb-4" // Agrega la clase específica para dirección
-                icon={
-                    address && (
-                        <i
-                            className={errors.address.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
-                        ></i>
-                    )
-                }
-            />
+            <div className="row">
+                <InputField
+                    label="Dirección"
+                    name="address"
+                    value={address}
+                    error={errors.address.error ? errors.address.message : ""}
+                    placeholder="Ingrese su dirección"
+                    onChange={(e) => {
+                        onInputChange(e);
+                        const validation = validarDireccion(e.target.value);
+                        setErrors((prevState) => ({
+                        ...prevState,
+                        ...validation,
+                        }));
+                    }}
+                    icon={
+                        address && (
+                            <i
+                                className={errors.address.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
+                            ></i>
+                        )
+                    }
+                />
+                <InputField 
+                    label="id de la mascota"
+                    name="mascotas"
+                    value={mascotas}
+                    placeholder="Ingrese los id de las mascotas"
+                    // Actualiza el estado de mascotas
+                    onChange={(e) => setMascotas(e.target.value)}
+                />
+            </div>
             {isFormSubmitted && (
                 <div className="error-message">
                     <p>Todos los campos deben ser diligenciados.</p> 
                 </div>
             )}
-            <div className="d-grid gap-4 d-md-flex justify-content-md-center">
+            <div className="d-grid gap-4 d-md-flex mt-3 justify-content-md-center">
                 <button type="submit" className="btn btn-primary btn-form">ACEPTAR</button>
                 <Link className="btn btn-danger btn-form" to="/tableclients">CANCELAR</Link>
             </div>

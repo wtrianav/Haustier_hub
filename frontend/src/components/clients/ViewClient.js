@@ -10,13 +10,11 @@ export default function ViewClient() {
         const loadClient = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/clientes/${id}`);
-                console.log("Response data:", response.data);
                 setClient(response.data);
             } catch (error) {
                 console.log("Error:", error);
             }
         };
-
         loadClient();
     }, [id]);
 

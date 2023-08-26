@@ -1,9 +1,9 @@
 import React from 'react'
 
-function DeleteModal( { deleteClient, selectedClientId, setSelectedClientId }) {
+function DeleteClientModal( { deleteClient, selectedClientId, setSelectedClientId }) {
     
 	return (
-        <div className="modal fade" id="deleteModal" tabIndex="-1" aria-labelledby="deleteModal" aria-hidden="true">
+        <div className="modal fade" id="deleteClientModal" tabIndex="-1" aria-labelledby="deleteClientModal" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -11,7 +11,7 @@ function DeleteModal( { deleteClient, selectedClientId, setSelectedClientId }) {
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
-                        Estás seguro que deseas eliminar el cliente con el id número {selectedClientId}?
+                        ¿Estás seguro que deseas eliminar el cliente con el id número {selectedClientId}?
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
@@ -30,4 +30,4 @@ function DeleteModal( { deleteClient, selectedClientId, setSelectedClientId }) {
     );
 }
 
-export default DeleteModal
+export default DeleteClientModal;
