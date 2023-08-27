@@ -5,7 +5,8 @@ import "./inputField.css";
 
 const DateField = ({ label, name, selectedDate, onDateChange }) => {
     const handleDateChange = (date) => {
-        onDateChange(name, date); // Llamar a la función onChange con el nombre del campo y la fecha seleccionada
+		// Llamar a la función onChange con el nombre del campo y la fecha seleccionada
+        onDateChange(name, date.toDate()); 
     };
 
 	return (
@@ -21,7 +22,7 @@ const DateField = ({ label, name, selectedDate, onDateChange }) => {
 					timeFormat={false}
                     dateFormat="DD/MM/YYYY"
 					name={name}
-                    value={selectedDate ? selectedDate.format("DD/MM/YYYY") : ""} // Formatea la fecha
+					// value={selectedDate ? selectedDate.format("DD/MM/YYYY") : ""} // Formatea la fecha
 				/>
 			</div>
 		</div>

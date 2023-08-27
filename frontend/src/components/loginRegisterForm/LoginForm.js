@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PasswordToggle from "./PasswordToggle";
-import { useLoginForm } from "../validations/Validations";
+import { useLoginForm } from "../validations/LoginRegisterValidations";
 
 function LoginForm() {
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { validarNombre, validarRaza, validarColor } from "../validations/Validations";
+import { validarNombre, validarRaza, validarColor } from "../validations/PetValidations";
 import SelectField from "../formFields/SelectField";
 import InputField from "../formFields/InputField";
 import DateField from "../formFields/DateField";
@@ -10,10 +10,7 @@ import './formPet.css';
 export default function FormPet({ pet, onInputChange, onSubmit }) {
     const [errors, setErrors] = useState({
         name: { error: false, message: "" },
-        birthDate: { error: false, message: "" },
-        petType: { error: false, message: "" },
         breed: { error: false, message: "" },
-        gender: { error: false, message: "" },
         color: { error: false, message: "" },
     });
 
@@ -28,6 +25,8 @@ export default function FormPet({ pet, onInputChange, onSubmit }) {
             breed: validarRaza(pet.breed),
             color: validarColor(pet.color),
         };
+
+        console.log("Validation Errors:", validationErrors);
 
         // Verificar si hay campos vacíos
         const hasEmptyFields = Object.values(pet).some(value => value === "");
@@ -66,11 +65,11 @@ export default function FormPet({ pet, onInputChange, onSubmit }) {
                     error={errors.name.error ? errors.name.message : ""}
                     placeholder="Ingrese el nombre"
                     onChange={(e) => {
-                        onInputChange(e.target.name, e.target.value); // Aquí pasamos name y value
+                        onInputChange(e.target.name, e.target.value);
                         const validation = validarNombre(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
-                            ...validation,
+                            ...validation, // Actualizar solo los errores del campo "Nombre"
                         }));
                     }}
                     icon={
@@ -111,7 +110,7 @@ export default function FormPet({ pet, onInputChange, onSubmit }) {
                         const validation = validarRaza(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
-                            ...validation,
+                            ...validation, // Actualizar solo los errores del campo "Raza"
                         }));
                     }}
                     icon={
@@ -146,7 +145,7 @@ export default function FormPet({ pet, onInputChange, onSubmit }) {
                         const validation = validarColor(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
-                            ...validation,
+                            ...validation, // Actualizar solo los errores del campo "Color"
                         }));
                     }}
                     icon={

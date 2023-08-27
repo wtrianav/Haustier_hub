@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import FormPet from "./FormPet"; // Assuming you have a FormPet component for adding pets
+import FormPet from "./FormPet";
 
 export default function AddPet() {
     const navigate = useNavigate();

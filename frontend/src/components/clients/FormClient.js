@@ -9,7 +9,7 @@ import {
     validarDepartamento,
     validarCiudad,
     validarDireccion,
-} from "../validations/Validations";
+} from "../validations/ClientValidations";
 import SelectField from "../formFields/SelectField";
 import InputField from "../formFields/InputField";
 import './formClient.css';

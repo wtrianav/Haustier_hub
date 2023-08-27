@@ -12,6 +12,7 @@ import GlobalStyle from './GlobalStyle';
 import ScrollToTop from "./components/scroll/Scroll";
 import TablePets from './components/pets/TablePets';
 import AddPet from './components/pets/AddPet';
+import EditPet from './components/pets/EditPet';
 import "./App.css";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
                     <Route path="/viewclient/:id" element={<ViewClient />} />
                     <Route path='tablepets' element={<TablePets />} />
                     <Route path='/addpet' element={<AddPet />} />
+                    <Route path='/editpet/:id' element={<EditPet />} />
                     <Route path='/loginregister' element={<LoginRegister />} />
                 </Routes>
                 <Footer />

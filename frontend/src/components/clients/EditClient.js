@@ -20,16 +20,16 @@ export default function EditClient() {
     });
 
 
-    // actualiza el estado client con el nuevo valor del campo.
+    // Actualiza el estado client con el nuevo valor del campo.
     const onInputChange = (e) => {
         setClient({ ...client, [e.target.name]: e.target.value });
     };
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        // envía la solicitud PUT al servidor con el objeto client actualizado
+        // Envía la solicitud PUT al servidor con el objeto client actualizado
         await axios.put(`http://localhost:3000/api/clientes/${id}`, client);
-        // navega a la página principal después de que se haya actualizado el cliente
+        // Navega a la página principal después de que se haya actualizado el cliente
         navigate("/tableclients");
     };
 
@@ -51,7 +51,8 @@ export default function EditClient() {
 	}, []);
 
     if (Object.values(client).every((value) => value === "")) {
-		return <p>Cargando datos del cliente...</p>; // Mostrar un mensaje o un indicador de carga mientras se cargan los datos
+        // Mostrar un mensaje o un indicador de carga mientras se cargan los datos
+		return <p>Cargando datos del cliente...</p>; 
 	}
 
     return (
