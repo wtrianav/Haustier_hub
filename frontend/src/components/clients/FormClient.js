@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { 
     validarDocumento,
@@ -30,6 +30,11 @@ export default function FormClient({ client, onInputChange, onSubmit }) {
 
     // Se agrega un nuevo estado llamado mascotas utilizando el hook useState.
     const [mascotas, setMascotas] = useState("");
+
+    // Establece el valor del campo 'mascotas' en el formulario cuando los datos del cliente se carguen y une los id si hay más de uno
+    useEffect(() => {
+        setMascotas(client.mascotas.join(", "));
+    }, [client.mascotas]);
 
     //Nuevo estado para rastrear el envío del formulario.
     const [isFormSubmitted, setIsFormSubmitted] = useState(false); 
@@ -292,7 +297,9 @@ export default function FormClient({ client, onInputChange, onSubmit }) {
                     value={mascotas}
                     placeholder="Ingrese los id de las mascotas"
                     // Actualiza el estado de mascotas
-                    onChange={(e) => setMascotas(e.target.value)}
+                    onChange={(e) => {
+                        setMascotas(e.target.value);
+                    }}
                 />
             </div>
             {isFormSubmitted && (

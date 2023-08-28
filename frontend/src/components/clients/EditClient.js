@@ -60,7 +60,7 @@ export default function EditClient() {
             <div className="row mt-5">
                 <div className="col-md-6 offset-md-3 border rounded p-5 mt-2 shadow">
                     <h3 className="text-center fw-bold">Editar Cliente</h3>
-                    <FormClient client={client} onInputChange={onInputChange} onSubmit={onSubmit}/>
+                    <FormClient client={client} onInputChange={onInputChange} onSubmit={onSubmit} mascotas={client.mascotas}/>
                 </div>    
             </div>        
         </section>
