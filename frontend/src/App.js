@@ -13,6 +13,7 @@ import ScrollToTop from "./components/scroll/Scroll";
 import TablePets from './components/pets/TablePets';
 import AddPet from './components/pets/AddPet';
 import EditPet from './components/pets/EditPet';
+import ViewPet from './components/pets/ViewPet';
 import "./App.css";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
                     <Route path='tablepets' element={<TablePets />} />
                     <Route path='/addpet' element={<AddPet />} />
                     <Route path='/editpet/:id' element={<EditPet />} />
+                    <Route path='/viewpet/:id' element={<ViewPet />} />
                     <Route path='/loginregister' element={<LoginRegister />} />
                 </Routes>
                 <Footer />

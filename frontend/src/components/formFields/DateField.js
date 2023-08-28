@@ -5,8 +5,10 @@ import "./inputField.css";
 
 const DateField = ({ label, name, selectedDate, onDateChange }) => {
     const handleDateChange = (date) => {
-		// Llamar a la función onChange con el nombre del campo y la fecha seleccionada
-        onDateChange(name, date.toDate()); 
+		// Formatear la fecha en el formato deseado (DD/MM/YYYY)
+        const formattedDate = date.format("DD/MM/YYYY");
+        // Llamar a la función onChange con el nombre del campo y la fecha formateada
+        onDateChange(name, formattedDate);
     };
 
 	return (

@@ -121,9 +121,9 @@ export default function TablePets() {
                     options={options}
                 />
                 <DeletePetModal 
-                    deleteItem={deletePet}
-                    selectedItem={selectedPetId}
-                    setSelectedItem={setSelectedPetId}
+                    deletePet={deletePet}
+                    selectedPetId={selectedPetId}
+                    setSelectedPetId={setSelectedPetId}
                 />
             </div>
         </section>

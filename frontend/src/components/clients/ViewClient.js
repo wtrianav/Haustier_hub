@@ -65,11 +65,11 @@ export default function ViewClient() {
                                         {client.address}
                                     </li>
                                     <li className="list-group-item">
-                                        <b>Fecha: </b>
+                                        <b>Fecha de creación del registro: </b>
                                         {client.date}
                                     </li>
                                     <li className="list-group-item">
-                                        <b>Hora: </b>
+                                        <b>Hora de creación del registro: </b>
                                         {client.time}
                                     </li>
                                 </ul>
