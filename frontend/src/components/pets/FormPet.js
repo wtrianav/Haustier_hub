@@ -26,8 +26,6 @@ export default function FormPet({ pet, onInputChange, onSubmit }) {
             color: validarColor(pet.color),
         };
 
-        console.log("Validation Errors:", validationErrors);
-
         // Verificar si hay campos vacíos
         const hasEmptyFields = Object.values(pet).some(value => value === "");
 

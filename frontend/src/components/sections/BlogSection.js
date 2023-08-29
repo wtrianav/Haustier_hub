@@ -68,7 +68,7 @@ function PostCard({ title, category, image }) {
 function BlogSection() {
 	return (
 		<section className="row mb-2 bg-light justify-content-center">
-			<h2 className="mb-5">Publicaciones recientes</h2>
+			<h2 className="mb-5 fw-bold">Publicaciones recientes</h2>
 			<PostCard title="El pelo de los gatos" category="World" image="images/veterinarian-4.jpg" />
 			<PostCard title="Viajar con tu mascota" category="Design" image="images/veterinarian-13.jpg" />
 			<PostCard title="Gatitos" category="Salud" image="images/veterinarian-7.jpg" />

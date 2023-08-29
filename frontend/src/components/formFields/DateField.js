@@ -24,7 +24,6 @@ const DateField = ({ label, name, selectedDate, onDateChange }) => {
 					timeFormat={false}
                     dateFormat="DD/MM/YYYY"
 					name={name}
-					// value={selectedDate ? selectedDate.format("DD/MM/YYYY") : ""} // Formatea la fecha
 				/>
 			</div>
 		</div>

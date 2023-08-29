@@ -4,6 +4,7 @@ import PlanCard from "../planCard/PlanCard";
 function OurPlans() {
 	const plans = [
 		{
+			background: "bg-white",
 			title: "Haustier Basic",
 			price: "$30.000",
 			features: [
@@ -16,6 +17,7 @@ function OurPlans() {
 			buttonColor: "btn-outline-primary",
 		},
 		{
+			background: "bg-white",
 			title: "Haustier Local",
 			price: "$35.000",
 			features: [
@@ -28,6 +30,7 @@ function OurPlans() {
 			buttonColor: "btn-primary",
 		},
 		{
+			background: "bg-white",
 			title: "Haustier Nacional",
 			price: "$45.000",
 			features: [
@@ -57,8 +60,8 @@ function OurPlans() {
 	];
 
 	return (
-		<section>
-			<div className="container mt-5">
+		<section className="bg-light pt-5 pb-5">
+			<div className="container">
 				<div className="pricing-header p-3 pb-md-4 mx-auto text-center">
 					<h2 className="fw-bold">Nuestros Planes</h2>
 					<p className="fs-5 text-muted">

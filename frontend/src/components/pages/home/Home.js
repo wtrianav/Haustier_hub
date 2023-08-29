@@ -8,6 +8,7 @@ import CallToActionSection from "../../sections/CallToActionSection";
 import TestimonialSection from "../../sections/TestimonialSection";
 import OurPlanSection from "../../sections/OurPlanSection";
 import ComparePlanSection from "../../sections/ComparePlanSection";
+import AffiliateSection from "../../sections/AffiliateSection";
 import './home.css';
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
 			<OurPlanSection />
 			<ComparePlanSection />
 			<BlogSection />
+			<AffiliateSection />
 			<TestimonialSection />
 			<CallToActionSection />
 		</>

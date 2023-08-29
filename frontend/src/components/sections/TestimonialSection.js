@@ -23,7 +23,7 @@ const TestimonialItemImage = styled.img`
 
 function TestimonialSection() {
     return (
-        <TestimonialsContainer className="text-center bg-white">
+        <TestimonialsContainer className="text-center bg-light">
             <div className="container">
                 <h2 className="mb-5 fw-bold">Lo que nuestros clientes dicen...</h2>
                 <div className="row">
