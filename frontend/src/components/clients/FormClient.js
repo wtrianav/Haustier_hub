@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+
 import { 
     validarDocumento,
     validarNombre, 
@@ -15,7 +15,7 @@ import InputField from "../formFields/InputField";
 import './formClient.css';
 
 
-export default function FormClient({ client, onInputChange, onSubmit }) {
+export default function FormClient({ client, onInputChange, onSubmit, mascotasInput }) {
 
     const [errors, setErrors] = useState({
         document: { error: false, message: "" },
@@ -28,17 +28,13 @@ export default function FormClient({ client, onInputChange, onSubmit }) {
         address: { error: false, message: "" },
     });
 
-    // Se agrega un nuevo estado llamado mascotas utilizando el hook useState.
-    const [mascotas, setMascotas] = useState("");
-
-    // Establece el valor del campo 'mascotas' en el formulario cuando los datos del cliente se carguen y une los id si hay más de uno
-    useEffect(() => {
-        setMascotas(client.mascotas.join(", "));
-    }, [client.mascotas]);
-
     //Nuevo estado para rastrear el envío del formulario.
     const [isFormSubmitted, setIsFormSubmitted] = useState(false); 
-
+    
+    // Nuevo estado para rastrear el valor de 'mascotas' en el componente FormClient
+    // eslint-disable-next-line
+    const [mascotas, setMascotas] = useState("");
+    
     const handleFormSubmit = (e) => {
         e.preventDefault();
 
@@ -68,14 +64,18 @@ export default function FormClient({ client, onInputChange, onSubmit }) {
             return;
         }
 
-        // Agregar el valor de 'mascotas' al objeto 'client'
-        client.mascotas = mascotas;
-
         // Se divide la cadena mascotas en un array de IDs de mascotas y se pasa como argumento adicional en la función onSubmit.
         const mascotasArray = mascotas.split(",").map(id => id.trim());
-        console.log("Valor de mascotas:", mascotas);
+        console.log("Valor de mascotas antes de split y map:", mascotas);
+        console.log("Valor de mascotas después de split y map:", mascotasArray);
+
+        // Agregar el valor de 'mascotas' al objeto 'client'
+        client.mascotas = mascotasArray;
+
         //Si todas las comprobaciones son exitosas, enviar el formulario.
-        onSubmit(e, mascotasArray);
+        onSubmit(e);
+
+        console.log("Datos del Cliente:", client);
     };
 
 
@@ -294,12 +294,10 @@ export default function FormClient({ client, onInputChange, onSubmit }) {
                 <InputField 
                     label="id de la mascota"
                     name="mascotas"
-                    value={mascotas}
+                    value={mascotasInput}
                     placeholder="Ingrese los id de las mascotas"
                     // Actualiza el estado de mascotas
-                    onChange={(e) => {
-                        setMascotas(e.target.value);
-                    }}
+                    onChange={(e) => onInputChange(e)}
                 />
             </div>
             {isFormSubmitted && (
@@ -307,10 +305,6 @@ export default function FormClient({ client, onInputChange, onSubmit }) {
                     <p>Todos los campos deben ser diligenciados.</p> 
                 </div>
             )}
-            <div className="d-grid gap-4 d-md-flex mt-3 justify-content-md-center">
-                <button type="submit" className="btn btn-primary btn-form">ACEPTAR</button>
-                <Link className="btn btn-danger btn-form" to="/tableclients">CANCELAR</Link>
-            </div>
         </form>
 	);
 }

@@ -14,7 +14,6 @@ function DeleteClientModal( { deleteClient, selectedClientId, setSelectedClientI
                         ¿Estás seguro que deseas eliminar el cliente con el id número {selectedClientId}?
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
                         <button className="btn btn-danger mx-1" data-bs-dismiss="modal"
                             onClick={() => {
                                 deleteClient(selectedClientId); // Llama a la función deleteClient con el ID del cliente
@@ -23,6 +22,7 @@ function DeleteClientModal( { deleteClient, selectedClientId, setSelectedClientI
                         >
                             ACEPTAR
                         </button>
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
                     </div>
                 </div>
             </div>

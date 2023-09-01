@@ -3,6 +3,7 @@ import MUIDataTable from "mui-datatables";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import DeleteClientModal from "./DeleteClientModal";
+import AddClient from "./AddClient";
 import './tableClients.css';
 
 export default function TableClients() {
@@ -10,13 +11,17 @@ export default function TableClients() {
     const [clients, setClients] = useState([]);
     const URL = "http://localhost:3000/api/clientes/";
 
+    // Estado para el modal
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     // Función que carga los clientes.
     const loadClients = async () => {
         try {
             const response = await axios.get(URL);
             const sortedClients = response.data.sort((a, b) => a.id - b.id);
             setClients(sortedClients);
-            setClients(response.data);
         } catch (error) {
             console.error("Error al cargar los clientes:", error);
         }
@@ -37,7 +42,7 @@ export default function TableClients() {
         try {
             await axios.delete(`http://localhost:3000/api/clientes/${id}`);
             // Recarga los clientes después de eliminar uno
-            loadClients();
+            await loadClients();
         } catch (error) {
             console.error("Error al eliminar el cliente:", error);
         }
@@ -123,7 +128,7 @@ export default function TableClients() {
         <section className="section-client mt-5">
             <div className="table-client">
                 <div className="d-flex">
-                    <Link className="btn btn-primary btn-table" to="/addclient">CREAR CLIENTE</Link>
+                    <Link className="btn btn-primary btn-table" onClick={() => handleShow()}>CREAR CLIENTE</Link>
                 </div>
                 <h3 className="fw-bold">CLIENTES</h3>
                 <MUIDataTable className="border shadow mt-2"
@@ -136,7 +141,7 @@ export default function TableClients() {
                     selectedClientId={selectedClientId} //Pasa el ID del cliente seleccionado
                     setSelectedClientId={setSelectedClientId} //Pasa la función para actualizar el ID
                 />
-                
+                <AddClient show={show} handleClose={handleClose} loadClients={loadClients}/>
             </div>
         </section>
     );

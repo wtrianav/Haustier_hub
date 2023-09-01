@@ -16,7 +16,7 @@ const TestimonialsItemContainer = styled.div`
 
 
 const TestimonialItemImage = styled.img`
-    max-width: 12rem;
+    max-width: 10rem;
     box-shadow: 0px 5px 5px 0px #adb5bd;
 `;
 
