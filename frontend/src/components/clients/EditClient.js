@@ -19,7 +19,6 @@ export default function EditClient() {
         address: "",
     });
 
-
     // Actualiza el estado client con el nuevo valor del campo.
     const onInputChange = (e) => {
         setClient({ ...client, [e.target.name]: e.target.value });

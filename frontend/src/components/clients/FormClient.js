@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
 import { 
     validarDocumento,
     validarNombre, 
@@ -91,6 +91,8 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
 		city,
 		address,
 	} = client;
+
+    console.log("Valor de mascotas antes de enviar el formulario:", mascotas);
     
 	return (
         <form onSubmit={handleFormSubmit}>
@@ -294,10 +296,12 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
                 <InputField 
                     label="id de la mascota"
                     name="mascotas"
-                    value={mascotasInput}
+                    value={mascotas}
                     placeholder="Ingrese los id de las mascotas"
                     // Actualiza el estado de mascotas
-                    onChange={(e) => onInputChange(e)}
+                    onChange={(e) => {
+                        setMascotas(e.target.value); // Actualiza el estado mascotas
+                    }}
                 />
             </div>
             {isFormSubmitted && (
@@ -305,6 +309,10 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
                     <p>Todos los campos deben ser diligenciados.</p> 
                 </div>
             )}
+            <div className="d-grid gap-4 d-md-flex mt-3 justify-content-md-center">
+                <button type="submit" className="btn btn-primary btn-form">ACEPTAR</button>
+                <Link className="btn btn-danger btn-form" to="/tableclients">CANCELAR</Link>
+            </div>
         </form>
 	);
 }
