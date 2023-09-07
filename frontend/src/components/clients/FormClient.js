@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { 
+import {
     validarDocumento,
-    validarNombre, 
-    validarApellido, 
-    validarEmail, 
+    validarNombre,
+    validarApellido,
+    validarEmail,
     validarTelefono,
     validarDepartamento,
     validarCiudad,
@@ -12,6 +11,7 @@ import {
 } from "../validations/ClientValidations";
 import SelectField from "../formFields/SelectField";
 import InputField from "../formFields/InputField";
+import ButtonForm from "../buttons/ButtonForm";
 import './formClient.css';
 
 
@@ -29,12 +29,12 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
     });
 
     //Nuevo estado para rastrear el envío del formulario.
-    const [isFormSubmitted, setIsFormSubmitted] = useState(false); 
-    
+    const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
     // Nuevo estado para rastrear el valor de 'mascotas' en el componente FormClient
     // eslint-disable-next-line
     const [mascotas, setMascotas] = useState("");
-    
+
     const handleFormSubmit = (e) => {
         e.preventDefault();
 
@@ -80,21 +80,21 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
 
 
     // Desestructuración de los valores de client para utilizarlos en los inputs del formulario.
-	const {
-		documentType,
-		documentNumber,
-		namePerson,
-		lastNamePerson,
-		emailAddress,
-		phoneNumber,
-		department,
-		city,
-		address,
-	} = client;
+    const {
+        documentType,
+        documentNumber,
+        namePerson,
+        lastNamePerson,
+        emailAddress,
+        phoneNumber,
+        department,
+        city,
+        address,
+    } = client;
 
     console.log("Valor de mascotas antes de enviar el formulario:", mascotas);
-    
-	return (
+
+    return (
         <form onSubmit={handleFormSubmit}>
             <div className="row">
                 <SelectField
@@ -119,8 +119,8 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
                         onInputChange(e);
                         const validation = validarDocumento(e.target.value);
                         setErrors((prevState) => ({
-                        ...prevState,
-                        ...validation,
+                            ...prevState,
+                            ...validation,
                         }));
                     }}
                     icon={
@@ -254,7 +254,7 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
                     error={errors.city.error ? errors.city.message : ""}
                     placeholder="Ingrese su ciudad de residencia"
                     onChange={(e) => {
-                    onInputChange(e);
+                        onInputChange(e);
                         const validation = validarCiudad(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
@@ -281,8 +281,8 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
                         onInputChange(e);
                         const validation = validarDireccion(e.target.value);
                         setErrors((prevState) => ({
-                        ...prevState,
-                        ...validation,
+                            ...prevState,
+                            ...validation,
                         }));
                     }}
                     icon={
@@ -293,26 +293,32 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
                         )
                     }
                 />
-                <InputField 
+                <InputField
                     label="id de la mascota"
                     name="mascotas"
-                    value={mascotas}
+                    value={mascotasInput}
                     placeholder="Ingrese los id de las mascotas"
                     // Actualiza el estado de mascotas
-                    onChange={(e) => {
-                        setMascotas(e.target.value); // Actualiza el estado mascotas
-                    }}
+                    onChange={onInputChange}
                 />
             </div>
             {isFormSubmitted && (
                 <div className="error-message">
-                    <p>Todos los campos deben ser diligenciados.</p> 
+                    <p>Todos los campos deben ser diligenciados.</p>
                 </div>
             )}
             <div className="d-grid gap-4 d-md-flex mt-3 justify-content-md-center">
-                <button type="submit" className="btn btn-primary btn-form">ACEPTAR</button>
-                <Link className="btn btn-danger btn-form" to="/tableclients">CANCELAR</Link>
+                <ButtonForm
+                    type="submit"
+                    text="ACEPTAR"
+                    className="btn-primary btn-form"
+                />
+                <ButtonForm
+                    to="/tableclients"
+                    text="CANCELAR"
+                    className="btn-danger btn-form"
+                />
             </div>
         </form>
-	);
+    );
 }

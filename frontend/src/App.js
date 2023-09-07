@@ -14,6 +14,7 @@ import TablePets from './components/pets/TablePets';
 import AddPet from './components/pets/AddPet';
 import EditPet from './components/pets/EditPet';
 import ViewPet from './components/pets/ViewPet';
+import IconsGridSection from './components/sections/IconsGridSection';
 import "./App.css";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
                 <Header />
                 <Routes>
                     <Route path='/' element={<Home />} />
+                    <Route path="/nosotros" element={<IconsGridSection />} />
                     <Route path='/addclient' element={<AddClient />} />
                     <Route path='/tableclients' element={<TableClients />} />
                     <Route path='/editclient/:id' element={<EditClient />}/>

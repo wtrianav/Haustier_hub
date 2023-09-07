@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { validarNombre, validarRaza, validarColor } from "../validations/PetValidations";
 import SelectField from "../formFields/SelectField";
 import InputField from "../formFields/InputField";
 import DateField from "../formFields/DateField";
+import ButtonForm from "../buttons/ButtonForm";
 import './formPet.css';
 
 
@@ -161,8 +161,16 @@ export default function FormPet({ pet, onInputChange, onSubmit }) {
                 </div>
             )}
             <div className="d-grid gap-4 d-md-flex mt-3 justify-content-md-center">
-                <button type="submit" className="btn btn-primary btn-form">ACEPTAR</button>
-                <Link className="btn btn-danger btn-form" to="/tablepets">CANCELAR</Link>
+                <ButtonForm
+                    type="submit"
+                    text="ACEPTAR"
+                    className="btn-primary btn-form"
+                />
+                <ButtonForm
+                    to="/tablepets"
+                    text="CANCELAR"
+                    className="btn-danger btn-form"
+                />
             </div>
         </form>
     );
