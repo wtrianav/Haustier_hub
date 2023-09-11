@@ -1,5 +1,3 @@
-
-
 export function validarNombre(nombre) {
 	// Expresión regular para verificar que el nombre solo contiene letras, espacios, tildes y la letra "ñ"
 	const regex = /^[A-Za-záéíóúñÁÉÍÓÚ\s]+$/;

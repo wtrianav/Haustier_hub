@@ -35,7 +35,7 @@ export default function Header() {
                                 </Link>
                                 <ul className="dropdown-menu">
                                     <li><Link className="dropdown-item" to="#">Administradores</Link></li>
-                                    <li><Link className="dropdown-item" to="#">Asesores</Link></li>
+                                    <li><Link className="dropdown-item" to="/tableadvisors">Asesores</Link></li>
                                     <li><hr className="dropdown-divider" /></li>
                                     <li><Link className="dropdown-item" to="/tableclients">Clientes</Link></li>
                                     <li><Link className="dropdown-item" to="/tablepets">Mascotas</Link></li>

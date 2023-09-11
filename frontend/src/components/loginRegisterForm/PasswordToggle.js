@@ -31,18 +31,18 @@ function PasswordToggle({ hasError }) {
 				{passwordError && <p>{passwordError}</p>}
 			</div>
 			<div className="grupo-input">
-				<input 
-					type={showPassword ? "text" : "password"} 
-					placeholder="Contraseña" 
-					name="password" 
-					className={`input-text clave ${hasError.password ? "has-error" : ""}`} 
-					value={password} 
-					onChange={handlePasswordChange} 
-					style={{border: passwordError ? "2px solid #ed0722" : "",}}
+				<input
+					type={showPassword ? "text" : "password"}
+					placeholder="Contraseña"
+					name="password"
+					className={`input-text clave ${hasError.password ? "has-error" : ""}`}
+					value={password}
+					onChange={handlePasswordChange}
+					style={{ border: passwordError ? "2px solid #ed0722" : "", }}
 				/>
-				<button 
-					type="button" 
-					className={`icono ${eyeIcon} mostrarClave`} 
+				<button
+					type="button"
+					className={`icono ${eyeIcon} mostrarClave`}
 					onClick={toggleShowPassword}>
 				</button>
 			</div>

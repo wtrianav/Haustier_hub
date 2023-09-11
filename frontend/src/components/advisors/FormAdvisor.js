@@ -8,13 +8,13 @@ import {
     validarDepartamento,
     validarCiudad,
     validarDireccion,
-} from "../validations/ClientValidations";
+} from "../validations/AdvisorValidations";
 import SelectField from "../formFields/SelectField";
 import InputField from "../formFields/InputField";
 import ButtonForm from "../buttons/ButtonForm";
-import './formClient.css';
+import './formAdvisor.css';
 
-export default function FormClient({ client, onInputChange, onSubmit, mascotasInput }) {
+export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
 
     const [errors, setErrors] = useState({
         document: { error: false, message: "" },
@@ -30,49 +30,49 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
     //Nuevo estado para rastrear el envío del formulario.
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
-    // Nuevo estado para rastrear el valor de 'mascotas' en el componente FormClient
-    // eslint-disable-next-line
-    const [mascotas, setMascotas] = useState("");
-
     const handleFormSubmit = (e) => {
         e.preventDefault();
 
         //Realizar validación en todos los campos.
         const validationErrors = {
-            document: validarDocumento(client.documentNumber),
-            name: validarNombre(client.namePerson),
-            lastName: validarApellido(client.lastNamePerson),
-            email: validarEmail(client.emailAddress),
-            phone: validarTelefono(client.phoneNumber),
-            department: validarDepartamento(client.department),
-            city: validarCiudad(client.city),
-            address: validarDireccion(client.address),
+            document: validarDocumento(advisor.documentNumber),
+            name: validarNombre(advisor.namePerson),
+            lastName: validarApellido(advisor.lastNamePerson),
+            email: validarEmail(advisor.emailAddress),
+            phone: validarTelefono(advisor.phoneNumber),
+            department: validarDepartamento(advisor.department),
+            city: validarCiudad(advisor.city),
+            address: validarDireccion(advisor.address),
         };
 
         //Verificar si hay campos vacíos
-        const hasEmptyFields = Object.values(client).some(value => value === "");
+        const hasEmptyFields = Object.values(advisor).some(value => value === "");
 
         if (hasEmptyFields) {
             setIsFormSubmitted(true);
+            setErrors((prevState) => ({
+                ...prevState,
+                document: { error: true, message: "Este campo es obligatorio" },
+                name: { error: true, message: "Este campo es obligatorio" },
+                lastName: { error: true, message: "Este campo es obligatorio" },
+                email: { error: true, message: "Este campo es obligatorio" },
+                phone: { error: true, message: "Este campo es obligatorio" },
+                department: { error: true, message: "Este campo es obligatorio" },
+                city: { error: true, message: "Este campo es obligatorio" },
+                address: { error: true, message: "Este campo es obligatorio" },
+            }));
             return;
         }
 
-        //Verificar si hay errores de validación en algún campo.
         if (Object.values(validationErrors).some(error => error.error)) {
+            console.log("Errores de validación encontrados:", validationErrors);
             setErrors(validationErrors);
             return;
         }
 
-        // Se divide la cadena mascotas en un array de IDs de mascotas y se pasa como argumento adicional en la función onSubmit.
-        const mascotasArray = mascotas.split(",").map(id => id.trim());
-        // Agregar el valor de 'mascotas' al objeto 'client'
-        client.mascotas = mascotasArray;
-        //Si todas las comprobaciones son exitosas, enviar el formulario.
         onSubmit(e);
     };
 
-
-    // Desestructuración de los valores de client para utilizarlos en los inputs del formulario.
     const {
         documentType,
         documentNumber,
@@ -83,7 +83,7 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
         department,
         city,
         address,
-    } = client;
+    } = advisor;
 
     return (
         <form onSubmit={handleFormSubmit}>
@@ -92,7 +92,7 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
                     label="Tipo de documento"
                     name="documentType"
                     value={documentType}
-                    onChange={(e) => onInputChange(e)}
+                    onChange={(e) => onInputChange("documentType", e.target.value)}
                     options={[
                         { value: "Select", label: "Seleccione una opción" },
                         { value: "CC", label: "CC" },
@@ -107,7 +107,7 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
                     error={errors.document.error ? errors.document.message : ""}
                     placeholder="Ingrese su número de documento"
                     onChange={(e) => {
-                        onInputChange(e);
+                        onInputChange("documentNumber", e.target.value);
                         const validation = validarDocumento(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
@@ -131,7 +131,7 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
                     error={errors.name.error ? errors.name.message : ""}
                     placeholder="Ingrese su nombre"
                     onChange={(e) => {
-                        onInputChange(e);
+                        onInputChange("namePerson", e.target.value);
                         const validation = validarNombre(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
@@ -153,7 +153,7 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
                     error={errors.lastName.error ? errors.lastName.message : ""}
                     placeholder="Ingrese su apellido"
                     onChange={(e) => {
-                        onInputChange(e);
+                        onInputChange("lastNamePerson", e.target.value);
                         const validation = validarApellido(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
@@ -177,7 +177,7 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
                     error={errors.email.error ? errors.email.message : ""}
                     placeholder="Ingrese su email"
                     onChange={(e) => {
-                        onInputChange(e);
+                        onInputChange("emailAddress", e.target.value);
                         const validation = validarEmail(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
@@ -199,7 +199,7 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
                     error={errors.phone.error ? errors.phone.message : ""}
                     placeholder="Ingrese su número telefónico"
                     onChange={(e) => {
-                        onInputChange(e);
+                        onInputChange("phoneNumber", e.target.value);
                         const validation = validarTelefono(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
@@ -223,7 +223,7 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
                     error={errors.department.error ? errors.department.message : ""}
                     placeholder="Ingrese su departamento"
                     onChange={(e) => {
-                        onInputChange(e);
+                        onInputChange("department", e.target.value);
                         const validation = validarDepartamento(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
@@ -245,7 +245,7 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
                     error={errors.city.error ? errors.city.message : ""}
                     placeholder="Ingrese su ciudad de residencia"
                     onChange={(e) => {
-                        onInputChange(e);
+                        onInputChange("city", e.target.value);
                         const validation = validarCiudad(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
@@ -269,7 +269,7 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
                     error={errors.address.error ? errors.address.message : ""}
                     placeholder="Ingrese su dirección"
                     onChange={(e) => {
-                        onInputChange(e);
+                        onInputChange("address", e.target.value);
                         const validation = validarDireccion(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
@@ -284,14 +284,6 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
                         )
                     }
                 />
-                <InputField
-                    label="id de la mascota"
-                    name="mascotas"
-                    value={mascotasInput}
-                    placeholder="Ingrese los id de las mascotas"
-                    // Actualiza el estado de mascotas
-                    onChange={onInputChange}
-                />
             </div>
             {isFormSubmitted && (
                 <div className="error-message">
@@ -305,7 +297,7 @@ export default function FormClient({ client, onInputChange, onSubmit, mascotasIn
                     className="btn-primary btn-form"
                 />
                 <ButtonForm
-                    to="/tableclients"
+                    to="/tableadvisors"
                     text="CANCELAR"
                     className="btn-danger btn-form"
                 />

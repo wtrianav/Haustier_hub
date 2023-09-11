@@ -2,22 +2,22 @@ import { useState } from "react";
 import { validarNombre, validarApellido, validarEmail } from "./ClientValidations";
 
 export function useLoginForm() {
-    const [name, setName] = useState("");
-    const [lastName, setLastName] = useState("");
+	const [name, setName] = useState("");
+	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
 	const [errors, setErrors] = useState({
-        name: {
-            error: false,
+		name: {
+			error: false,
 			message: "Deben ser al menos 3 caracteres y no se permiten números ni caracteres especiales",
 		},
 		lastName: {
-            error: false,
+			error: false,
 			message: "Deben ser al menos 3 caracteres y no se permiten números ni caracteres especiales",
 		},
-        email: {
-            error: false,
-            message: "Debe ser una dirección de correo electrónico válida",
-        },
+		email: {
+			error: false,
+			message: "Debe ser una dirección de correo electrónico válida",
+		},
 	});
 
 	const [hasError, setHasError] = useState({
@@ -25,9 +25,9 @@ export function useLoginForm() {
 		lastName: false,
 		email: false,
 	});
-	
 
-    function handleNameChange(e) {
+
+	function handleNameChange(e) {
 		const newName = e.target.value;
 		setName(newName);
 		const nameValidation = validarNombre(newName);
@@ -73,17 +73,17 @@ export function useLoginForm() {
 	}
 
 	return {
-        name,
-        setName,
-        lastName,
-        setLastName,
+		name,
+		setName,
+		lastName,
+		setLastName,
 		email,
 		setEmail,
 		errors,
 		hasError,
 		setHasError,
-        handleNameChange,
-        handleLastNameChange,
+		handleNameChange,
+		handleLastNameChange,
 		handleEmailChange,
 	};
 }
