@@ -1,89 +1,69 @@
 import React, { useState } from "react";
-import {
-    validarDocumento,
-    validarNombre,
-    validarApellido,
-    validarEmail,
-    validarTelefono,
-    validarDepartamento,
-    validarCiudad,
-    validarDireccion,
-} from "../validations/AdvisorValidations";
+import { validarDocumento, validarNombreEmpresa, validarEmail, validarTelefono, validarDepartamento, validarCiudad, validarDireccion } from "../validations/CompanyValidations";
+import MultiSelectField from "../formFields/MultiSelectField";
 import SelectField from "../formFields/SelectField";
 import InputField from "../formFields/InputField";
 import ButtonForm from "../buttons/ButtonForm";
-import './formAdvisor.css';
+import './formCompany.css';
 
-export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
-
+export default function FormCompany({ company, onInputChange, onSubmit }) {
     const [errors, setErrors] = useState({
-        document: { error: false, message: "" },
-        name: { error: false, message: "" },
-        lastName: { error: false, message: "" },
-        email: { error: false, message: "" },
-        phone: { error: false, message: "" },
+        documentNumber: { error: false, message: "" },
+        nameCompany: { error: false, message: "" },
+        emailAddress: { error: false, message: "" },
+        phoneNumber: { error: false, message: "" },
         department: { error: false, message: "" },
         city: { error: false, message: "" },
         address: { error: false, message: "" },
     });
 
-    //Nuevo estado para rastrear el envío del formulario.
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
 
-        //Realizar validación en todos los campos.
+        // Realizar validación en todos los campos.
         const validationErrors = {
-            document: validarDocumento(advisor.documentNumber),
-            name: validarNombre(advisor.namePerson),
-            lastName: validarApellido(advisor.lastNamePerson),
-            email: validarEmail(advisor.emailAddress),
-            phone: validarTelefono(advisor.phoneNumber),
-            department: validarDepartamento(advisor.department),
-            city: validarCiudad(advisor.city),
-            address: validarDireccion(advisor.address),
+            documentNumber: validarDocumento(company.documentNumber),
+            nameCompany: validarNombreEmpresa(company.nameCompany),
+            emailAddress: validarEmail(company.emailAddress),
+            phoneNumber: validarTelefono(company.phoneNumber),
+            department: validarDepartamento(company.department),
+            city: validarCiudad(company.city),
+            address: validarDireccion(company.address),
         };
 
-        //Verificar si hay campos vacíos
-        const hasEmptyFields = Object.values(advisor).some(value => value === "");
+        // Verificar si hay campos vacíos
+        const hasEmptyFields = Object.values(company).some(value => value === "");
 
         if (hasEmptyFields) {
             setIsFormSubmitted(true);
-            /* setErrors((prevState) => ({
-                ...prevState,
-                document: { error: true, message: "Este campo es obligatorio" },
-                name: { error: true, message: "Este campo es obligatorio" },
-                lastName: { error: true, message: "Este campo es obligatorio" },
-                email: { error: true, message: "Este campo es obligatorio" },
-                phone: { error: true, message: "Este campo es obligatorio" },
-                department: { error: true, message: "Este campo es obligatorio" },
-                city: { error: true, message: "Este campo es obligatorio" },
-                address: { error: true, message: "Este campo es obligatorio" },
-            })); */
             return;
         }
 
+        // Verificar si hay errores de validación en algún campo.
         if (Object.values(validationErrors).some(error => error.error)) {
-            console.log("Errores de validación encontrados:", validationErrors);
             setErrors(validationErrors);
             return;
         }
 
+        // Si todas las comprobaciones son exitosas, enviar el formulario.
         onSubmit(e);
     };
 
     const {
         documentType,
         documentNumber,
-        namePerson,
-        lastNamePerson,
+        nameCompany,
+        companyType,
         emailAddress,
         phoneNumber,
         department,
         city,
         address,
-    } = advisor;
+        products,
+        services,
+    } = company;
 
     return (
         <form onSubmit={handleFormSubmit}>
@@ -92,12 +72,11 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
                     label="Tipo de documento"
                     name="documentType"
                     value={documentType}
-                    onChange={(e) => onInputChange("documentType", e.target.value)}
+                    onChange={(e) => onInputChange(e)}
                     options={[
                         { value: "Select", label: "Seleccione una opción" },
                         { value: "CC", label: "CC" },
-                        { value: "TI", label: "TI" },
-                        { value: "PP", label: "PP" },
+                        { value: "NIT", label: "NIT" },
                     ]}
                 />
                 <InputField
@@ -107,7 +86,7 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
                     error={errors.document.error ? errors.document.message : ""}
                     placeholder="Ingrese su número de documento"
                     onChange={(e) => {
-                        onInputChange("documentNumber", e.target.value);
+                        onInputChange(e);
                         const validation = validarDocumento(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
@@ -125,48 +104,37 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
             </div>
             <div className="row">
                 <InputField
-                    label="Nombre"
-                    name="namePerson"
-                    value={namePerson}
-                    error={errors.name.error ? errors.name.message : ""}
-                    placeholder="Ingrese su nombre"
+                    label="Nombre de la Empresa"
+                    name="nameCompany"
+                    value={nameCompany}
+                    error={errors.nameCompany.error ? errors.nameCompany.message : ""}
+                    placeholder="Ingrese el nombre de la empresa"
                     onChange={(e) => {
-                        onInputChange("namePerson", e.target.value);
-                        const validation = validarNombre(e.target.value);
+                        onInputChange(e.target.name, e.target.value);
+                        const validation = validarNombreEmpresa(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
                             ...validation,
                         }));
                     }}
                     icon={
-                        namePerson && (
+                        nameCompany && (
                             <i
-                                className={errors.name.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
+                                className={errors.document.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
                             ></i>
                         )
                     }
                 />
-                <InputField
-                    label="Apellido"
-                    name="lastNamePerson"
-                    value={lastNamePerson}
-                    error={errors.lastName.error ? errors.lastName.message : ""}
-                    placeholder="Ingrese su apellido"
-                    onChange={(e) => {
-                        onInputChange("lastNamePerson", e.target.value);
-                        const validation = validarApellido(e.target.value);
-                        setErrors((prevState) => ({
-                            ...prevState,
-                            ...validation,
-                        }));
-                    }}
-                    icon={
-                        lastNamePerson && (
-                            <i
-                                className={errors.lastName.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
-                            ></i>
-                        )
-                    }
+                <SelectField
+                    label="Tipo de empresa"
+                    name="companyType"
+                    value={companyType}
+                    onChange={(e) => onInputChange(e)}
+                    options={[
+                        { value: "Select", label: "Seleccione una opción" },
+                        { value: "Persona Natural", label: "Persona Natural" },
+                        { value: "Persona Jurídica", label: "Persona Jurídica" },
+                    ]}
                 />
             </div>
             <div className="row">
@@ -177,7 +145,7 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
                     error={errors.email.error ? errors.email.message : ""}
                     placeholder="Ingrese su email"
                     onChange={(e) => {
-                        onInputChange("emailAddress", e.target.value);
+                        onInputChange(e);
                         const validation = validarEmail(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
@@ -199,7 +167,7 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
                     error={errors.phone.error ? errors.phone.message : ""}
                     placeholder="Ingrese su número telefónico"
                     onChange={(e) => {
-                        onInputChange("phoneNumber", e.target.value);
+                        onInputChange(e);
                         const validation = validarTelefono(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
@@ -223,7 +191,7 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
                     error={errors.department.error ? errors.department.message : ""}
                     placeholder="Ingrese su departamento"
                     onChange={(e) => {
-                        onInputChange("department", e.target.value);
+                        onInputChange(e);
                         const validation = validarDepartamento(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
@@ -245,7 +213,7 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
                     error={errors.city.error ? errors.city.message : ""}
                     placeholder="Ingrese su ciudad de residencia"
                     onChange={(e) => {
-                        onInputChange("city", e.target.value);
+                        onInputChange(e);
                         const validation = validarCiudad(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
@@ -262,46 +230,52 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
                 />
             </div>
             <div className="row">
-                <InputField
-                    label="Dirección"
-                    name="address"
-                    value={address}
-                    error={errors.address.error ? errors.address.message : ""}
-                    placeholder="Ingrese su dirección"
-                    onChange={(e) => {
-                        onInputChange("address", e.target.value);
-                        const validation = validarDireccion(e.target.value);
-                        setErrors((prevState) => ({
-                            ...prevState,
-                            ...validation,
-                        }));
-                    }}
-                    icon={
-                        address && (
-                            <i
-                                className={errors.address.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
-                            ></i>
-                        )
-                    }
+                <MultiSelectField
+                    label="Productos"
+                    name="products"
+                    value={products}
+                    onChange={(selectedItems) => onInputChange("products", selectedItems)}
+                    options={[
+                        { value: "product1", label: "Producto 1" },
+                        { value: "product2", label: "Producto 2" },
+                        { value: "product3", label: "Producto 3" },
+                        { value: "product4", label: "Producto 4" },
+                        { value: "product5", label: "Producto 5" },
+                        { value: "product6", label: "Producto 6" },
+                    ]}
+                />
+                <MultiSelectField
+                    label="Servicios"
+                    name="services"
+                    value={services}
+                    onChange={(selectedItems) => onInputChange("services", selectedItems)}
+                    options={[
+                        { value: "service1", label: "Servicio 1" },
+                        { value: "service2", label: "Servicio 2" },
+                        { value: "service3", label: "Servicio 3" },
+                        { value: "service4", label: "Servicio 4" },
+                        { value: "service5", label: "Servicio 5" },
+                        { value: "service6", label: "Servicio 6" },
+                    ]}
                 />
             </div>
-            {isFormSubmitted && (
-                <div className="error-message">
-                    <p>Todos los campos deben ser diligenciados.</p>
+                {isFormSubmitted && (
+                    <div className="error-message">
+                        <p>Todos los campos deben ser diligenciados.</p>
+                    </div>
+                )}
+                <div className="d-grid gap-4 d-md-flex mt-3 justify-content-md-center">
+                    <ButtonForm
+                        type="submit"
+                        text="ACEPTAR"
+                        className="btn-primary btn-form"
+                    />
+                    <ButtonForm
+                        to="/tablecompanies"
+                        text="CANCELAR"
+                        className="btn-danger btn-form"
+                    />
                 </div>
-            )}
-            <div className="d-grid gap-4 d-md-flex mt-3 justify-content-md-center">
-                <ButtonForm
-                    type="submit"
-                    text="ACEPTAR"
-                    className="btn-primary btn-form"
-                />
-                <ButtonForm
-                    to="/tableadvisors"
-                    text="CANCELAR"
-                    className="btn-danger btn-form"
-                />
-            </div>
         </form>
     );
 }
