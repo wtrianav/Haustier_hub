@@ -15,6 +15,8 @@ import AddPet from './components/pets/AddPet';
 import TablePets from './components/pets/TablePets';
 import EditPet from './components/pets/EditPet';
 import ViewPet from './components/pets/ViewPet';
+import AddCompany from './components/companies/AddCompany';
+import TableCompanies from './components/companies/TableCompanies';
 import LoginRegister from './components/pages/loginRegister/LoginRegister';
 import GlobalStyle from './GlobalStyle';
 import ScrollToTop from "./components/scroll/Scroll";
@@ -42,6 +44,8 @@ function App() {
                     <Route path='tablepets' element={<TablePets />} />
                     <Route path='/editpet/:id' element={<EditPet />} />
                     <Route path='/viewpet/:id' element={<ViewPet />} />
+                    <Route path='/addcompany' element={<AddCompany />} />
+                    <Route path='/tablecompanies' element={<TableCompanies />} />
                     <Route path='/loginregister' element={<LoginRegister />} />
                 </Routes>
                 <Footer />

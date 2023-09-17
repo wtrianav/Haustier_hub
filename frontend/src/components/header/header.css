@@ -22,10 +22,14 @@
     color: #838383;
 }
 
+a.nav-link.dropdown-toggle.show {
+    color: #0D6EFD;
+}
+
 .dropdown-menu .dropdown-item:hover {
-    background-color: #c9deff;
-    color: #353535;
-    font-weight: 600;
+    background-color: #0D6EFD;
+    color: #FFFFFF;
+    
 }
 
 .form-control-header {

@@ -1,10 +1,10 @@
 /* Estilo de la tabla de clientes */
-.section-pets {
+.section-company {
 	display: flex;
 	justify-content: center;
 }
 
-.table-pets {
+.table-company {
 	width: 1600px;
 	margin-top: 60px;
 }

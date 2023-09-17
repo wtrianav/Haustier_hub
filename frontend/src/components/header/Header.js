@@ -39,7 +39,7 @@ export default function Header() {
                                     <li><hr className="dropdown-divider" /></li>
                                     <li><Link className="dropdown-item" to="/tableclients">Clientes</Link></li>
                                     <li><Link className="dropdown-item" to="/tablepets">Mascotas</Link></li>
-                                    <li><Link className="dropdown-item" to="#">Empresas</Link></li>
+                                    <li><Link className="dropdown-item" to="/tablecompanies">Empresas</Link></li>
                                 </ul>
                             </li>
                             <li className="nav-item">

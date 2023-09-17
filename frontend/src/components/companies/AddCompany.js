@@ -41,7 +41,7 @@ export default function AddCompany() {
     return (
         <section className="container">
             <div className="row mt-5">
-                <div className="col-md-6 offset-md-3 border rounded p-5 mt-2 shadow">
+                <div className="col-auto offset-md-2 border rounded p-5 mt-2 shadow">
                     <h3 className="text-center fw-bold">Registrar Empresa</h3>
                     <FormCompany company={company} onInputChange={onInputChange} onSubmit={onSubmit}
                     />

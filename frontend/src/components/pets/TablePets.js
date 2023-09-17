@@ -111,10 +111,10 @@ export default function TablePets() {
     return (
         <section className="section-pets mt-5">
             <div className="table-pets">
-                <div className="d-flex">
+                <h3 className="fw-bold">MASCOTAS</h3>
+                <div className="d-flex justify-content-md-end">
                     <Link className="btn btn-primary btn-table" to="/addpet">CREAR MASCOTA</Link>
                 </div>
-                <h3 className="fw-bold">MASCOTAS</h3>
                 <MUIDataTable className="border shadow mt-2"
                     data={pets}
                     columns={columns}

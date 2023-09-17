@@ -8,15 +8,16 @@ import './formCompany.css';
 
 export default function FormCompany({ company, onInputChange, onSubmit }) {
     const [errors, setErrors] = useState({
-        documentNumber: { error: false, message: "" },
-        nameCompany: { error: false, message: "" },
-        emailAddress: { error: false, message: "" },
-        phoneNumber: { error: false, message: "" },
+        document: { error: false, message: "" },
+        company: { error: false, message: "" },
+        email: { error: false, message: "" },
+        phone: { error: false, message: "" },
         department: { error: false, message: "" },
         city: { error: false, message: "" },
         address: { error: false, message: "" },
     });
 
+    //Estado para rastrear el envío del formulario.
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
     const handleFormSubmit = (e) => {
@@ -72,7 +73,7 @@ export default function FormCompany({ company, onInputChange, onSubmit }) {
                     label="Tipo de documento"
                     name="documentType"
                     value={documentType}
-                    onChange={(e) => onInputChange(e)}
+                    onChange={(e) => onInputChange("documentType", e.target.value)}
                     options={[
                         { value: "Select", label: "Seleccione una opción" },
                         { value: "CC", label: "CC" },
@@ -86,7 +87,7 @@ export default function FormCompany({ company, onInputChange, onSubmit }) {
                     error={errors.document.error ? errors.document.message : ""}
                     placeholder="Ingrese su número de documento"
                     onChange={(e) => {
-                        onInputChange(e);
+                        onInputChange("documentNumber", e.target.value);
                         const validation = validarDocumento(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
@@ -101,35 +102,11 @@ export default function FormCompany({ company, onInputChange, onSubmit }) {
                         )
                     }
                 />
-            </div>
-            <div className="row">
-                <InputField
-                    label="Nombre de la Empresa"
-                    name="nameCompany"
-                    value={nameCompany}
-                    error={errors.nameCompany.error ? errors.nameCompany.message : ""}
-                    placeholder="Ingrese el nombre de la empresa"
-                    onChange={(e) => {
-                        onInputChange(e.target.name, e.target.value);
-                        const validation = validarNombreEmpresa(e.target.value);
-                        setErrors((prevState) => ({
-                            ...prevState,
-                            ...validation,
-                        }));
-                    }}
-                    icon={
-                        nameCompany && (
-                            <i
-                                className={errors.document.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
-                            ></i>
-                        )
-                    }
-                />
                 <SelectField
                     label="Tipo de empresa"
                     name="companyType"
                     value={companyType}
-                    onChange={(e) => onInputChange(e)}
+                    onChange={(e) => onInputChange("companyType", e.target.value)}
                     options={[
                         { value: "Select", label: "Seleccione una opción" },
                         { value: "Persona Natural", label: "Persona Natural" },
@@ -139,13 +116,35 @@ export default function FormCompany({ company, onInputChange, onSubmit }) {
             </div>
             <div className="row">
                 <InputField
+                    label="Nombre de la Empresa"
+                    name="nameCompany"
+                    value={nameCompany}
+                    error={errors.company.error ? errors.company.message : ""}
+                    placeholder="Ingrese el nombre de la empresa"
+                    onChange={(e) => {
+                        onInputChange("nameCompany", e.target.value);
+                        const validation = validarNombreEmpresa(e.target.value);
+                        setErrors((prevState) => ({
+                            ...prevState,
+                            ...validation,
+                        }));
+                    }}
+                    icon={
+                        nameCompany && (
+                            <i
+                                className={errors.company.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
+                            ></i>
+                        )
+                    }
+                />
+                <InputField
                     label="Email"
                     name="emailAddress"
                     value={emailAddress}
                     error={errors.email.error ? errors.email.message : ""}
                     placeholder="Ingrese su email"
                     onChange={(e) => {
-                        onInputChange(e);
+                        onInputChange("emailAddress", e.target.value);
                         const validation = validarEmail(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
@@ -167,7 +166,7 @@ export default function FormCompany({ company, onInputChange, onSubmit }) {
                     error={errors.phone.error ? errors.phone.message : ""}
                     placeholder="Ingrese su número telefónico"
                     onChange={(e) => {
-                        onInputChange(e);
+                        onInputChange("phoneNumber", e.target.value);
                         const validation = validarTelefono(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
@@ -191,7 +190,7 @@ export default function FormCompany({ company, onInputChange, onSubmit }) {
                     error={errors.department.error ? errors.department.message : ""}
                     placeholder="Ingrese su departamento"
                     onChange={(e) => {
-                        onInputChange(e);
+                        onInputChange("department", e.target.value);
                         const validation = validarDepartamento(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
@@ -213,7 +212,7 @@ export default function FormCompany({ company, onInputChange, onSubmit }) {
                     error={errors.city.error ? errors.city.message : ""}
                     placeholder="Ingrese su ciudad de residencia"
                     onChange={(e) => {
-                        onInputChange(e);
+                        onInputChange("city", e.target.value);
                         const validation = validarCiudad(e.target.value);
                         setErrors((prevState) => ({
                             ...prevState,
@@ -224,6 +223,28 @@ export default function FormCompany({ company, onInputChange, onSubmit }) {
                         city && (
                             <i
                                 className={errors.city.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
+                            ></i>
+                        )
+                    }
+                />
+                <InputField
+                    label="Dirección"
+                    name="address"
+                    value={address}
+                    error={errors.address.error ? errors.address.message : ""}
+                    placeholder="Ingrese su dirección"
+                    onChange={(e) => {
+                        onInputChange("address", e.target.value);
+                        const validation = validarDireccion(e.target.value);
+                        setErrors((prevState) => ({
+                            ...prevState,
+                            ...validation,
+                        }));
+                    }}
+                    icon={
+                        address && (
+                            <i
+                                className={errors.address.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
                             ></i>
                         )
                     }

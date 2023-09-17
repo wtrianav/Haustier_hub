@@ -27,7 +27,7 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
         address: { error: false, message: "" },
     });
 
-    //Nuevo estado para rastrear el envío del formulario.
+    //Estado para rastrear el envío del formulario.
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
     const handleFormSubmit = (e) => {

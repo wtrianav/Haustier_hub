@@ -121,10 +121,10 @@ export default function TableClients() {
     return (
         <section className="section-client mt-5">
             <div className="table-client">
-                <div className="d-flex">
+                <h3 className="fw-bold">CLIENTES</h3>
+                <div className="d-flex justify-content-md-end">
                     <Link className="btn btn-primary btn-table" to="/addclient" >CREAR CLIENTE</Link>
                 </div>
-                <h3 className="fw-bold">CLIENTES</h3>
                 <MUIDataTable className="border shadow mt-2"
                     data={clients}
                     columns={columns}

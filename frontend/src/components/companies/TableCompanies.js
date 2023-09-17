@@ -2,38 +2,38 @@ import React, { useState, useEffect } from "react";
 import MUIDataTable from "mui-datatables";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import DeleteAdvisorModal from "./DeleteAdvisorModal";
-import './tableAdvisors.css';
+import DeleteCompanyModal from "./DeleteCompanyModal";
+import './tableCompanies.css';
 
-export default function TableAdvisors() {
-    const [selectedAdvisorId, setSelectedAdvisorId] = useState(null);
-    const [advisors, setAdvisors] = useState([]);
-    const URL = "http://localhost:3000/api/asesores/";
+export default function TableCompanies() {
+    const [selectedCompanyId, setSelectedCompanyId] = useState(null);
+    const [companies, setCompanies] = useState([]);
+    const URL = "http://localhost:3000/api/empresas/";
 
-    const loadAdvisors = async () => {
+    const loadCompanies = async () => {
         try {
             const response = await axios.get(URL);
-            const sortedAdvisors = response.data.sort((a, b) => a.id - b.id);
-            setAdvisors(sortedAdvisors);
+            const sortedCompanies = response.data.sort((a, b) => a.id - b.id);
+            setCompanies(sortedCompanies);
         } catch (error) {
-            console.error("Error al cargar los asesores:", error);
+            console.error("Error al cargar las empresas:", error);
         }
     };
 
     useEffect(() => {
         const loadInitialData = async () => {
-            await loadAdvisors();
+            await loadCompanies();
         };
-
+    
         loadInitialData();
     }, []);
 
-    const deleteAdvisor = async (id) => {
+    const deleteCompany = async (id) => {
         try {
-            await axios.delete(`http://localhost:3000/api/asesores/${id}`);
-            await loadAdvisors();
+            await axios.delete(`http://localhost:3000/api/empresas/${id}`);
+            await loadCompanies();
         } catch (error) {
-            console.error("Error al eliminar el asesor:", error);
+            console.error("Error al eliminar la empresa:", error);
         }
     }
 
@@ -43,56 +43,48 @@ export default function TableAdvisors() {
             label: "id",
         },
         {
-            name: "documentType",
-            label: "Tipo",
-        },
-        {
-            name: "documentNumber",
-            label: "Documento"
-        },
-        {
-            name: "namePerson",
+            name: "nameCompany",
             label: "Nombre",
         },
         {
-            name: "lastNamePerson",
-            label: "Apellido"
-        },
-        {
-            name: "emailAddress",
-            label: "Email"
+            name: "address",
+            label: "Dirección"
         },
         {
             name: "phoneNumber",
             label: "Teléfono"
         },
         {
+            name: "emailAddress",
+            label: "Email"
+        },
+        {
             name: "acciones",
             label: "Acciones",
             options: {
                 customBodyRender: (value, tableMeta, updateValue) => {
-                    const advisorIndex = columns.findIndex(column => column.name === 'id');
-                    const advisorId = tableMeta.rowData[advisorIndex];
+                    const companyIndex = columns.findIndex(column => column.name === 'id');
+                    const companyId = tableMeta.rowData[companyIndex];
                     return (
                         <>
                             <div className="btn-group">
                                 <Link
                                     className="btn btn-primary mx-1"
-                                    to={`/viewadvisor/${advisorId}`}
+                                    to={`/viewcompany/${companyId}`}
                                 >
                                     VER
                                 </Link>
                                 <Link
                                     className="btn btn-outline-primary mx-1"
-                                    to={`/editadvisor/${advisorId}`}
+                                    to={`/editcompany/${companyId}`}
                                 >
                                     EDITAR
                                 </Link>
                                 <button
                                     className="btn btn-danger mx-1"
-                                    onClick={() => setSelectedAdvisorId(advisorId)}
+                                    onClick={() => setSelectedCompanyId(companyId)}
                                     data-bs-toggle="modal"
-                                    data-bs-target="#deleteAdvisorModal"
+                                    data-bs-target="#deleteCompanyModal"
                                 >
                                     ELIMINAR
                                 </button>
@@ -109,21 +101,21 @@ export default function TableAdvisors() {
     };
 
     return (
-        <section className="section-client mt-5">
-            <div className="table-client">
-                <h3 className="fw-bold">ASESORES</h3>
+        <section className="section-company mt-5">
+            <div className="table-company">
+                <h3 className="fw-bold">EMPRESAS</h3>
                 <div className="d-flex justify-content-md-end">
-                    <Link className="btn btn-primary btn-table" to="/addadvisor" >CREAR ASESOR</Link>
+                    <Link className="btn btn-primary btn-table" to="/addcompany" >CREAR EMPRESA</Link>
                 </div>
                 <MUIDataTable className="border shadow mt-2"
-                    data={advisors}
+                    data={companies}
                     columns={columns}
                     options={options}
                 />
-                <DeleteAdvisorModal
-                    deleteAdvisor={deleteAdvisor}
-                    selectedAdvisorId={selectedAdvisorId}
-                    setSelectedAdvisorId={setSelectedAdvisorId}
+                <DeleteCompanyModal 
+                    deleteCompany={deleteCompany}
+                    selectedCompanyId={selectedCompanyId}
+                    setSelectedCompanyId={setSelectedCompanyId}
                 />
             </div>
         </section>
