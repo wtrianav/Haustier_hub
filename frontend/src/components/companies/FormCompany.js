@@ -4,7 +4,6 @@ import MultiSelectField from "../formFields/MultiSelectField";
 import SelectField from "../formFields/SelectField";
 import InputField from "../formFields/InputField";
 import ButtonForm from "../buttons/ButtonForm";
-import './formCompany.css';
 
 export default function FormCompany({ company, onInputChange, onSubmit }) {
     const [errors, setErrors] = useState({

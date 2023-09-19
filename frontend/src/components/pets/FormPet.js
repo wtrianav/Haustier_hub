@@ -4,7 +4,6 @@ import SelectField from "../formFields/SelectField";
 import InputField from "../formFields/InputField";
 import DateField from "../formFields/DateField";
 import ButtonForm from "../buttons/ButtonForm";
-import './formPet.css';
 
 
 export default function FormPet({ pet, onInputChange, onSubmit }) {

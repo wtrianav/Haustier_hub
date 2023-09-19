@@ -3,7 +3,7 @@ import MUIDataTable from "mui-datatables";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import DeleteAdvisorModal from "./DeleteAdvisorModal";
-import './tableAdvisors.css';
+import '../../index.css';
 
 export default function TableAdvisors() {
     const [selectedAdvisorId, setSelectedAdvisorId] = useState(null);
@@ -109,8 +109,8 @@ export default function TableAdvisors() {
     };
 
     return (
-        <section className="section-client mt-5">
-            <div className="table-client">
+        <section className="section-table mt-5">
+            <div className="div-table">
                 <h3 className="fw-bold">ASESORES</h3>
                 <div className="d-flex justify-content-md-end">
                     <Link className="btn btn-primary btn-table" to="/addadvisor" >CREAR ASESOR</Link>

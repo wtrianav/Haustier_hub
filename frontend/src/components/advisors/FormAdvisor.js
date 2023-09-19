@@ -12,7 +12,6 @@ import {
 import SelectField from "../formFields/SelectField";
 import InputField from "../formFields/InputField";
 import ButtonForm from "../buttons/ButtonForm";
-import './formAdvisor.css';
 
 export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
 

@@ -1,0 +1,10 @@
+.btn-form {
+    padding: 12px 60px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-form:hover {
+    border-radius: 80px;
+}

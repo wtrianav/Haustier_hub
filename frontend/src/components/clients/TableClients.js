@@ -3,7 +3,7 @@ import MUIDataTable from "mui-datatables";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import DeleteClientModal from "./DeleteClientModal";
-import './tableClients.css';
+import '../../index.css';
 
 export default function TableClients() {
     const [selectedClientId, setSelectedClientId] = useState(null); // Estado para almacenar el ID del cliente seleccionado
@@ -119,8 +119,8 @@ export default function TableClients() {
     };
 
     return (
-        <section className="section-client mt-5">
-            <div className="table-client">
+        <section className="section-table mt-5">
+            <div className="div-table">
                 <h3 className="fw-bold">CLIENTES</h3>
                 <div className="d-flex justify-content-md-end">
                     <Link className="btn btn-primary btn-table" to="/addclient" >CREAR CLIENTE</Link>

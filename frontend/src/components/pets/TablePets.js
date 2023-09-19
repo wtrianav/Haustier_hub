@@ -3,7 +3,7 @@ import MUIDataTable from "mui-datatables";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import DeletePetModal from "./DeletePetModal";
-import './tablePets.css';
+import '../../index.css';
 
 export default function TablePets() {
     const [selectedPetId, setSelectedPetId] = useState(null);
@@ -109,8 +109,8 @@ export default function TablePets() {
     };
 
     return (
-        <section className="section-pets mt-5">
-            <div className="table-pets">
+        <section className="section-table mt-5">
+            <div className="div-table">
                 <h3 className="fw-bold">MASCOTAS</h3>
                 <div className="d-flex justify-content-md-end">
                     <Link className="btn btn-primary btn-table" to="/addpet">CREAR MASCOTA</Link>

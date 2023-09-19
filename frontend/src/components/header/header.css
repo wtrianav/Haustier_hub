@@ -51,21 +51,22 @@ a.nav-link.dropdown-toggle.show {
     color: #FFFFFF;
     font-size: 14px;
     font-weight: 600;
-    padding: 5.75px 12px;
+    padding: 12px 20px;
     justify-content: center;
     text-align: center;
     text-transform: uppercase;
     border: 2px solid var(--color-celeste);
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: var(--color-celeste);
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .btn-blue:hover {
     color: var(--color-blanco);
     border: 2px solid #0250C4;
+    border-radius: 80px;
     background-color: #0250C4;
-    transition: border-color .33s ease, background-color .33s ease, color .33s ease;
 }
 
 .btn-blue:focus {

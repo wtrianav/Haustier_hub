@@ -53,7 +53,7 @@ export default function AddClient() {
         <section className="container">
             <div className="row mt-5">
                 <div className="col-md-6 offset-md-3 border rounded p-5 mt-2 shadow">
-                    <h3 className="text-center fw-bold">Registrar Cliente</h3>
+                    <h3 className="text-center fw-bold mb-5">Registrar Cliente</h3>
                     <FormClient client={client} onInputChange={onInputChange} onSubmit={onSubmit} mascotasInput={mascotasInput}/>
                 </div>    
             </div>        

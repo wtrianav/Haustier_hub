@@ -12,7 +12,6 @@ import {
 import SelectField from "../formFields/SelectField";
 import InputField from "../formFields/InputField";
 import ButtonForm from "../buttons/ButtonForm";
-import './formClient.css';
 
 export default function FormClient({ client, onInputChange, onSubmit, mascotasInput }) {
 

@@ -3,7 +3,7 @@ import MUIDataTable from "mui-datatables";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import DeleteCompanyModal from "./DeleteCompanyModal";
-import './tableCompanies.css';
+import '../../index.css';
 
 export default function TableCompanies() {
     const [selectedCompanyId, setSelectedCompanyId] = useState(null);
@@ -101,8 +101,8 @@ export default function TableCompanies() {
     };
 
     return (
-        <section className="section-company mt-5">
-            <div className="table-company">
+        <section className="section-table mt-5">
+            <div className="div-table">
                 <h3 className="fw-bold">EMPRESAS</h3>
                 <div className="d-flex justify-content-md-end">
                     <Link className="btn btn-primary btn-table" to="/addcompany" >CREAR EMPRESA</Link>
