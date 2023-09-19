@@ -58,7 +58,7 @@ export default function EditAdvisor() {
         <section className="container">
             <div className="row mt-5">
                 <div className="col-md-6 offset-md-3 border rounded p-5 mt-2 shadow">
-                    <h3 className="text-center fw-bold">EDITAR ASESOR</h3>
+                    <h3 className="text-center fw-bold mb-5">Editar Asesor</h3>
                     <FormAdvisor advisor={advisor} onInputChange={onInputChange} onSubmit={onSubmit} />
                 </div>
             </div>

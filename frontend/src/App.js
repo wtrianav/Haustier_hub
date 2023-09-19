@@ -18,6 +18,7 @@ import ViewPet from './components/pets/ViewPet';
 import AddCompany from './components/companies/AddCompany';
 import TableCompanies from './components/companies/TableCompanies';
 import ViewCompany from './components/companies/ViewCompany';
+import EditCompany from './components/companies/EditCompany';
 import LoginRegister from './components/pages/loginRegister/LoginRegister';
 import GlobalStyle from './GlobalStyle';
 import ScrollToTop from "./components/scroll/Scroll";
@@ -48,6 +49,7 @@ function App() {
                     <Route path='/addcompany' element={<AddCompany />} />
                     <Route path='/tablecompanies' element={<TableCompanies />} />
                     <Route path="/viewcompany/:id" element={<ViewCompany />} />
+                    <Route path='/editcompany/:id' element={<EditCompany />}/>
                     <Route path='/loginregister' element={<LoginRegister />} />
                 </Routes>
                 <Footer />
