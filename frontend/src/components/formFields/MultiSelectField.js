@@ -9,7 +9,7 @@ function MultiSelectField({ label, name, value, onChange, options }) {
 	};
 
 	return (
-		<div className="text-start mb-3 col">
+		<div className="text-start mb-3 col-6">
 			<label className="form-label fw-bold" htmlFor={name}>{label}</label>
 			<Select
 				name={name}

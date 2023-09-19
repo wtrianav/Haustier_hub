@@ -59,7 +59,7 @@ a.nav-link.dropdown-toggle.show {
     border-radius: 10px;
     background-color: var(--color-celeste);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
 }
 
 .btn-blue:hover {
