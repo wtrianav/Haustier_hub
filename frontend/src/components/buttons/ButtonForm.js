@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import './buttonForm.css'
 
 export default function ButtonForm({ type, text, onClick, to, className }) {
-	
 	if (to) {
 		return (
 			<Link to={to} className={`btn ${className}`}>

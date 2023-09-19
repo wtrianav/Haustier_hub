@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import BackToTableLink from "../buttons/BackToTableLink";
 
 export default function ViewClient() {
     const { id } = useParams();
@@ -95,9 +96,11 @@ export default function ViewClient() {
                                 </li>
                             </ul>
                         </div>
-                        <Link className="btn btn-primary my-2 mt-4" to={"/tableclients"}>
-                            VOLVER
-                        </Link>
+                        <BackToTableLink 
+                            className="btn-primary my-2 mt-4 btn-back" 
+                            to="/tableclients"
+                            text="VOLVER"
+                        />
                     </div>
                 </div>
             ) : (

@@ -77,19 +77,19 @@ export default function TablePets() {
                         <>
                             <div className="btn-group">
                                 <Link
-                                    className="btn btn-primary mx-1"
+                                    className="btn btn-primary mx-1 custom-link"
                                     to={`/viewpet/${petId}`}
                                 >
                                     VER
                                 </Link>
                                 <Link
-                                    className="btn btn-outline-primary mx-1"
+                                    className="btn btn-outline-primary mx-1 custom-link"
                                     to={`/editpet/${petId}`}
                                 >
                                     EDITAR
                                 </Link>
                                 <button
-                                    className="btn btn-danger mx-1"
+                                    className="btn btn-danger mx-1 custom-button"
                                     onClick={() => setSelectedPetId(petId)}
                                     data-bs-toggle="modal"
                                     data-bs-target="#deletePetModal"

@@ -77,19 +77,19 @@ export default function TableAdvisors() {
                         <>
                             <div className="btn-group">
                                 <Link
-                                    className="btn btn-primary mx-1"
+                                    className="btn btn-primary mx-1 custom-link"
                                     to={`/viewadvisor/${advisorId}`}
                                 >
                                     VER
                                 </Link>
                                 <Link
-                                    className="btn btn-outline-primary mx-1"
+                                    className="btn btn-outline-primary mx-1 custom-link"
                                     to={`/editadvisor/${advisorId}`}
                                 >
                                     EDITAR
                                 </Link>
                                 <button
-                                    className="btn btn-danger mx-1"
+                                    className="btn btn-danger mx-1 custom-button"
                                     onClick={() => setSelectedAdvisorId(advisorId)}
                                     data-bs-toggle="modal"
                                     data-bs-target="#deleteAdvisorModal"

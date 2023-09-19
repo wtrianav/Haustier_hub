@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import BackToTableLink from "../buttons/BackToTableLink";
 
 export default function ViewCompany() {
     const { id } = useParams();
@@ -87,9 +88,11 @@ export default function ViewCompany() {
                                 </li>
                             </ul>
                         </div>
-                        <Link className="btn btn-primary my-2 mt-4" to={"/tablecompanies"}>
-                            VOLVER
-                        </Link>
+                        <BackToTableLink 
+                            className="btn-primary my-2 mt-4 btn-back" 
+                            to="/tablecompanies"
+                            text="VOLVER"
+                        />
                     </div>
                 </div>
             ) : (
