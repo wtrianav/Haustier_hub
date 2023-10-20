@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Home from './components/pages/home/Home';
-import AddAdvisor from './components/advisors/AddAvisor';
+import AddAdvisor from './components/advisors/AddAdvisor';
 import TableAdvisors from './components/advisors/TableAdvisors';
 import ViewAdvisor from './components/advisors/ViewAddvisor';
 import EditAdvisor from './components/advisors/EditAdvisor';

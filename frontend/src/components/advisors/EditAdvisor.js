@@ -38,6 +38,10 @@ export default function EditAdvisor() {
             const result = await axios.get(`http://localhost:3000/api/asesores/${id}`);
             const advisorData = result.data;
             console.log("Datos del asesor cargados:", advisorData);
+
+            console.log("Advisor Department:", advisorData.department);
+            console.log("Advisor City:", advisorData.city);
+
             setAdvisor(advisorData);
         } catch (error) {
             console.log("Error al cargar datos del asesor:", error);

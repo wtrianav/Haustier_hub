@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import {
     validarDocumento,
     validarNombre,
     validarApellido,
     validarEmail,
     validarTelefono,
-    validarDepartamento,
-    validarCiudad,
+    // validarDepartamento,
+    // validarCiudad,
     validarDireccion,
 } from "../validations/AdvisorValidations";
 import SelectField from "../formFields/SelectField";
@@ -21,13 +22,56 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
         lastName: { error: false, message: "" },
         email: { error: false, message: "" },
         phone: { error: false, message: "" },
-        department: { error: false, message: "" },
-        city: { error: false, message: "" },
+        // department: { error: false, message: "" },
+        // city: { error: false, message: "" },
         address: { error: false, message: "" },
     });
 
     //Estado para rastrear el envío del formulario.
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+    const [selectedDepartment, setSelectedDepartment] = useState("");
+    const [departments, setDepartments] = useState([]);
+    const [cities, setCities] = useState([]);
+  
+    useEffect(() => {
+        const loadDepartmentsAndCities = async () => {
+            try {
+                // Cargar departamentos
+                const departmentsResponse = await axios.get(
+                    "http://localhost:3000/api/departments"
+                );
+                // console.log("Departamentos cargados:", departmentsResponse.data || []);
+                setDepartments(departmentsResponse.data || []);
+            } catch (error) {
+                console.log("Error al cargar los departamentos:", error);
+            }
+        };
+        loadDepartmentsAndCities();
+    }, []); // Esto se ejecuta solo una vez al cargar el componente
+    
+    console.log(`Departamento seleccionado prueba: ${selectedDepartment}`);
+
+    // Nuevo efecto para cargar ciudades cuando selectedDepartment cambie
+    useEffect(() => {
+        if (selectedDepartment) {
+            console.log("Realizando solicitud GET para el departamento:", selectedDepartment);
+            const loadCities = async () => {
+                try {
+                    const citiesResponse = await axios.get(
+                        `http://localhost:3000/api/cities?department_id=${selectedDepartment}`
+                    );
+                    // console.log("Ciudades cargadas:", citiesResponse.data || []);
+                    setCities(citiesResponse.data || []);
+                } catch (error) {
+                    console.log("Error al cargar las ciudades:", error);
+                }
+            };
+            loadCities();
+        } else {
+            // Si no hay un departamento seleccionado, limpiar la lista de ciudades
+            setCities([]);
+        }
+    }, [selectedDepartment]);
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -39,8 +83,8 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
             lastName: validarApellido(advisor.lastNamePerson),
             email: validarEmail(advisor.emailAddress),
             phone: validarTelefono(advisor.phoneNumber),
-            department: validarDepartamento(advisor.department),
-            city: validarCiudad(advisor.city),
+            // department: validarDepartamento(advisor.selectedDepartment),
+            // city: validarCiudad(advisor.city),
             address: validarDireccion(advisor.address),
         };
 
@@ -83,6 +127,21 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
         city,
         address,
     } = advisor;
+
+    // Crear opciones para SelectField
+    const departmentOptions = Array.isArray(departments.departments)
+    ? departments.departments.map((dept) => ({
+        value: dept._id,
+        label: dept.name,
+        }))
+    : [];
+
+    const cityOptions = Array.isArray(cities.cities)
+    ? cities.cities.map((cty) => ({
+        value: cty.name,
+        label: cty.name,
+        }))
+    : [];
 
     return (
         <form onSubmit={handleFormSubmit}>
@@ -215,49 +274,32 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
                 />
             </div>
             <div className="row">
-                <InputField
-                    label="Departamento"
-                    name="department"
-                    value={department}
-                    error={errors.department.error ? errors.department.message : ""}
-                    placeholder="Ingrese su departamento"
-                    onChange={(e) => {
-                        onInputChange("department", e.target.value);
-                        const validation = validarDepartamento(e.target.value);
-                        setErrors((prevState) => ({
-                            ...prevState,
-                            ...validation,
-                        }));
-                    }}
-                    icon={
-                        department && (
-                            <i
-                                className={errors.department.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
-                            ></i>
-                        )
-                    }
+                <SelectField
+                        label="Departamento"
+                        name="department"
+                        value={department}
+                        onChange={(e) => {
+                            onInputChange("department", e.target.value);
+                            setSelectedDepartment(e.target.value);
+                            console.log(`Departamento seleccionado prueba: ${e.target.value}`);
+                        }}
+                        options={[
+                            { value: "", label: "Seleccione un departamento" },
+                            ...departmentOptions
+                        ]}
                 />
-                <InputField
+                <SelectField
                     label="Ciudad"
                     name="city"
                     value={city}
-                    error={errors.city.error ? errors.city.message : ""}
-                    placeholder="Ingrese su ciudad de residencia"
                     onChange={(e) => {
                         onInputChange("city", e.target.value);
-                        const validation = validarCiudad(e.target.value);
-                        setErrors((prevState) => ({
-                            ...prevState,
-                            ...validation,
-                        }));
+                        console.log("Ciudad seleccionada: " + e.target.value)
                     }}
-                    icon={
-                        city && (
-                            <i
-                                className={errors.city.error ? "fa-solid fa-circle-xmark error-icon" : "fa-solid fa-circle-check success-icon"}
-                            ></i>
-                        )
-                    }
+                    options={[
+                        { value: "", label: "Seleccione una ciudad" },
+                        ...cityOptions
+                    ]}
                 />
             </div>
             <div className="row">
@@ -304,3 +346,4 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
         </form>
     );
 }
+
