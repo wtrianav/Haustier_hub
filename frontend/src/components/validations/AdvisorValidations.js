@@ -1,5 +1,4 @@
 export function validarDocumento(documento) {
-	console.log("Validando documento:", documento);
     const regex = /^[0-9]{6,11}$/;
 
     if (regex.test(documento)) {

@@ -6,8 +6,6 @@ import {
     validarApellido,
     validarEmail,
     validarTelefono,
-    // validarDepartamento,
-    // validarCiudad,
     validarDireccion,
 } from "../validations/AdvisorValidations";
 import SelectField from "../formFields/SelectField";
@@ -25,8 +23,6 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
         lastName: { error: false, message: "" },
         email: { error: false, message: "" },
         phone: { error: false, message: "" },
-        // department: { error: false, message: "" },
-        // city: { error: false, message: "" },
         address: { error: false, message: "" },
     });
 
@@ -60,8 +56,6 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
             lastName: validarApellido(advisor.lastNamePerson),
             email: validarEmail(advisor.emailAddress),
             phone: validarTelefono(advisor.phoneNumber),
-            // department: validarDepartamento(advisor.selectedDepartment),
-            // city: validarCiudad(advisor.city),
             address: validarDireccion(advisor.address),
         };
 
@@ -70,17 +64,6 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
 
         if (hasEmptyFields) {
             setIsFormSubmitted(true);
-            /* setErrors((prevState) => ({
-                ...prevState,
-                document: { error: true, message: "Este campo es obligatorio" },
-                name: { error: true, message: "Este campo es obligatorio" },
-                lastName: { error: true, message: "Este campo es obligatorio" },
-                email: { error: true, message: "Este campo es obligatorio" },
-                phone: { error: true, message: "Este campo es obligatorio" },
-                department: { error: true, message: "Este campo es obligatorio" },
-                city: { error: true, message: "Este campo es obligatorio" },
-                address: { error: true, message: "Este campo es obligatorio" },
-            })); */
             return;
         }
 
@@ -89,7 +72,6 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
             setErrors(validationErrors);
             return;
         }
-
         onSubmit(e);
     };
 
@@ -104,8 +86,6 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
         lastNamePerson,
         emailAddress,
         phoneNumber,
-        // department,
-        // city,
         address,
     } = advisor;
 
@@ -133,8 +113,6 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
         if(isEdit) {
             if (advisor && advisor.department) {
                 const departmentId = departmentOptions.find(dept => dept.label === advisor.department)?.value;
-                console.log(departmentId);
-                // const departmentId = advisor.department;
                 setSelectedDepartment(departmentId);
             } else {
                 setSelectedDepartment("");
@@ -147,7 +125,6 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
     // Carga las ciudades de acuerdo al id del departamento
     useEffect(() => {
         if (selectedDepartment) {
-            console.log("get", selectedDepartment);
             const loadCities = async () => {
                 try {
                     const citiesResponse = await axios.get(
@@ -173,7 +150,7 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
                     value={documentType}
                     onChange={(e) => onInputChange("documentType", e.target.value)}
                     options={[
-                        { value: "Select", label: "Seleccione una opción" },
+                        { value: "", label: "Seleccione una opción" },
                         { value: "CC", label: "CC" },
                         { value: "TI", label: "TI" },
                         { value: "PP", label: "PP" },
@@ -315,7 +292,6 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
                     value={advisor.city}
                     onChange={(e) => {
                         onInputChange("city", e.target.value);
-                        console.log("Ciudad seleccionada: " + e.target.value)
                     }}
                     options={[
                         { value: "", label: "Seleccione una ciudad" },

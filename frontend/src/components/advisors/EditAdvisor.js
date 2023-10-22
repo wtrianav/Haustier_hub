@@ -21,27 +21,25 @@ export default function EditAdvisor() {
 
     // Actualiza el estado del asesor con el nuevo valor del campo.
     const onInputChange = (fieldName, value) => {
-        console.log(`Campo ${fieldName} actualizado con valor: ${value}`);
         setAdvisor({ ...advisor, [fieldName]: value });
     };
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        // Envía la solicitud PUT al servidor con el objeto advisor actualizado
-        await axios.put(`http://localhost:3000/api/asesores/${id}`, advisor);
-        // Navega a la página principal después de que se haya actualizado el asesor
-        navigate("/tableadvisors");
+        try {
+            // Envía la solicitud PUT al servidor con el objeto advisor actualizado
+            await axios.put(`http://localhost:3000/api/asesores/${id}`, advisor);
+            // Navega a la página principal después de que se haya actualizado el asesor
+            navigate("/tableadvisors");
+        } catch (error) {
+            console.log("Error al enviar la solicitud PUT:", error);
+        }
     };
 
     const loadAdvisor = async () => {
         try {
             const result = await axios.get(`http://localhost:3000/api/asesores/${id}`);
             const advisorData = result.data;
-            console.log("Datos del asesor cargados:", advisorData);
-
-            console.log("Advisor Department:", advisorData.department);
-            console.log("Advisor City:", advisorData.city);
-
             setAdvisor(advisorData);
         } catch (error) {
             console.log("Error al cargar datos del asesor:", error);
