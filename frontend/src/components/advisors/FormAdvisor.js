@@ -38,7 +38,7 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
     const loadDepartments = async() => {
         try {
             const departmentsResponse = await axios.get(
-                `http://localhost:3000/api/departments`
+                `http://localhost:3001/api/departments`
             );
             setDepartments(departmentsResponse.data || []);
         } catch (error) {
@@ -128,7 +128,7 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
             const loadCities = async () => {
                 try {
                     const citiesResponse = await axios.get(
-                        `http://localhost:3000/api/cities?department_id=${selectedDepartment}`
+                        `http://localhost:3001/api/cities?department_id=${selectedDepartment}`
                     );
                     setCities(citiesResponse.data || []);
                 } catch (error) {

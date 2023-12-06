@@ -8,7 +8,7 @@ import '../../index.css';
 export default function TableAdvisors() {
     const [selectedAdvisorId, setSelectedAdvisorId] = useState(null);
     const [advisors, setAdvisors] = useState([]);
-    const URL = "http://localhost:3000/api/asesores/";
+    const URL = "http://localhost:3001/api/asesores/";
 
     const loadAdvisors = async () => {
         try {
@@ -30,7 +30,7 @@ export default function TableAdvisors() {
 
     const deleteAdvisor = async (id) => {
         try {
-            await axios.delete(`http://localhost:3000/api/asesores/${id}`);
+            await axios.delete(`http://localhost:3001/api/asesores/${id}`);
             await loadAdvisors();
         } catch (error) {
             console.error("Error al eliminar el asesor:", error);

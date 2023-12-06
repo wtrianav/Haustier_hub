@@ -10,7 +10,7 @@ export default function ViewAdvisor() {
     useEffect(() => {
         const loadAdvisor = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/asesores/${id}`);
+                const response = await axios.get(`http://localhost:3001/api/asesores/${id}`);
                 setAdvisor(response.data);
             } catch (error) {
                 console.log("Error:", error);

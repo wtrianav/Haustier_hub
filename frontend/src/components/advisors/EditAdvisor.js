@@ -28,7 +28,7 @@ export default function EditAdvisor() {
         e.preventDefault();
         try {
             // Envía la solicitud PUT al servidor con el objeto advisor actualizado
-            await axios.put(`http://localhost:3000/api/asesores/${id}`, advisor);
+            await axios.put(`http://localhost:3001/api/asesores/${id}`, advisor);
             // Navega a la página principal después de que se haya actualizado el asesor
             navigate("/tableadvisors");
         } catch (error) {
@@ -38,7 +38,7 @@ export default function EditAdvisor() {
 
     const loadAdvisor = async () => {
         try {
-            const result = await axios.get(`http://localhost:3000/api/asesores/${id}`);
+            const result = await axios.get(`http://localhost:3001/api/asesores/${id}`);
             const advisorData = result.data;
             setAdvisor(advisorData);
         } catch (error) {

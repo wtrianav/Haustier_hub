@@ -41,7 +41,7 @@ export default function AddClient() {
         // Agrega las mascotas al objeto client antes de enviarlo
         const clientWithMascotas = { ...client, mascotas: mascotasArray };
         try {
-          await axios.post("http://localhost:3000/api/clientes", clientWithMascotas);
+          await axios.post("http://localhost:3001/api/clientes", clientWithMascotas);
           navigate("/tableclients");
         } catch (error) {
           // Manejar errores en la solicitud POST aquí

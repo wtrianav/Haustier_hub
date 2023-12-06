@@ -8,7 +8,7 @@ import '../../index.css';
 export default function TableClients() {
     const [selectedClientId, setSelectedClientId] = useState(null); // Estado para almacenar el ID del cliente seleccionado
     const [clients, setClients] = useState([]);
-    const URL = "http://localhost:3000/api/clientes/";
+    const URL = "http://localhost:3001/api/clientes/";
 
     // Función que carga los clientes.
     const loadClients = async () => {
@@ -34,7 +34,7 @@ export default function TableClients() {
     // Función que elimina un cliente
     const deleteClient = async (id) => {
         try {
-            await axios.delete(`http://localhost:3000/api/clientes/${id}`);
+            await axios.delete(`http://localhost:3001/api/clientes/${id}`);
             // Recarga los clientes después de eliminar uno
             await loadClients();
         } catch (error) {
