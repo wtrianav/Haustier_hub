@@ -33,7 +33,7 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
     const [cities, setCities] = useState([]);
 
     // Estado para que la app sepa cual es el departamento seleccionado
-    const [selectedDepartment, setSelectedDepartment] = useState(advisor.deparment || "");
+    const [selectedDepartment, setSelectedDepartment] = useState(advisor.department || "");
 
     const loadDepartments = async() => {
         try {
