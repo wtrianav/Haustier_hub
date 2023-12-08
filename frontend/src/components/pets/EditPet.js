@@ -1,9 +1,8 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { updatePet, getPet } from "../../services/petServices";
+import toast, { Toaster } from 'react-hot-toast';
 import FormPet from "./FormPet";
-import { updateAdvisor } from "../../services/advisorServices";
-import { getPet, updatePet } from "../../services/petServices";
 
 export default function EditPet() {
     const navigate = useNavigate();
@@ -27,7 +26,10 @@ export default function EditPet() {
         e.preventDefault();
         try {
             await updatePet(pet);
-            navigate("/tableadvisors");
+            toast.success("Asesor actualizado con éxito");
+            setTimeout(() => {
+                navigate("/tablepets");
+            }, 3000);
         } catch (error) {
             console.error("Error al editar la mascota:", error);
         }
@@ -54,13 +56,16 @@ export default function EditPet() {
 	}
 
     return (
-        <section className="container">
-            <div className="row mt-5">
-                <div className="col-md-6 offset-md-3 border rounded p-5 mt-2 shadow">
-                    <h3 className="text-center fw-bold mb-5">Editar Mascota</h3>
-                    <FormPet pet={pet} onInputChange={onInputChange} onSubmit={onSubmit}/>
-                </div>    
-            </div>        
-        </section>
+        <>
+            <section className="container">
+                <div className="row mt-5">
+                    <div className="col-md-6 offset-md-3 border rounded p-5 mt-2 shadow">
+                        <h3 className="text-center fw-bold mb-5">Editar Mascota</h3>
+                        <FormPet pet={pet} onInputChange={onInputChange} onSubmit={onSubmit}/>
+                    </div>    
+                </div>        
+            </section>
+            <Toaster />
+        </>
     );
 }
