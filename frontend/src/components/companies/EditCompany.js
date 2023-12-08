@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { updateCompany, getCompany } from "../../services/companyServices";
+import toast, { Toaster } from 'react-hot-toast';
 import FormCompany from "./FormCompany";
 
 export default function EditCompany() {
@@ -31,7 +32,10 @@ export default function EditCompany() {
         e.preventDefault();
         try {
             await updateCompany(company);
-            navigate("/tablecompanies");
+            toast.success("Asesor actualizado con éxito");
+            setTimeout(() => {
+                navigate("/tablecompanies");
+            }, 3000);
         } catch (error) {
             console.error("Error al editar la compañia:", error);
         }
@@ -59,13 +63,16 @@ export default function EditCompany() {
     }
 
     return (
-        <section className="container">
-            <div className="row mt-5">
-                <div className="col-md-8 offset-md-2 border rounded p-5 mt-2 shadow">
-                    <h3 className="text-center fw-bold mb-5">Editar Empresa</h3>
-                    <FormCompany company={company} onInputChange={onInputChange} onSubmit={onSubmit} />
+        <>
+            <section className="container">
+                <div className="row mt-5">
+                    <div className="col-md-8 offset-md-2 border rounded p-5 mt-2 shadow">
+                        <h3 className="text-center fw-bold mb-5">Editar Empresa</h3>
+                        <FormCompany company={company} onInputChange={onInputChange} onSubmit={onSubmit} />
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+            <Toaster />
+        </>
     );
 }
