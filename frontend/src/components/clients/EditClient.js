@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { updateClient, getClient } from "../../services/clientServices";
+import toast, { Toaster } from 'react-hot-toast';
 import FormClient from "./FormClient";
-import axios from "axios";
 
 export default function EditClient() {
     const navigate = useNavigate();
@@ -49,8 +49,11 @@ const onInputChange = (e) => {
     
         try {
             await updateClient(client);
-            // Navega a la página principal después de que se haya actualizado el cliente
-            navigate("/tableclients");
+            toast.success("Cliente actualizado con éxito");
+            setTimeout(() => {
+                // Navega a la página principal después de que se haya actualizado el cliente
+                navigate("/tableclients");
+            }, 3000);
         } catch (error) {
             console.error("Error al editar el cliente:", error);
         }
@@ -68,7 +71,7 @@ const onInputChange = (e) => {
             setClient(clientData);
             setMascotasInput(mascotasString);
         } catch (error) {
-            console.log(error);
+            console.log("Error al cargar cliente:", error);
         }
     };
     
@@ -84,13 +87,16 @@ const onInputChange = (e) => {
     }
 
     return (
-        <section className="container">
-            <div className="row mt-5">
-                <div className="col-md-6 offset-md-3 border rounded p-5 mt-2 shadow">
-                    <h3 className="text-center fw-bold mb-5">Editar Cliente</h3>
-                    <FormClient client={client} onInputChange={onInputChange} onSubmit={onSubmit} mascotasInput={mascotasInput} />
+        <>
+            <section className="container">
+                <div className="row mt-5">
+                    <div className="col-md-6 offset-md-3 border rounded p-5 mt-2 shadow">
+                        <h3 className="text-center fw-bold mb-5">Editar Cliente</h3>
+                        <FormClient client={client} onInputChange={onInputChange} onSubmit={onSubmit} mascotasInput={mascotasInput} />
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+            <Toaster />
+        </>
     );
 }
