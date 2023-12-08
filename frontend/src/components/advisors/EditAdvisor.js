@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { updateAdvisor, getAdvisor } from "../../services/advisorServices";
 import FormAdvisor from "./FormAdvisor";
 
 export default function EditAdvisor() {
@@ -27,34 +27,27 @@ export default function EditAdvisor() {
     const onSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Envía la solicitud PUT al servidor con el objeto advisor actualizado
-            await axios.put(`http://localhost:3001/api/asesores/${id}`, advisor);
-            // Navega a la página principal después de que se haya actualizado el asesor
+            await updateAdvisor(advisor);
             navigate("/tableadvisors");
         } catch (error) {
-            console.log("Error al enviar la solicitud PUT:", error);
+            console.error("Error al editar asesor:", error);
         }
     };
 
     const loadAdvisor = async () => {
         try {
-            const result = await axios.get(`http://localhost:3001/api/asesores/${id}`);
-            const advisorData = result.data;
-            setAdvisor(advisorData);
+            const response = await getAdvisor(id);
+            setAdvisor({ ...response });
         } catch (error) {
-            console.log("Error al cargar datos del asesor:", error);
+            console.error("Error al cargar asesor:", error);
         }
     };
 
     useEffect(() => {
         // Carga los datos del asesor una vez que se monta el componente
         loadAdvisor();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    });
 
-    if (Object.values(advisor).every((value) => value === "")) {
-        return <p>Cargando datos del asesor...</p>;
-    }
 
     return (
         <section className="container">
