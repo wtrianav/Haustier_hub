@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import FormPet from "./FormPet";
+import { updateAdvisor } from "../../services/advisorServices";
+import { getPet, updatePet } from "../../services/petServices";
 
 export default function EditPet() {
     const navigate = useNavigate();
@@ -23,19 +25,21 @@ export default function EditPet() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        // Envía la solicitud PUT al servidor con el objeto client actualizado
-        await axios.put(`http://localhost:3001/api/mascotas/${id}`, pet);
-        // Navega a la página principal después de que se haya actualizado el cliente
-        navigate("/tablepets");
+        try {
+            await updatePet(pet);
+            navigate("/tableadvisors");
+        } catch (error) {
+            console.error("Error al editar la mascota:", error);
+        }
     };
 
     const loadPet = async () => {
 		try {
-			const result = await axios.get(`http://localhost:3001/api/mascotas/${id}`);
+			const result = await getPet(id);
 			const petData = result.data;
 			setPet(petData);
 		} catch (error) {
-			console.log(error);
+			console.error("Error al cargar la mascota:", error);
 		}
 	};
 
