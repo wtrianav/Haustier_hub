@@ -1,7 +1,8 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { updateClient, getClient } from "../../services/clientServices";
 import FormClient from "./FormClient";
+import axios from "axios";
 
 export default function EditClient() {
     const navigate = useNavigate();
@@ -47,7 +48,7 @@ const onInputChange = (e) => {
         console.log("Datos del cliente a enviar:", updatedClient);
     
         try {
-            await axios.put(`http://localhost:3001/api/clientes/${id}`, updatedClient);
+            await updateClient(client);
             // Navega a la página principal después de que se haya actualizado el cliente
             navigate("/tableclients");
         } catch (error) {
@@ -57,10 +58,10 @@ const onInputChange = (e) => {
 
     const loadClient = async () => {
         try {
-            const result = await axios.get(`http://localhost:3001/api/clientes/${id}`);
+            const result = await getClient(id);
             const clientData = result.data;
     
-            // Asegurémonos de que 'mascotas' sea un array
+            // Nos aseguramos de que 'mascotas' sea un array
             const mascotasArray = Array.isArray(clientData.mascotas) ? clientData.mascotas : [];
             const mascotasString = mascotasArray.join(", "); // Convierte el array en una cadena separada por comas
     

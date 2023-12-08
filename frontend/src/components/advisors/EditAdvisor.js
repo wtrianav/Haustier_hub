@@ -51,6 +51,7 @@ export default function EditAdvisor() {
     useEffect(() => {
         // Carga los datos del asesor una vez que se monta el componente
         loadAdvisor();
+        // eslint-disable-next-line
     }, []);
 
 
