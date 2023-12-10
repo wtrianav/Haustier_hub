@@ -8,7 +8,7 @@ import '../../index.css';
 export default function TableCompanies() {
     const [selectedCompanyId, setSelectedCompanyId] = useState(null);
     const [companies, setCompanies] = useState([]);
-    const URL = "http://localhost:3000/api/empresas/";
+    const URL = "http://localhost:3001/api/empresas/";
 
     const loadCompanies = async () => {
         try {
@@ -30,7 +30,7 @@ export default function TableCompanies() {
 
     const deleteCompany = async (id) => {
         try {
-            await axios.delete(`http://localhost:3000/api/empresas/${id}`);
+            await axios.delete(`http://localhost:3001/api/empresas/${id}`);
             await loadCompanies();
         } catch (error) {
             console.error("Error al eliminar la empresa:", error);

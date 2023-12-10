@@ -22,7 +22,7 @@ export default function AddPet() {
     const onSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:3000/api/mascotas", pet);
+            await axios.post("http://localhost:3001/api/mascotas", pet);
             navigate("/tablepets");
         } catch (error) {
             console.error("Error al agregar la mascota:", error);

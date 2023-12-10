@@ -8,7 +8,7 @@ import '../../index.css';
 export default function TablePets() {
     const [selectedPetId, setSelectedPetId] = useState(null);
     const [pets, setPets] = useState([]);
-    const URL = "http://localhost:3000/api/mascotas/"; // Adjust the URL to match your backend API
+    const URL = "http://localhost:3001/api/mascotas/"; // Adjust the URL to match your backend API
 
     const loadPets = async () => {
         try {
@@ -30,7 +30,7 @@ export default function TablePets() {
 
     const deletePet = async (id) => {
         try {
-            await axios.delete(`http://localhost:3000/api/mascotas/${id}`);
+            await axios.delete(`http://localhost:3001/api/mascotas/${id}`);
             loadPets();
         } catch (error) {
             console.error("Error al eliminar la mascota:", error);

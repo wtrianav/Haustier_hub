@@ -47,7 +47,7 @@ const onInputChange = (e) => {
         console.log("Datos del cliente a enviar:", updatedClient);
     
         try {
-            await axios.put(`http://localhost:3000/api/clientes/${id}`, updatedClient);
+            await axios.put(`http://localhost:3001/api/clientes/${id}`, updatedClient);
             // Navega a la página principal después de que se haya actualizado el cliente
             navigate("/tableclients");
         } catch (error) {
@@ -57,7 +57,7 @@ const onInputChange = (e) => {
 
     const loadClient = async () => {
         try {
-            const result = await axios.get(`http://localhost:3000/api/clientes/${id}`);
+            const result = await axios.get(`http://localhost:3001/api/clientes/${id}`);
             const clientData = result.data;
     
             // Asegurémonos de que 'mascotas' sea un array

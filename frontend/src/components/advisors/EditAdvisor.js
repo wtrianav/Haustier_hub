@@ -1,6 +1,7 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { updateAdvisor, getAdvisor } from "../../services/advisorServices";
+import toast from 'react-hot-toast';
 import FormAdvisor from "./FormAdvisor";
 
 export default function EditAdvisor() {
@@ -26,44 +27,45 @@ export default function EditAdvisor() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
+        // console.log('Advisor a editar:', advisor);
         try {
-            // Envía la solicitud PUT al servidor con el objeto advisor actualizado
-            await axios.put(`http://localhost:3000/api/asesores/${id}`, advisor);
-            // Navega a la página principal después de que se haya actualizado el asesor
-            navigate("/tableadvisors");
+            await updateAdvisor(advisor);
+            toast.success("Asesor actualizado con éxito");
+            setTimeout(() => {
+                navigate("/tableadvisors");
+            }, 3000);
         } catch (error) {
-            console.log("Error al enviar la solicitud PUT:", error);
+            console.error("Error al editar asesor:", error);
         }
     };
 
     const loadAdvisor = async () => {
         try {
-            const result = await axios.get(`http://localhost:3000/api/asesores/${id}`);
-            const advisorData = result.data;
-            setAdvisor(advisorData);
+            const response = await getAdvisor(id);
+            console.log(response)
+            setAdvisor({ ...response });
         } catch (error) {
-            console.log("Error al cargar datos del asesor:", error);
+            console.error("Error al cargar asesor:", error);
         }
     };
 
     useEffect(() => {
         // Carga los datos del asesor una vez que se monta el componente
         loadAdvisor();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    if (Object.values(advisor).every((value) => value === "")) {
-        return <p>Cargando datos del asesor...</p>;
-    }
 
     return (
-        <section className="container">
-            <div className="row mt-5">
-                <div className="col-md-6 offset-md-3 border rounded p-5 mt-2 shadow">
-                    <h3 className="text-center fw-bold mb-5">Editar Asesor</h3>
-                    <FormAdvisor advisor={advisor} onInputChange={onInputChange} onSubmit={onSubmit} />
+        <>
+            <section className="container">
+                <div className="row mt-5">
+                    <div className="col-md-6 offset-md-3 border rounded p-5 mt-2 shadow">
+                        <h3 className="text-center fw-bold mb-5">Editar Asesor</h3>
+                        <FormAdvisor advisor={advisor} onInputChange={onInputChange} onSubmit={onSubmit} />
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </>
+
     );
 }

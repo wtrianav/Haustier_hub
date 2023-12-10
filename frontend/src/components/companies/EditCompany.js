@@ -30,14 +30,14 @@ export default function EditCompany() {
     const onSubmit = async (e) => {
         e.preventDefault();
         // Envía la solicitud PUT al servidor con el objeto company actualizado
-        await axios.put(`http://localhost:3000/api/empresas/${id}`, company);
+        await axios.put(`http://localhost:3001/api/empresas/${id}`, company);
         // Navega a la página principal después de que se haya actualizado la empresa
         navigate("/tablecompanies");
     };
 
     const loadCompany = async () => {
         try {
-            const result = await axios.get(`http://localhost:3000/api/empresas/${id}`);
+            const result = await axios.get(`http://localhost:3001/api/empresas/${id}`);
             const companyData = result.data;
             console.log("Datos de la empresa cargados:", companyData);
             setCompany(companyData);

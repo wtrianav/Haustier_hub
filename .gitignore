@@ -10,7 +10,6 @@
 
 # production
 /frontend/build
-/backend/build
 
 # misc
 .DS_Store
@@ -20,3 +19,5 @@
 .env.production.local
 
 npm-debug.log*
+
+.env
