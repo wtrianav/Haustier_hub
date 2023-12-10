@@ -23,6 +23,7 @@ import LoginRegister from './components/pages/loginRegister/LoginRegister';
 import GlobalStyle from './GlobalStyle';
 import ScrollToTop from "./components/scroll/Scroll";
 import IconsGridSection from './components/sections/IconsGridSection';
+import { Toaster } from 'react-hot-toast';
 import "./App.css";
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
                 <Footer />
                 <ScrollToTop />
             </Router>
+            <Toaster />
         </div>
     );
 }

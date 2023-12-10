@@ -21,19 +21,19 @@ router.post("/", async (req, res) => {
 
         advisor.id = lastAdvisor ? lastAdvisor.id + 1 : 1;
         
-        // Obtener el id del departamento del cuerpo de la solicitud
-        const { department } = req.body;
+        // // Obtener el id del departamento del cuerpo de la solicitud
+        // const { department } = req.body;
 
-        // Buscar el departamento por su id y obtener su nombre
-        const departmentName = await Department.findById(department);
+        // // Buscar el departamento por su id y obtener su nombre
+        // const departmentName = await Department.findById(department);
 
-        if (departmentName) {
-            advisor.department = departmentName.name; // Asignar el nombre del departamento al asesor
-        } else {
-            console.error("Departamento no encontrado:", department);
-            res.status(400).send("Departamento no encontrado");
-            return;
-        }
+        // if (departmentName) {
+        //     advisor.department = departmentName.name; // Asignar el nombre del departamento al asesor
+        // } else {
+        //     console.error("Departamento no encontrado:", department);
+        //     res.status(400).send("Departamento no encontrado");
+        //     return;
+        // }
 
         const savedAdvisor = await advisor.save()
 

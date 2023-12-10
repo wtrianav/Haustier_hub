@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { updateAdvisor, getAdvisor } from "../../services/advisorServices";
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import FormAdvisor from "./FormAdvisor";
 
 export default function EditAdvisor() {
@@ -27,6 +27,7 @@ export default function EditAdvisor() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
+        // console.log('Advisor a editar:', advisor);
         try {
             await updateAdvisor(advisor);
             toast.success("Asesor actualizado con éxito");
@@ -64,7 +65,6 @@ export default function EditAdvisor() {
                     </div>
                 </div>
             </section>
-            <Toaster />
         </>
 
     );
