@@ -24,14 +24,14 @@ export default function EditPet() {
     const onSubmit = async (e) => {
         e.preventDefault();
         // Envía la solicitud PUT al servidor con el objeto client actualizado
-        await axios.put(`http://localhost:3001/api/mascotas/${id}`, pet);
+        await axios.put(`http://localhost:3000/api/mascotas/${id}`, pet);
         // Navega a la página principal después de que se haya actualizado el cliente
         navigate("/tablepets");
     };
 
     const loadPet = async () => {
 		try {
-			const result = await axios.get(`http://localhost:3001/api/mascotas/${id}`);
+			const result = await axios.get(`http://localhost:3000/api/mascotas/${id}`);
 			const petData = result.data;
 			setPet(petData);
 		} catch (error) {

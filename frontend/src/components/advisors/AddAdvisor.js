@@ -28,7 +28,7 @@ export default function AddAdvisor() {
     const onSubmit = async (e) => {
         e.preventDefault();
         try {
-          await axios.post("http://localhost:3001/api/asesores", advisor);
+          await axios.post("http://localhost:3000/api/asesores", advisor);
           navigate("/tableadvisors");
         } catch (error) {
           // Manejar errores en la solicitud POST aquí

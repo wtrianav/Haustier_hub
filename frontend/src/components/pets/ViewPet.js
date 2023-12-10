@@ -10,7 +10,7 @@ export default function ViewPet() {
     useEffect(() => {
         const loadPet = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/api/mascotas/${id}`);
+                const response = await axios.get(`http://localhost:3000/api/mascotas/${id}`);
                 setPet(response.data);
             } catch (error) {
                 console.log("Error:", error);

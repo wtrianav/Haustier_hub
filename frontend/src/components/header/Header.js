@@ -6,7 +6,7 @@ export default function Header() {
     return (
         <div className="container">
             <nav className="navbar navbar-expand-lg navbar-light bg-white fixed-top p-3 shadow-sm" id="navbar">
-                <div className="container-fluid navbar-container">
+                <div className="container-fluid">
                     <div>
                         <img className="img-logo" src="../../logo.png" alt="logo haustier hub" />
                     </div>

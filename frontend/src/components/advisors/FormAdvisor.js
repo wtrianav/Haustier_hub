@@ -11,8 +11,6 @@ import {
 import SelectField from "../formFields/SelectField";
 import InputField from "../formFields/InputField";
 import ButtonForm from "../buttons/ButtonForm";
-import { getDepartments, getCities } from "../../services/formServices";
-import { getDepartmentOptions, getCityOptions } from "../../selectors/formSelectors";
 
 export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
     
@@ -27,45 +25,26 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
         phone: { error: false, message: "" },
         address: { error: false, message: "" },
     });
+
     //Estado para rastrear el envío del formulario.
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
     const [departments, setDepartments] = useState([]);
     const [cities, setCities] = useState([]);
+
     // Estado para que la app sepa cual es el departamento seleccionado
-    const [selectedDepartment, setSelectedDepartment] = useState(advisor.department || "");
+    const [selectedDepartment, setSelectedDepartment] = useState(advisor.deparment || "");
 
-    useEffect(() => {
-        const loadDepartments = async() => {
-            try {
-                const departmentsResponse = await getDepartments();
-                console.log('Han sido cargados los departamentos');
-                setDepartments(departmentsResponse || []);
-            } catch (error) {
-                console.log("Error al cargar los departamentos:", error);
-            }
-        };
-
-        loadDepartments();
-    },[])
-
-    // Carga las ciudades de acuerdo al id del departamento
-    useEffect(() => {
-        const loadCities = async () => {
-            try {
-                const citiesResponse = await getCities(selectedDepartment);
-                console.log('Han sido cargadas las ciudades');
-                setCities(citiesResponse || []);
-            } catch (error) {
-                console.log("Error al cargar las ciudades:", error);
-            }
-        };
-
-        if (selectedDepartment) {
-            loadCities();
-        } else {
-            setCities([]);
+    const loadDepartments = async() => {
+        try {
+            const departmentsResponse = await axios.get(
+                `http://localhost:3000/api/departments`
+            );
+            setDepartments(departmentsResponse.data || []);
+        } catch (error) {
+            console.log("Error al cargar los departamentos:", error);
         }
-    }, [selectedDepartment])
+    };
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -96,6 +75,10 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
         onSubmit(e);
     };
 
+    useEffect(() => {
+        loadDepartments();
+    },[])
+
     const {
         documentType,
         documentNumber,
@@ -105,14 +88,25 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
         phoneNumber,
         address,
     } = advisor;
+
     
     const departmentOptions = useMemo(() => {
-        return getDepartmentOptions(departments.departments);
+        return Array.isArray(departments.departments)
+            ? departments.departments.map((dept) => ({
+                value: dept._id,
+                label: dept.name,
+            }))
+            : [];
     }, [departments]);
 
     const cityOptions = useMemo(() => {
-        return getCityOptions(cities.cities);
-    }, [cities]);
+        return Array.isArray(cities.cities)
+            ? cities.cities.map((cty) => ({
+                value: cty.name,
+                label: cty.name,
+            }))
+            : [];
+    }, [cities])
 
     // Carga o limpia el setSelectedDepartment basado en si se está editando o no
     useEffect(() => {
@@ -127,6 +121,25 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
             setSelectedDepartment("");
         }
     }, [isEdit, advisor, departmentOptions])
+
+    // Carga las ciudades de acuerdo al id del departamento
+    useEffect(() => {
+        if (selectedDepartment) {
+            const loadCities = async () => {
+                try {
+                    const citiesResponse = await axios.get(
+                        `http://localhost:3000/api/cities?department_id=${selectedDepartment}`
+                    );
+                    setCities(citiesResponse.data || []);
+                } catch (error) {
+                    console.log("Error al cargar las ciudades:", error);
+                }
+            }
+            loadCities();
+        } else {
+            setCities([]);
+        }
+    }, [selectedDepartment])
 
     return (
         <form onSubmit={handleFormSubmit}>
@@ -266,6 +279,7 @@ export default function FormAdvisor({ advisor, onInputChange, onSubmit }) {
                         onChange={(e) => {
                             onInputChange("department", e.target.value);
                             setSelectedDepartment(e.target.value);
+                            
                         }}
                         options={[
                             { value: "", label: "Seleccione un departamento" },

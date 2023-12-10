@@ -10,7 +10,7 @@ export default function ViewCompany() {
     useEffect(() => {
         const loadCompany = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/api/empresas/${id}`);
+                const response = await axios.get(`http://localhost:3000/api/empresas/${id}`);
                 setCompany(response.data);
             } catch (error) {
                 console.log("Error:", error);

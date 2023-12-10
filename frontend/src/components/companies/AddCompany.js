@@ -30,7 +30,7 @@ export default function AddCompany() {
     const onSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:3001/api/empresas", company);
+            await axios.post("http://localhost:3000/api/empresas", company);
             navigate("/tablecompanies");
         } catch (error) {
             // Manejar errores en la solicitud POST aquí
