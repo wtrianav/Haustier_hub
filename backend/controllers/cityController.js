@@ -7,20 +7,19 @@ const ObjectId = mongoose.Types.ObjectId;
 
 // Ruta para obtener ciudades por department_id
 router.get('/', async (req, res) => {
-    const { department_id } = req.query;
+    const { department_name } = req.query;
     //console.log('id del departamento:', department_id);
     try {
-        // Crear un solo objeto ObjectId
-        const departmentObjectId = new ObjectId(department_id);
+        
 
         // Comprobar si el departamento existe
-        const department = await Department.findById(departmentObjectId);
+        const department = await Department.findOne({ name: department_name });
 
         if (!department) {
             return res.status(404).json({ error: 'Departamento no encontrado' });
         }
 
-        const cities = await City.find({ department_id: departmentObjectId }); // Reutilizar departmentObjectId
+        const cities = await City.find({ department_name: department_name });
         res.json({ cities });
     } catch (error) {
         console.error('Error en el servidor:', error);
